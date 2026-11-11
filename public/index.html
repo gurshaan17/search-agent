@@ -98,7 +98,7 @@ $('form').addEventListener('submit',async e=>{
     const reader=response.body.getReader();const decoder=new TextDecoder();let pending='';
     try{while(true){const chunk=await reader.read();pending+=decoder.decode(chunk.value,{stream:!chunk.done});let boundary;while((boundary=pending.indexOf('\n\n'))!==-1){event(pending.slice(0,boundary));pending=pending.slice(boundary+2);}if(chunk.done)break;}if(pending.trim())event(pending);}finally{reader.releaseLock();}
     if(!done&&!failed)throw new Error('The connection ended before the reply finished. Please try again.');
-  }catch(error){controller.abort();const note=document.createElement('p');note.className='error';note.setAttribute('role','alert');note.textContent=error.name==='AbortError'?'Reply stopped. You can ask another question.':error.message;reply.article.append(note);status.textContent='Reply incomplete.';}
+  }catch(error){controller.abort();const note=document.createElement('p');note.className='error';note.setAttribute('role','alert');note.textContent=error.name==='AbortError'?'Reply stopped. You can ask another question.':error.name==='TypeError'?'Connection lost. Your reply is incomplete. Check your connection and try again.':error.name==='SyntaxError'?'The reply could not be read. Please try again.':error.message;reply.article.append(note);status.textContent='Reply incomplete.';}
   finally{active=null;setBusy(false);input.focus();}
 });
 </script>

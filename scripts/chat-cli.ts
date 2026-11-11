@@ -4,7 +4,9 @@ import { MemoryStore, type SearchLog } from '../src/memory/db.js';
 import { buildContext } from '../src/context.js';
 import { createInterface } from 'node:readline';
 import type { ModelMessage } from 'ai';
-import { runAgent } from '../src/agent.js';
+import { CitationFilter } from '../src/citations.js';
+import { tokenMetrics, type TurnLog } from '../src/telemetry.js';
+import { runAgent, MAX_INPUT_CHARACTERS } from '../src/agent.js';
 import { createExaProvider } from '../src/search/exa.js';
 import type { SearchResult } from '../src/search/types.js';
 import { MockSearchProvider } from '../src/search/mock.js';
@@ -24,6 +26,7 @@ try {
   for await (const line of lines) {
     if (line.trim() === '/exit') break;
     if (!line.trim()) continue;
+    if (line.length > MAX_INPUT_CHARACTERS) { console.error('The question is too long (maximum 20000 characters).'); continue; }
     const now = process.env.AGENT_NOW?.trim() ? new Date(process.env.AGENT_NOW) : new Date();
     const context = buildContext({ store, userId, message: line, history: messages, now, timezone });
     const user: ModelMessage = { role: 'user', content: line };
@@ -34,6 +37,11 @@ try {
     let text = '';
     const search = backend === 'mock' ? new MockSearchProvider({}) : createExaProvider(process.env.EXA_API_KEY!);
     const sources = new Map<string, SearchResult>();
+    const citations = new CitationFilter(n => sources.has(`s${n}`));
+    const started = performance.now();
+    let firstTokenMs: number | null = null;
+    let outcome: TurnLog['outcome'] = 'error';
+    let tokens = tokenMetrics();
     try {
       const result = runAgent({ messages: context.messages, context: context.context, search: { search: async (query, options) => {
         const start = performance.now();
@@ -47,23 +55,34 @@ try {
         finally { log.latencyMs = Math.round(performance.now() - start); searches.push(log); }
       } },
         now, timezone,
-        onSearch: event => console.error(JSON.stringify(event)),
+        onSearch: ({ phase, step, at }) => console.error(JSON.stringify({ phase, step, at })),
       });
       for await (const part of result.fullStream) {
-        if (part.type === 'text-delta') { text += part.text; process.stdout.write(part.text); }
+        if (part.type === 'text-delta') { const delta = citations.push(part.text); if (delta) { firstTokenMs ??= Math.round(performance.now() - started); text += delta; process.stdout.write(delta); } }
         if (part.type === 'error') throw part.error;
       }
-      messages.push(user, ...(await result.response).messages);
+      const tail = citations.flush(); text += tail; process.stdout.write(tail);
+      tokens = tokenMetrics(await result.totalUsage);
+      const reason = await result.finishReason;
+      if (reason === 'length') { outcome = 'truncated'; throw new Error('Truncated'); }
+      if (reason !== 'stop' || !text.trim()) throw new Error('Incomplete');
+      outcome = 'complete';
+      messages.push(user, { role: 'assistant', content: text });
       evidenceTurnId = store.saveTurn({ ...base, role: 'assistant', content: text });
       process.stdout.write('\n');
       for (const source of sources.values()) console.log(`[${source.id.slice(1)}] ${source.title}: ${source.url}`);
     } catch {
+      const tail = citations.flush(); text += tail; process.stdout.write(tail);
       console.error('Turn failed. Check credentials, model availability, and connectivity.');
       messages.push(user);
       if (text) evidenceTurnId = store.saveTurn({ ...base, role: 'assistant', content: text + '\n[Generation interrupted.]' });
       process.exitCode = 1;
     } finally {
       store.saveEvidence(evidenceTurnId, [...sources.values()], searches, now.toISOString());
+      const log: TurnLog = { event: 'turn', userTurnId, turnId: evidenceTurnId, outcome,
+        searches: searches.map(s => ({ resultCount: s.resultCount, latencyMs: s.latencyMs, failed: s.failed ?? false })),
+        timings: { ttfbMs: 0, firstTokenMs, totalMs: Math.round(performance.now() - started) }, tokens, invalidCitations: citations.invalidCount };
+      console.error(JSON.stringify(log));
     }
     if (process.stdin.isTTY) process.stdout.write('You> ');
   }

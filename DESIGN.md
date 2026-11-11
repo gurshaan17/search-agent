@@ -37,7 +37,7 @@ Exa did not consistently honor the requested 600-character setting; local normal
 
 ## Remaining work
 
-Resolve or explicitly accept the live timeout results before marking Phase 1 complete. Phase 6 adds the general eval runner and latency measurements; hardening remains Phase 7. Structural assertions do not certify every generated claim. The final design document will be revised as those decisions gain evidence.
+Resolve or explicitly accept the live timeout results before marking Phase 1 complete. Phase 6 adds the general eval runner and latency measurements; Phase 7 hardening is implemented; final documentation and fresh-clone review remain Phase 8. Structural assertions do not certify every generated claim. The final design document will be revised as those decisions gain evidence.
 
 Decision details and verification history are in [docs/decisions.md](docs/decisions.md).
 
@@ -49,3 +49,6 @@ The Phase 5 Hono server serves one buildless chat page and streams status, sourc
 
 
 Phase 6's `npm run eval` covers twelve scenarios with real Gemini and mock searches, with an optional live Exa mode. The retained configuration passed 12/12 structural evals and 28 offline tests. Median total time in the final mock run was 4.976 seconds; live lookup/follow-up first-token times in the measured retained trial were 6.6–11.4 seconds, and the comparison took 20.5 seconds. The latency goals are therefore not consistently met. Early synthesis after a single-query round avoids redundant lookups; final synthesis receives plain evidence without function-call history so the model produces an answer within the four-step ceiling. Concise-answer and numeric-citation instructions address overlong output. Keep auto search, four default results, and a 1200-character cap: the fast-mode trial was mixed, and a global two-step cap failed. No caching or routing-model benefit is claimed. Full measurements, failed trials, and limitations are in [docs/phase6-results.md](docs/phase6-results.md).
+
+
+Phase 7 validates citations incrementally before browser/CLI display and persistence, including references split between chunks. Unmapped numbers become explicit unverified-source markers; code examples remain literal. The HTTP boundary enforces a 64 KiB body cap, 20,000-character message limit, and 20 requests per minute per direct socket IP. Structured turn logs expose only IDs, outcomes, counts, durations, numeric usage and invalid-reference counts. Upstream exception details are suppressed. Empty/poor search responses carry explicit evidence-gap instructions, partial failures retain other results, and interrupted or token-truncated replies produce errors rather than successful completion. Forty offline tests and fourteen real-Gemini/mock-search evals pass. A browser test with an actual test-server TCP disconnect preserved partial text, showed recovery guidance, unlocked the composer and allowed New chat. Citation membership is not claim verification, and the local per-process rate limiter and browser namespaces are not an authentication or distributed quota system.

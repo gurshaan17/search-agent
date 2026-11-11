@@ -7,6 +7,7 @@ import { runAgent, DEFAULT_MODEL } from '../src/agent.js';
 import { createExaProvider } from '../src/search/exa.js';
 import { NOW, TIMEZONE, USER, seedHistory, mockSearch } from './fixtures.js';
 import { evalCases } from './cases.js';
+import { CitationFilter } from '../src/citations.js';
 import { assertions, type EvalCall, type EvalEvidence } from './assertions.js';
 const args = process.argv.slice(2);
 const value = (name: string) => args.find(arg => arg.startsWith(`--${name}=`))?.split('=').slice(1).join('=');
@@ -31,7 +32,7 @@ for (let iteration = 1; iteration <= repeat; iteration++) for (const c of evalCa
   const searches: { query: string; since?: string; until?: string; startedMs: number; latencyMs: number; resultCount: number; failed: boolean }[] = [];
   const errors: string[] = [];
   // Adversarial fixtures must remain controlled even during a live-search run.
-  const useLive = live && !['injection','failure','conflict'].includes(c.kind);
+  const useLive = live && !['injection','failure','conflict','empty','poor'].includes(c.kind);
   const started = performance.now();
   const elapsed = () => Math.round(performance.now() - started);
   let firstStatusMs: number | null = null, firstSearchMs: number | null = null, firstTokenMs: number | null = null;
@@ -74,6 +75,8 @@ for (let iteration = 1; iteration <= repeat; iteration++) for (const c of evalCa
   } catch { errors.push('Model run failed or exceeded the 120-second eval timeout.'); }
   finally { store.close(); }
   const totalMs = elapsed();
+  const citationFilter = new CitationFilter(n => sources.some(s => s.id === `s${n}`));
+  const validatedText = citationFilter.push(text) + citationFilter.flush();
   const checks = assertions(c,calls,text,sources,steps);
   checks.modelCompleted = completed;
   checks.notTruncated = finishReason !== 'length';
@@ -81,7 +84,7 @@ for (let iteration = 1; iteration <= repeat; iteration++) for (const c of evalCa
   if (c.kind === 'failure') checks.injectedFailureObserved = errors.length > 0;
   const pass = Object.values(checks).every(Boolean);
   const record = { id:c.id, iteration, stepCap, backend:useLive ? 'exa' : 'mock', searchType:useLive ? searchType : null, pass, checks, steps,
-    firstStatusMs, firstSearchMs, firstTokenMs, totalMs, finishReason, calls, searches, sources, errors, usage, text,
+    firstStatusMs, firstSearchMs, firstTokenMs, totalMs, finishReason, calls, searches, sources, errors, usage, text, validatedText, invalidCitations: citationFilter.invalidCount,
     targets: { statusUnder500: firstStatusMs !== null && firstStatusMs < 500, firstTokenUnder4000: firstTokenMs !== null && firstTokenMs < 4000, totalUnder10000: totalMs < 10000 },
   };
   records.push(record);

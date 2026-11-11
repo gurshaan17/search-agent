@@ -1,23 +1,43 @@
 import { Hono } from 'hono';
+import { bodyLimit } from 'hono/body-limit';
+import type { HttpBindings } from '@hono/node-server';
+import { CitationFilter } from './citations.js';
+import { RateLimiter } from './rate-limit.js';
 import { streamSSE } from 'hono/streaming';
 import { readFile } from 'node:fs/promises';
 import { z } from 'zod';
 import type { LanguageModel } from 'ai';
-import { runAgent } from './agent.js';
+import { runAgent, MAX_INPUT_CHARACTERS } from './agent.js';
 import { buildContext } from './context.js';
 import { MemoryStore, type SearchLog } from './memory/db.js';
 import type { SearchProvider, SearchResult } from './search/types.js';
+import { tokenMetrics, type TurnLog } from './telemetry.js';
 
 const requestSchema = z.object({
-  message: z.string().trim().min(1).max(20000),
+  message: z.string().trim().min(1).max(MAX_INPUT_CHARACTERS),
   userId: z.string().min(1).max(100), conversationId: z.string().min(1).max(100),
   timezone: z.string().max(100).refine(value => { try { new Intl.DateTimeFormat('en', { timeZone: value }); return true; } catch { return false; } }),
 });
-export function createApp(options: { store: MemoryStore; search: () => SearchProvider; model?: LanguageModel; now?: () => Date }) {
-  const app = new Hono();
+export function createApp(options: { store: MemoryStore; search: () => SearchProvider; model?: LanguageModel; now?: () => Date;
+  rateLimit?: { limit: number; windowMs: number }; logTurn?: (record: TurnLog) => void;
+}) {
+  const app = new Hono<{ Bindings: HttpBindings }>();
+  const limiter = new RateLimiter(options.rateLimit?.limit, options.rateLimit?.windowMs);
+  const logTurn = options.logTurn ?? (record => console.log(JSON.stringify(record)));
+  app.use('/chat', async (c,next) => {
+    if (c.req.method === 'POST') {
+      const decision = limiter.take(c.env?.incoming?.socket?.remoteAddress ?? 'local');
+      if (!decision.allowed) {
+        c.header('Retry-After', String(decision.retryAfter));
+        return c.json({ error: 'Too many requests. Please wait a minute before trying again.' }, 429);
+      }
+    }
+    await next();
+  });
+  app.use('/chat', bodyLimit({ maxSize: 65536, onError: c => c.json({ error: 'The chat request is too large.' }, 413) }));
   const busy = new Set<string>();
   app.get('/', async c => c.html(await readFile(new URL('../public/index.html', import.meta.url), 'utf8')));
-  app.get('/health', c => c.json({ status: 'ok', phase: 5 }));
+  app.get('/health', c => c.json({ status: 'ok', phase: 7 }));
   app.post('/chat', async c => {
     let body: unknown;
     try { body = await c.req.json(); } catch { return c.json({ error: 'Send a JSON chat request.' }, 400); }
@@ -43,8 +63,11 @@ export function createApp(options: { store: MemoryStore; search: () => SearchPro
       let ttfbMs = 0;
       let text = '';
       let complete = false;
+      let outcome: TurnLog['outcome'] = 'error';
+      let tokens = tokenMetrics();
       const sources = new Map<string, SearchResult>();
       const searches: SearchLog[] = [];
+      const citations = new CitationFilter(n => sources.has(`s${n}`));
       let writes = Promise.resolve();
       const send = (event: string, data: unknown) => {
         // Serialize concurrent search events so SSE frames cannot interleave.
@@ -73,24 +96,42 @@ export function createApp(options: { store: MemoryStore; search: () => SearchPro
         for await (const part of result.fullStream) {
           if (part.type === 'error') throw part.error;
           if (part.type === 'text-delta') {
-            firstTokenMs ??= Math.round(performance.now() - start);
-            text += part.text;
-            await send('text', { delta: part.text });
+            const delta = citations.push(part.text);
+            if (delta) { firstTokenMs ??= Math.round(performance.now() - start); text += delta; await send('text', { delta }); }
           }
         }
+        const tail = citations.flush();
+        if (tail) { text += tail; await send('text', { delta: tail }); }
         if (controller.signal.aborted) throw new Error('Aborted');
+        const usage = await result.totalUsage;
+        tokens = tokenMetrics(usage);
+        const finishReason = await result.finishReason;
+        if (finishReason === 'length') { outcome = 'truncated'; throw new Error('Truncated'); }
+        if (finishReason !== 'stop' || !text.trim()) throw new Error('Incomplete');
         complete = true;
+        outcome = 'complete';
       } catch {
+        const tail = citations.flush();
+        if (tail) { text += tail; await send('text', { delta: tail }); }
+        if (controller.signal.aborted) outcome = 'aborted';
         if (!controller.signal.aborted) await send('error', { message: 'The reply could not finish. Check the server connection and try again.' });
       } finally {
+        let turnId: number | null = null;
+        const timings = { ttfbMs, firstTokenMs, totalMs: Math.round(performance.now() - start) };
         try {
-          // Keep interrupted text explicit in recall; retain search evidence even with no answer.
-          const turnId = complete || text ? options.store.saveTurn({ ...base, role: 'assistant', content: text + (complete ? '' : '\n[Generation interrupted.]') }) : userTurn;
+          turnId = complete || text ? options.store.saveTurn({ ...base, role: 'assistant', content: text + (complete ? '' : '\n[Generation interrupted.]') }) : userTurn;
           options.store.saveEvidence(turnId, [...sources.values()], searches, now.toISOString());
-          if (complete) await send('done', { turnId, timings: { ttfbMs, firstTokenMs, totalMs: Math.round(performance.now() - start) }, searches });
+          if (complete) await send('done', { turnId, timings, searches });
+        } catch {
+          outcome = 'error';
+          if (!controller.signal.aborted) await send('error', { message: 'The reply could not be saved. Please try again.' });
         } finally {
           busy.delete(key);
           c.req.raw.signal.removeEventListener('abort', abort);
+          // Log only allowlisted metrics, never prompts, queries, headers or upstream errors.
+          try { logTurn({ event: 'turn', userTurnId: userTurn, turnId, outcome,
+            searches: searches.map(s => ({ resultCount: s.resultCount, latencyMs: s.latencyMs, failed: s.failed ?? false })),
+            timings, tokens, invalidCitations: citations.invalidCount }); } catch {}
         }
       }
     });

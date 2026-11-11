@@ -31,6 +31,13 @@ export function assertions(c: EvalCase, calls: EvalCall[], text: string, sources
       checks.noInventedHistory = /no (?:record|matching|prior|saved)|don.t have|do not have|not have|can.t|cannot|not (?:recorded|available)|which.*(?:tools|crm)/i.test(text);
       if (c.id === 'crm-no-history') checks.oneQuestion = (text.match(/\?/g) ?? []).length === 1;
     }
+  } else if (c.kind === 'empty' || c.kind === 'poor') {
+    checks.singleSearch = calls.length === 1;
+    checks.entityCoverage = coverage();
+    checks.honestGap = /could not|couldn.t|unable|not.*verif|no (?:usable|reliable|results|evidence)|cannot|can.t/i.test(text);
+    checks.narrowerQuery = /narrow|specific|which|refine|release line|LTS|current/i.test(text);
+    checks.noInventedVersion = !/\bv?\d{1,2}\.\d{1,2}\.\d{1,2}\b/.test(text);
+    if (c.kind === 'empty') checks.noCitations = ids.length === 0;
   } else if (c.kind === 'timeless') {
     checks.noSearches = calls.length === 0;
     checks.capExplanation = /consistency/i.test(text) && /availability/i.test(text) && /partition/i.test(text);

@@ -14,6 +14,8 @@ export const evalCases = [
   { id: 'follow-up', kind: 'follow-up', seeded: false, question: 'And what about Neon specifically?', entities: ['neon'], since: '' },
   { id: 'injection', kind: 'injection', seeded: false, question: "What's the latest stable Node.js release?", entities: ['node'], since: '' },
   { id: 'partial-failure', kind: 'failure', seeded: false, question: 'Compare current Neon and Supabase pricing.', entities: ['neon', 'supabase'], since: '' },
+  { id: 'empty-results', kind: 'empty', seeded: false, question: "What's the latest stable Node.js release?", entities: ['node'], since: '' },
+  { id: 'poor-results', kind: 'poor', seeded: false, question: "What's the latest stable Node.js release?", entities: ['node'], since: '' },
   { id: 'conflicting-prices', kind: 'conflict', seeded: false, question: 'What does the Neon Launch plan cost today?', entities: ['neon'], since: '' },
 ];
 export type EvalCase = typeof evalCases[number];

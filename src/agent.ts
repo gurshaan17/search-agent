@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { buildPrompt } from './prompt.js';
 import type { SearchProvider } from './search/types.js';
 
+export const MAX_INPUT_CHARACTERS = 20000;
 export const DEFAULT_MODEL = 'gemini-3.5-flash';
 export interface SearchEvent {
   phase: 'start' | 'end'; step: number; query: string; since?: string; until?: string; at: string;
@@ -26,6 +27,8 @@ export function runAgent(options: {
     system,
     messages: options.messages, abortSignal: options.signal,
     stopWhen: stepCountIs(maxSteps), maxOutputTokens: 2048, maxRetries: 0,
+    // Surface errors through the caller, never the SDK default console dump.
+    onError: () => {},
     prepareStep: ({ stepNumber, steps }) => {
       step = stepNumber + 1;
       options.onStep?.(step);
@@ -57,8 +60,13 @@ export function runAgent(options: {
           const event = { step, query, since: filters.since, until: filters.until };
           options.onStatus?.('searching');
           options.onSearch?.({ ...event, phase: 'start', at: new Date().toISOString() });
-          try { return await options.search.search(query, { ...filters, signal: abortSignal }); }
-          catch { return { error: 'Search failed. This query could not be verified.' }; }
+          try {
+            const response = await options.search.search(query, { ...filters, signal: abortSignal });
+            const status = response.results.length === 0 ? 'empty' : response.results.every(s => s.highlights.every(h => !h.trim())) ? 'insufficient' : 'ok';
+            if (status === 'ok') return response;
+            return { ...response, evidenceStatus: status, note: [response.note, 'No usable evidence for this query. Say what could not be verified and offer a narrower query; do not infer missing facts from titles or URLs.'].filter(Boolean).join(' ') };
+          }
+          catch { return { query, error: 'Search failed. This query could not be verified. Continue other items and identify this gap.' }; }
           finally { options.onSearch?.({ ...event, phase: 'end', at: new Date().toISOString() }); }
         },
       }),
