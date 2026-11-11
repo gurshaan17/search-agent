@@ -1,41 +1,43 @@
 # Fieldnote design
 
-Fieldnote is a local research chat for current facts, comparisons, and revisiting earlier answers. Gemini plans searches; Exa supplies sources; SQLite keeps dated conversations. The browser streams progress and answers, then saves the transcript for reopening from the sidebar. This document describes the implemented system. Detailed decisions and failed experiments remain in [the decision log](docs/decisions.md).
+Fieldnote helps answer questions that need current information and a record of what was said before. It combines Gemini, Exa web search, and dated SQLite memory in a browser and terminal chat. The aim is a small system whose decisions and evidence are easy to inspect.
 
 ```text
 Browser / CLI → context builder → Gemini → web_search → Exa
                        ↑                         ↓
-                    SQLite ← validated answer + sources + searches
+                    SQLite ← answer + sources + search records
 ```
 
-## How it works
+## How a question becomes an answer
 
-Hono serves one buildless HTML page and a streaming chat endpoint. Before generation, code injects the current ISO time, local date, weekday, timezone, recent conversation messages, and relevant saved turns. The browser supplies its timezone; the CLI uses the system timezone. `AGENT_NOW` fixes the clock for tests. The agent exposes exactly one tool, `web_search`. Search events and answer deltas travel over SSE; source links use stable IDs within each turn.
+Hono serves the browser page and streams chat events over SSE. Before calling Gemini, the server supplies the current time, weekday, local date, timezone, recent conversation, and relevant saved questions and answers. The browser supplies its timezone; the terminal uses the system timezone. Tests can fix the clock with `AGENT_NOW`.
 
-Questions, answers, sources, and search records are stored in SQLite. Browser storage holds only the user and selected-conversation IDs. History endpoints scope reads to that user and paginate chats and messages; the model receives the latest forty conversation messages. These IDs are local namespaces, not authentication. The server binds to localhost.
+Gemini has one tool: `web_search`. It decides what to search and uses the returned excerpts to answer with numbered citations. The browser shows search progress, streams the answer, and links citations to sources. The server saves the conversation and evidence in SQLite. The sidebar can reopen earlier chats, including their source lists; reload restores the selected chat.
 
-## Decisions and tradeoffs
+## Why the system is built this way
 
-**Recall runs in code.** chrono-node resolves English dates against the request clock. Local-day boundaries are converted separately to UTC, including daylight-saving changes. FTS5 topic matches within seven days of a resolved date rank ahead of unrelated date-only hits. Up to six question/reply pairs provide a dated baseline. This preserves the one-tool interface and avoids another model round-trip. A vector database would add infrastructure without improving exact date lookup.
+**Memory is retrieved before the model runs.** chrono-node resolves English date references, while SQLite timestamps and FTS5 find earlier conversations. Topic matches near a referenced date help distinguish two possible meanings of “last Tuesday.” Recall supplies up to six question-and-answer pairs. This avoids a separate memory tool and another model call. Timestamp filters and keyword search cover the current recall requirements without a vector database.
 
-**One bounded agent loop plans research.** Independent entity queries can run in parallel. There are at most four model steps, twelve provider searches, and 2048 output tokens per model step. A single-query round proceeds directly to synthesis. Final synthesis receives plain, explicitly untrusted evidence without function-call history; this addressed observed Gemini tool-loop failures. A separate planner/executor framework or routing model adds complexity without a measured benefit here.
+**Research uses one bounded loop.** The prompt asks for independent entity searches in the same step. Code enforces a ceiling of four model steps, twelve searches, and 2048 output tokens per model step. A single-query round moves directly to an answer. Final synthesis receives plain, explicitly untrusted evidence rather than function-call history, addressing observed Gemini tool-loop failures. A separate planner, routing model, or orchestration framework has no measured benefit here.
 
-**Change checks use two searches.** Dated announcements and an unfiltered official page complement each other: pricing pages can change without a publication date. The model compares current evidence with the saved baseline, distinguishes a baseline correction from a proven change event, and states missing history or evidence rather than inventing it.
+**Checking for changes requires two views.** A date-filtered search finds announcements; an unfiltered official-page search checks the current state. Both matter because a pricing page can change without a publication date. The model compares this evidence with the saved answer and distinguishes a baseline correction from a dated change event. Missing history, failed searches, and insufficient evidence must remain visible gaps.
 
-**Search context is bounded.** Exa defaults to auto mode, four results, fresh-crawl requests, and highlights. Local normalization deduplicates URLs, caps results at eight, and caps excerpts at 1200 characters per source. Full-page text has no demonstrated benefit. Fast mode produced mixed timings; a global two-step cap failed cases. Neither replaced the retained settings.
+**Search results are kept small.** Exa uses auto mode, fresh-crawl requests, and four results by default. Normalization deduplicates URLs, caps results at eight, and limits excerpts to 1200 characters per source. Each search has an eight-second budget, including one retry for transient HTTP failures. Full-page text has no demonstrated benefit. Fast mode had mixed timings, and a global two-step limit failed cases, so neither became the default.
 
-**Output remains inspectable.** Search content is treated as data rather than instructions. Citation validation buffers split references and flags unknown source numbers while preserving code literals. Browser formatting uses text nodes and safe links. Failures retain partial text with an interruption marker. Citation membership does not prove that a source supports a claim.
+**Sources remain inspectable.** Citation validation buffers split references and flags numbers absent from returned sources, while preserving code literals. The frontend builds formatting with text nodes and safe links. Interrupted answers keep an explicit marker. Citation membership checks prevent invented reference numbers; they cannot establish that a claim is supported.
 
-The server caps requests at 64 KiB and questions at 20,000 characters, with twenty chat requests per minute per socket IP. Metrics logs omit prompts, query text, credentials, and upstream error details. The frontend pairs Instrument Serif display type with DM Sans; local fallbacks keep it usable if external fonts fail.
+The server binds to localhost. Browser IDs scope history but are not authentication. Requests are limited to 64 KiB, questions to 20,000 characters, and chat requests to twenty per minute per socket IP. Logs contain allowlisted metrics rather than prompts, credentials, or upstream exception details. The frontend uses Instrument Serif and DM Sans with local fallbacks.
 
-## Measurements and limits
+## What verification shows
 
-| Verification | Measured result |
+| Check | Recorded result |
 | --- | --- |
-| Phase 7 model evals, mock search | 14/14 structural passes |
-| Offline tests after sidebar history | 42 passes |
+| Fresh-clone offline tests | 42 passed |
+| Fresh-clone model evals with mock search | 14/14 passed |
 | Phase 6 mock median completion | 4.976 seconds |
-| Retained live lookup/follow-up first token | 6.6–11.4 seconds |
-| Retained live comparison total | 20.5 seconds |
+| Measured live lookup/follow-up first token | 6.6–11.4 seconds |
+| Measured live comparison total | 20.5 seconds |
 
-[Raw evals](docs/evals/phase7-gate.json) and [latency trials](docs/phase6-results.md) include limitations. Live speed targets are not consistently met, and earlier Exa smoke runs had timeouts. Model outputs vary; structural assertions cannot certify factual accuracy or tone. With another week, I would measure reranking and another search provider, keep dated claim snapshots for clearer comparisons, and expand human-reviewed answer-quality cases.
+Fresh-clone browser checks also covered live research, citations, saved history, reload, and follow-up recall. [Eval outputs](docs/evals/phase8-gate.json) and [latency trials](docs/phase6-results.md) record the evidence and limitations. Live speed targets are not consistently met; model behavior varies, and factual accuracy still requires reviewing sources.
+
+With another week, the next work would be measuring another search provider and reranking, storing dated claim snapshots for clearer change comparisons, and expanding human-reviewed answer-quality cases.
