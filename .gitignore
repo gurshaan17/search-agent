@@ -1,0 +1,10 @@
+IMPLEMENTATION.md
+.env
+.env.*
+!.env.example
+node_modules/
+data/
+dist/
+coverage/
+*.tsbuildinfo
+.DS_Store
