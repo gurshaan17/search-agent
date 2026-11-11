@@ -1,6 +1,6 @@
 # Design
 
-The project has a TypeScript scaffold, an implemented search provider, and a Gemini terminal agent. Phase 2 automated checks pass; a live Gemini CAP response used zero searches. The Node.js and pricing acceptance prompts remain unverified. Phase 3 persistence and recall pass automated checks and a live cross-session recall check. Phase 1 acceptance is still pending because three of twenty live smoke requests timed out. The browser streaming UI remains planned work.
+The project has a TypeScript scaffold, an implemented search provider, and a Gemini terminal agent. Phase 2 automated checks pass; a live Gemini CAP response used zero searches. The Node.js and pricing acceptance prompts remain unverified. Phase 3 persistence and recall pass automated checks and a live cross-session recall check. Phase 1 acceptance is still pending because three of twenty live smoke requests timed out. Phase 4 adds fixed-clock temporal checks and refined baseline comparison policy; the browser streaming UI remains planned work.
 
 The planned request flow is browser → Hono → context builder → single-tool agent → search provider. SQLite supplies dated recall before the model runs. The terminal agent exposes one tool, `web_search`, with a four-step cap and twelve-search budget. It streams answers and logs search timestamps and step numbers. `MODEL` defaults to `gemini-3.5-flash`, using `GEMINI_API_KEY`; this replaces the originally planned Anthropic provider at the owner’s request. The search provider can also be exercised independently through the smoke script.
 
@@ -37,6 +37,9 @@ Exa did not consistently honor the requested 600-character setting; local normal
 
 ## Remaining work
 
-Resolve or explicitly accept the live timeout results before marking Phase 1 complete. Verify the remaining Phase 2 live search prompts. Later phases refine temporal change detection, streaming chat, evals, and hardening. End-to-end answer quality and latency have not been measured. The final design document will be revised as those decisions gain evidence.
+Resolve or explicitly accept the live timeout results before marking Phase 1 complete. Verify the remaining Phase 2 live search prompts. Later phases add streaming chat, evals, and hardening. End-to-end answer quality and latency have not been measured. The final design document will be revised as those decisions gain evidence.
 
 Decision details and verification history are in [docs/decisions.md](docs/decisions.md).
+
+
+Phase 4 verification covers five temporal scenarios with Gemini and mock search, plus two live Exa spot-checks. The model pairs dated announcements with unfiltered current pages and asks for the missing shortlist without searching. Synthetic baseline differences on undated pricing pages are detected. Some runs split research into two parallel batches; structural passes do not guarantee every generated claim is supported. Measurements and remaining quality limits are in [docs/phase4-results.md](docs/phase4-results.md).

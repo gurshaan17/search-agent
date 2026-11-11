@@ -22,6 +22,15 @@ npm run typecheck
 npm test
 ```
 
+Temporal behavior can be checked with the fixed 11 November 2026 clock and synthetic saved baselines:
+
+```sh
+node --import tsx scripts/temporal-smoke.ts
+node --import tsx scripts/temporal-smoke.ts --live
+```
+
+Both commands call Gemini. The first uses mock searches; `--live` runs two cases against Exa. JSON results include assertions, queries, source URLs, timings, and answer text; timestamped search events go to stderr. Use `--case=last-tuesday` (or another case ID from `evals/cases.ts`) to focus a run. These checks use an in-memory database and do not modify CLI history. Synthetic baseline prices are test data, not verified historical prices.
+
 `npm run eval` is reserved for Phase 6; its runner is currently a placeholder.
 
 Source modules live in `src/`, browser assets in `public/`, manual tools in `scripts/`, evaluation cases in `evals/`, and architecture decisions in `docs/decisions.md`. Runtime SQLite files will live in ignored `data/`.
