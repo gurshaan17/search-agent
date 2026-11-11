@@ -1,0 +1,1551 @@
+{
+  "auto": {
+    "measuredAt": "2026-11-11T18:33:21.291Z",
+    "model": "gemini-3.5-flash",
+    "clock": "2026-11-11T04:30:00.000Z",
+    "records": [
+      {
+        "id": "latest-node",
+        "iteration": 1,
+        "stepCap": 4,
+        "backend": "exa",
+        "searchType": "auto",
+        "pass": true,
+        "checks": {
+          "answer": true,
+          "stepBudget": true,
+          "searchBudget": true,
+          "validCitations": true,
+          "entityCoverage": true,
+          "citations": true,
+          "singleSearch": true,
+          "modelCompleted": true
+        },
+        "steps": 2,
+        "firstStatusMs": 73,
+        "firstSearchMs": 2350,
+        "firstTokenMs": 9075,
+        "totalMs": 9352,
+        "calls": [
+          {
+            "query": "latest stable Node.js release",
+            "step": 1,
+            "atMs": 2350
+          }
+        ],
+        "searches": [
+          {
+            "query": "latest stable Node.js release",
+            "startedMs": 2350,
+            "latencyMs": 3824,
+            "resultCount": 4,
+            "failed": false
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "url": "https://nodejs.org/en/blog/release",
+            "domain": "nodejs.org",
+            "publishedDate": null
+          },
+          {
+            "id": "s2",
+            "url": "https://nodejs.org/en/blog/release/v26.13.0",
+            "domain": "nodejs.org",
+            "publishedDate": null
+          },
+          {
+            "id": "s3",
+            "url": "https://nodejs.org/download/release/latest/",
+            "domain": "nodejs.org",
+            "publishedDate": null
+          },
+          {
+            "id": "s4",
+            "url": "https://nodejs.org/en/download/current/",
+            "domain": "nodejs.org",
+            "publishedDate": null
+          }
+        ],
+        "errors": [],
+        "usage": {
+          "inputTokens": 3618,
+          "inputTokenDetails": {
+            "noCacheTokens": 3618,
+            "cacheReadTokens": 0
+          },
+          "outputTokens": 474,
+          "outputTokenDetails": {
+            "textTokens": 154,
+            "reasoningTokens": 320
+          },
+          "totalTokens": 4092
+        },
+        "text": "The latest stable release of Node.js is **v26.13.1 (LTS)**, released on November 11, 2026 [1], [3]. \n\nNode.js 26 transitioned into Long Term Support (LTS) under the codename \"Lithium\" with version 26.13.0 [2]. \n\nOther active LTS release lines as of November 11, 2026, include [1]:\n* **v24.22.3 (LTS)**\n* **v22.23.5 (LTS)**",
+        "targets": {
+          "statusUnder500": true,
+          "firstTokenUnder4000": false,
+          "totalUnder10000": true
+        }
+      },
+      {
+        "id": "hosting-comparison",
+        "iteration": 1,
+        "stepCap": 4,
+        "backend": "exa",
+        "searchType": "auto",
+        "pass": false,
+        "checks": {
+          "answer": true,
+          "stepBudget": true,
+          "searchBudget": true,
+          "validCitations": true,
+          "entityCoverage": true,
+          "citations": false,
+          "parallelSearches": true,
+          "modelCompleted": true
+        },
+        "steps": 2,
+        "firstStatusMs": 2,
+        "firstSearchMs": 2648,
+        "firstTokenMs": 16718,
+        "totalMs": 21003,
+        "calls": [
+          {
+            "query": "Neon Postgres pricing",
+            "step": 1,
+            "atMs": 2649
+          },
+          {
+            "query": "Supabase pricing Postgres",
+            "step": 1,
+            "atMs": 2650
+          },
+          {
+            "query": "Amazon RDS PostgreSQL pricing",
+            "step": 1,
+            "atMs": 2651
+          }
+        ],
+        "searches": [
+          {
+            "query": "Neon Postgres pricing",
+            "startedMs": 2649,
+            "latencyMs": 2497,
+            "resultCount": 4,
+            "failed": false
+          },
+          {
+            "query": "Supabase pricing Postgres",
+            "startedMs": 2650,
+            "latencyMs": 6094,
+            "resultCount": 4,
+            "failed": false
+          },
+          {
+            "query": "Amazon RDS PostgreSQL pricing",
+            "startedMs": 2651,
+            "latencyMs": 7207,
+            "resultCount": 4,
+            "failed": false
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "url": "https://neon.com/pricing",
+            "domain": "neon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s2",
+            "url": "https://neon.com/docs/introduction/plans",
+            "domain": "neon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s3",
+            "url": "https://neon.com/guides/best-postgres-hosting-saas-and-ai-agents-2026",
+            "domain": "neon.com",
+            "publishedDate": "2026-10-30T00:00:00.000Z"
+          },
+          {
+            "id": "s4",
+            "url": "https://neon.com/blog/new-usage-based-pricing",
+            "domain": "neon.com",
+            "publishedDate": "2025-08-14T13:03:58.000Z"
+          },
+          {
+            "id": "s5",
+            "url": "https://supabase.com/pricing",
+            "domain": "supabase.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s6",
+            "url": "https://supabase.com/kb/faqs/platform/database-only-cost",
+            "domain": "supabase.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s7",
+            "url": "https://supabase.com/docs/guides/platform/compute-and-disk",
+            "domain": "supabase.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s8",
+            "url": "https://supabase.com/docs/guides/platform/billing-on-supabase",
+            "domain": "supabase.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s9",
+            "url": "https://aws.amazon.com/rds/postgresql/pricing/",
+            "domain": "aws.amazon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s10",
+            "url": "https://aws.amazon.com/rds/pricing/",
+            "domain": "aws.amazon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s11",
+            "url": "https://www.bytebase.com/dbcost/rds/instance/db.t4g.large/",
+            "domain": "www.bytebase.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s12",
+            "url": "https://cloudburn.io/tools/amazon-rds-pricing-calculator",
+            "domain": "cloudburn.io",
+            "publishedDate": null
+          }
+        ],
+        "errors": [],
+        "usage": {
+          "inputTokens": 5700,
+          "inputTokenDetails": {
+            "noCacheTokens": 5700,
+            "cacheReadTokens": 0
+          },
+          "outputTokens": 2250,
+          "outputTokenDetails": {
+            "textTokens": 982,
+            "reasoningTokens": 1268
+          },
+          "totalTokens": 7950
+        },
+        "text": "### Architectural & Pricing Overview\n\n| Feature | Neon | Supabase | Amazon RDS for PostgreSQL |\n| :--- | :--- | :--- | :--- |\n| **Pricing Model** | Serverless / Usage-based (Separated compute & storage) | Tiered platform subscription + provisioned compute | Dedicated provisioned instance + storage + egress |\n| **Scaling Mechanism** | Autoscaling & scale-to-zero per Compute Unit (CU) | Manual compute resizing (Micro to 16XL+) | Manual instance resizing or Auto Scaling rules (with potential downtime/failover) |\n| **Primary Target** | Developers, serverless workloads, multi-tenant DBs | Full backend apps (Postgres + Auth, Realtime, Storage APIs) | Enterprise production databases & traditional infrastructure |\n\n---\n\n### Detailed Pricing Breakdown\n\n#### 1. Neon\n* **Free Tier:** $0/month. Up to 100 projects, 100 CU-hours of compute per project/month, and 1 GB storage per project (20 GB account max) [s1, s4]. Projects auto-suspend when inactive.\n* **Launch Plan:** $0 base monthly fee (pay-as-you-go) [s1].\n  * **Compute:** $0.106 / CU-hour [s2, s4]. Compute scales dynamically and scales to zero when idle.\n  * **Storage:** 5 GB included per project [s2]; additional storage billed on usage.\n* **Scale Plan:** For heavier production workloads [s1].\n  * **Compute:** $0.222 / CU-hour [s2].\n  * **Storage:** Includes 500 GB storage per project [s2].\n\n#### 2. Supabase\n* **Free Tier:** $0/month. Up to 2 active projects with 500 MB database space each [s5]. Pauses after 1 week of inactivity [s5].\n* **Pro Plan:** $25/month base org fee (includes 8 GB disk/project, 250 GB egress, and $10 compute credit covering 1 Micro instance) [s5, s6, s8].\n* **Compute Add-ons (Per Project):**\n  * **Micro (1 GB RAM, shared CPU):** ~$10/month ($0.01344/hr) [s7].\n  * **Small (2 GB RAM, shared CPU):** ~$15/month ($0.0206/hr) [s7].\n  * **Medium (4 GB RAM, shared CPU):** ~$60/month ($0.0822/hr) [s7].\n  * **Large (8 GB RAM, 2 vCPUs dedicated):** ~$110/month ($0.1517/hr) [s7].\n  * **XL to 16XL:** Scales up to ~$3,730/month (64 vCPUs, 256 GB RAM) [s7].\n* **Overages:** Storage beyond quota is $0.125/GB-month; extra data egress is $0.09/GB [s8].\n\n#### 3. Amazon RDS for PostgreSQL\n* **Free Tier:** 12 months free for new AWS accounts (750 hours/month of single-AZ `db.t2.micro`/`db.t3.micro`/`db.t4g.micro`, 20 GB gp2 storage, and 20 GB backup storage) [s9].\n* **On-Demand Compute (Fixed Provisioned Hours):**\n  * **`db.t4g.micro` (2 vCPU burstable, 1 GB RAM):** ~$12\u2013$14/month (~$0.016/hr).\n  * **`db.t4g.small` (2 vCPU burstable, 2 GB RAM):** ~$24\u2013$28/month (~$0.032/hr).\n  * **`db.t4g.large` (2 vCPU burstable, 8 GB RAM):** ~$94/month (~$0.13/hr in US East) [",
+        "targets": {
+          "statusUnder500": true,
+          "firstTokenUnder4000": false,
+          "totalUnder10000": false
+        }
+      },
+      {
+        "id": "follow-up",
+        "iteration": 1,
+        "stepCap": 4,
+        "backend": "exa",
+        "searchType": "auto",
+        "pass": true,
+        "checks": {
+          "answer": true,
+          "stepBudget": true,
+          "searchBudget": true,
+          "validCitations": true,
+          "entityCoverage": true,
+          "citations": true,
+          "singleSearch": true,
+          "modelCompleted": true
+        },
+        "steps": 2,
+        "firstStatusMs": 5,
+        "firstSearchMs": 2108,
+        "firstTokenMs": 8182,
+        "totalMs": 10209,
+        "calls": [
+          {
+            "query": "Neon serverless postgres pricing plans tiers",
+            "step": 1,
+            "atMs": 2108
+          }
+        ],
+        "searches": [
+          {
+            "query": "Neon serverless postgres pricing plans tiers",
+            "startedMs": 2108,
+            "latencyMs": 2563,
+            "resultCount": 4,
+            "failed": false
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "url": "https://neon.com/pricing",
+            "domain": "neon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s2",
+            "url": "https://neon.com/docs/introduction/plans",
+            "domain": "neon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s3",
+            "url": "https://neon.com/blog/new-usage-based-pricing",
+            "domain": "neon.com",
+            "publishedDate": "2025-08-14T13:03:58.000Z"
+          },
+          {
+            "id": "s4",
+            "url": "https://neon.com/faqs/best-backend-startup-mvp",
+            "domain": "neon.com",
+            "publishedDate": null
+          }
+        ],
+        "errors": [],
+        "usage": {
+          "inputTokens": 3333,
+          "inputTokenDetails": {
+            "noCacheTokens": 3333,
+            "cacheReadTokens": 0
+          },
+          "outputTokens": 1158,
+          "outputTokenDetails": {
+            "textTokens": 497,
+            "reasoningTokens": 661
+          },
+          "totalTokens": 4491
+        },
+        "text": "Neon uses a fully usage-based pricing structure with three main tiers: **Free**, **Launch**, and **Scale** [2], [3].\n\n### 1. Free Tier\n* **Base Cost:** $0/month (no credit card required) [4].\n* **Compute:** 100 CU-hours per project (autoscaling up to 2 Compute Units / 8 GB RAM) [2], [4].\n* **Storage:** 1 GB per project (up to 20 GB per account) [2], [4].\n* **Egress:** 5 GB public network transfer per project [1], [2].\n* **Scale to Zero:** Scales down after 5 minutes of inactivity [1], [2].\n\n---\n\n### 2. Launch Tier (Startups & Growing Projects)\n* **Base Cost:** Pay-as-you-go with **no monthly minimum** [2], [3].\n* **Compute:** $0.106 per CU-hour (autoscaling up to 16 CU / 64 GB RAM) [2].\n* **Storage:** $0.35 per GB-month [2].\n* **Egress:** 500 GB public transfer included per project, then $0.10 per GB [1], [2].\n* **Branches:** 10 branches/project included; additional branches cost $1.50/branch-month (prorated hourly) [2].\n\n---\n\n### 3. Scale Tier (Production & Enterprise Workloads)\n* **Base Cost:** Usage-based [2].\n* **Compute:** $0.222 per CU-hour (autoscaling up to 16 CU, or fixed sizes up to 56 CU / 224 GB RAM) [2].\n* **Storage:** $0.35 per GB-month [2].\n* **Egress:** 500 GB public transfer included, then $0.10 per GB (private transfer at $0.01/GB) [1], [2].\n* **Additional Features:** Longer monitoring retention (14 days), SOC 2 / HIPAA compliance options, and IP allowlisting [1].",
+        "targets": {
+          "statusUnder500": true,
+          "firstTokenUnder4000": false,
+          "totalUnder10000": false
+        }
+      }
+    ]
+  },
+  "fast": {
+    "measuredAt": "2026-11-11T18:34:26.156Z",
+    "model": "gemini-3.5-flash",
+    "clock": "2026-11-11T04:30:00.000Z",
+    "records": [
+      {
+        "id": "latest-node",
+        "iteration": 1,
+        "stepCap": 4,
+        "backend": "exa",
+        "searchType": "fast",
+        "pass": true,
+        "checks": {
+          "answer": true,
+          "stepBudget": true,
+          "searchBudget": true,
+          "validCitations": true,
+          "entityCoverage": true,
+          "citations": true,
+          "singleSearch": true,
+          "modelCompleted": true
+        },
+        "steps": 2,
+        "firstStatusMs": 64,
+        "firstSearchMs": 2396,
+        "firstTokenMs": 7883,
+        "totalMs": 7893,
+        "calls": [
+          {
+            "query": "latest stable Node.js release current LTS version",
+            "step": 1,
+            "atMs": 2396
+          }
+        ],
+        "searches": [
+          {
+            "query": "latest stable Node.js release current LTS version",
+            "startedMs": 2396,
+            "latencyMs": 2801,
+            "resultCount": 4,
+            "failed": false
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "url": "https://nodejs.org/en/blog/release",
+            "domain": "nodejs.org",
+            "publishedDate": null
+          },
+          {
+            "id": "s2",
+            "url": "https://nodejs.org/en/blog/release/v26.13.0",
+            "domain": "nodejs.org",
+            "publishedDate": null
+          },
+          {
+            "id": "s3",
+            "url": "https://nodejs.org/en/download/current",
+            "domain": "nodejs.org",
+            "publishedDate": null
+          },
+          {
+            "id": "s4",
+            "url": "https://github.com/nodejs/release?tab=readme-ov-file",
+            "domain": "github.com",
+            "publishedDate": null
+          }
+        ],
+        "errors": [],
+        "usage": {
+          "inputTokens": 3892,
+          "inputTokenDetails": {
+            "noCacheTokens": 3892,
+            "cacheReadTokens": 0
+          },
+          "outputTokens": 333,
+          "outputTokenDetails": {
+            "textTokens": 74,
+            "reasoningTokens": 259
+          },
+          "totalTokens": 4225
+        },
+        "text": "The latest stable (Active LTS) release of Node.js is **v26.13.1 (LTS)** (codename \"Lithium\"), released on November 11, 2026 [1, 3].",
+        "targets": {
+          "statusUnder500": true,
+          "firstTokenUnder4000": false,
+          "totalUnder10000": true
+        }
+      },
+      {
+        "id": "hosting-comparison",
+        "iteration": 1,
+        "stepCap": 4,
+        "backend": "exa",
+        "searchType": "fast",
+        "pass": false,
+        "checks": {
+          "answer": true,
+          "stepBudget": true,
+          "searchBudget": true,
+          "validCitations": true,
+          "entityCoverage": true,
+          "citations": false,
+          "parallelSearches": true,
+          "modelCompleted": true
+        },
+        "steps": 2,
+        "firstStatusMs": 3,
+        "firstSearchMs": 2512,
+        "firstTokenMs": 16452,
+        "totalMs": 22900,
+        "calls": [
+          {
+            "query": "Neon Postgres pricing",
+            "step": 1,
+            "atMs": 2512
+          },
+          {
+            "query": "Supabase pricing plans",
+            "step": 1,
+            "atMs": 2513
+          },
+          {
+            "query": "Amazon RDS PostgreSQL pricing",
+            "step": 1,
+            "atMs": 2515
+          }
+        ],
+        "searches": [
+          {
+            "query": "Neon Postgres pricing",
+            "startedMs": 2512,
+            "latencyMs": 1159,
+            "resultCount": 4,
+            "failed": false
+          },
+          {
+            "query": "Supabase pricing plans",
+            "startedMs": 2513,
+            "latencyMs": 6071,
+            "resultCount": 4,
+            "failed": false
+          },
+          {
+            "query": "Amazon RDS PostgreSQL pricing",
+            "startedMs": 2515,
+            "latencyMs": 7220,
+            "resultCount": 4,
+            "failed": false
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "url": "https://neon.com/pricing",
+            "domain": "neon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s2",
+            "url": "https://neon.com/docs/introduction/plans",
+            "domain": "neon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s3",
+            "url": "https://neon.com/blog/new-usage-based-pricing",
+            "domain": "neon.com",
+            "publishedDate": "2025-08-14T13:03:58.000Z"
+          },
+          {
+            "id": "s4",
+            "url": "https://neon.com/guides/best-postgres-hosting-saas-and-ai-agents-2026",
+            "domain": "neon.com",
+            "publishedDate": "2026-10-30T00:00:00.000Z"
+          },
+          {
+            "id": "s5",
+            "url": "https://supabase.com/pricing",
+            "domain": "supabase.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s6",
+            "url": "https://supabase.com/docs/guides/platform/billing-on-supabase",
+            "domain": "supabase.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s7",
+            "url": "https://supabase.com/kb/faqs/platform/database-only-cost",
+            "domain": "supabase.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s8",
+            "url": "https://supabase.com/docs/guides/platform/your-monthly-invoice",
+            "domain": "supabase.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s9",
+            "url": "https://aws.amazon.com/rds/postgresql/pricing/",
+            "domain": "aws.amazon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s10",
+            "url": "https://aws.amazon.com/rds/pricing/",
+            "domain": "aws.amazon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s11",
+            "url": "https://www.bytebase.com/dbcost/rds/instance/db.m7g.xlarge/",
+            "domain": "www.bytebase.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s12",
+            "url": "https://www.bytebase.com/dbcost/rds/instance/db.t4g.large/",
+            "domain": "www.bytebase.com",
+            "publishedDate": null
+          }
+        ],
+        "errors": [],
+        "usage": {
+          "inputTokens": 5447,
+          "inputTokenDetails": {
+            "noCacheTokens": 5447,
+            "cacheReadTokens": 0
+          },
+          "outputTokens": 2245,
+          "outputTokenDetails": {
+            "textTokens": 1229,
+            "reasoningTokens": 1016
+          },
+          "totalTokens": 7692
+        },
+        "text": "### Overview of Pricing Models\n\n| Feature / Provider | **Neon** | **Supabase** | **AWS RDS (PostgreSQL)** |\n| :--- | :--- | :--- | :--- |\n| **Primary Pricing Model** | Pure usage-based (Compute Units / CU-hours + storage) [s1, s3] | Organization subscription + per-project compute instance fees [s5] | Provisioned hourly instance rate + storage + data egress (or RIs) [s9] |\n| **Free Tier** | $0/mo: 100 projects, 100 CU-hours/mo, up to 20 GB total storage [s1, s3] | $0/mo: 2 active projects, 500 MB storage; auto-pauses after 1 week inactivity [s4, s5] | 12 months free (new AWS accounts): 750 hrs/mo micro instance + 20 GB storage [s9] |\n| **Starter Paid Pricing** | **Launch:** $0/mo base minimum; pay-as-you-go ($0.106/CU-hr compute) [s1, s2] | **Pro:** $25/mo base + $10/mo compute credit (covers 1 Micro instance w/ 8 GB storage) [s5, s7] | **On-Demand:** Starts ~$11\u2013$15/mo for a `db.t4g.micro` instance + storage costs [s9] |\n| **Scale / Production Tier** | **Scale:** $0.222/CU-hr compute; includes 500 GB storage/project [s1, s2] | **Team / Enterprise:** Higher base fees + scale compute upgrades & add-ons [s5, s6] | Larger instance classes (e.g., `db.t4g.large` ~$94/mo, `db.m7g.xlarge` ~$246/mo) [s11, s12] |\n| **Scaling Mechanism** | Autoscaling compute (scales up or down to zero automatically) [s1, s2] | Select instance size per project (Micro, Small, Medium, etc.); optional autoscaling storage [s4, s5] | Manual resizing or Aurora Serverless v2; option to commit to 1- or 3-year Reserved Instances [s9, s12] |\n\n---\n\n### Provider Breakdown\n\n#### 1. Neon (Serverless Postgres)\n* **Free Plan:** $0/month. Supports up to 100 projects, 10 branches per project, 100 CU-hours of compute/month, and up to 20 GB storage overall (1 GB per project) [s1, s2, s3].\n* **Launch Plan:** No base monthly fee or minimum spend. Charged purely on actual usage: **$0.106 per CU-hour** (1 Compute Unit \u2248 1 vCPU / 4 GB RAM) and **$1.50/month per extra branch** [s1, s2, s3]. Typical light database spend averages ~$15/month [s1].\n* **Scale Plan:** For heavier production workloads, billed at **$0.222 per CU-hour** with 500 GB storage per project included [s1, s2].\n* **Key Advantage:** Scales compute down to zero when idle, minimizing costs for intermittent or developer workloads [s1, s2].\n\n#### 2. Supabase (Postgres + Backend Platform)\n* **Free Plan:** $0/month. Up to 2 active projects, 500 MB database storage, and auto-pauses after 7 days of inactivity [s4, s5].\n* **Pro Plan:** **$25/month base fee** per organization [s5, s7]. Includes $10/month in compute credits, which covers a single project on a **Micro compute instance** (1 GB RAM) along with 8 GB disk and 250 GB egress [s5, s7]. Projects on paid plans do not auto-pause [s4, s5].\n* **Additional Projects & Compute:** Extra projects cost $10/month each for Micro compute (or higher for larger compute tiers) [s5].\n* **Key Advantage:** Bundles full platform capabilities (Auth, Storage, Edge Functions, Realtime APIs) alongside Postgres [s5].\n\n#### 3. Amazon RDS for PostgreSQL (Managed Infrastructure)\n* **AWS Free Tier:** 12 months free for new AWS accounts, providing 750 hours/month of a micro single-AZ DB instance, 20 GB of SSD storage, and 20 GB backup storage [s9].\n* **On-Demand Pricing:** Billed per instance-hour plus provisioned storage (`gp3`/`io2`) and data egress [s9]. Entry-level instances (`db.t4g.micro`) cost ~$0.016/hour (~$12/month excluding storage) [s9, s12]. Standard production instances range from ~$94/month (`db.t4g.large`) to ~$246/month (`db.m7g.xlarge`) in `us-east-1` [s11, s12].\n* **Reserved Instances (RI):**",
+        "targets": {
+          "statusUnder500": true,
+          "firstTokenUnder4000": false,
+          "totalUnder10000": false
+        }
+      },
+      {
+        "id": "follow-up",
+        "iteration": 1,
+        "stepCap": 4,
+        "backend": "exa",
+        "searchType": "fast",
+        "pass": true,
+        "checks": {
+          "answer": true,
+          "stepBudget": true,
+          "searchBudget": true,
+          "validCitations": true,
+          "entityCoverage": true,
+          "citations": true,
+          "singleSearch": true,
+          "modelCompleted": true
+        },
+        "steps": 2,
+        "firstStatusMs": 24,
+        "firstSearchMs": 2631,
+        "firstTokenMs": 7493,
+        "totalMs": 9534,
+        "calls": [
+          {
+            "query": "Neon PostgreSQL pricing plans free tier compute storage",
+            "step": 1,
+            "atMs": 2631
+          }
+        ],
+        "searches": [
+          {
+            "query": "Neon PostgreSQL pricing plans free tier compute storage",
+            "startedMs": 2631,
+            "latencyMs": 1283,
+            "resultCount": 4,
+            "failed": false
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "url": "https://neon.com/docs/introduction/plans",
+            "domain": "neon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s2",
+            "url": "https://neon.com/pricing",
+            "domain": "neon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s3",
+            "url": "https://neon.com/faqs/free-plan-limits-and-quotas",
+            "domain": "neon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s4",
+            "url": "https://neon.com/blog/neon-free-plan-1-gb-per-project",
+            "domain": "neon.com",
+            "publishedDate": "2026-10-02T12:00:00.000Z"
+          }
+        ],
+        "errors": [],
+        "usage": {
+          "inputTokens": 3138,
+          "inputTokenDetails": {
+            "noCacheTokens": 3138,
+            "cacheReadTokens": 0
+          },
+          "outputTokens": 1208,
+          "outputTokenDetails": {
+            "textTokens": 523,
+            "reasoningTokens": 685
+          },
+          "totalTokens": 4346
+        },
+        "text": "Neon offers three main tier structures: **Free**, **Launch**, and **Scale** [1].\n\n### 1. Free Tier\n* **Base Cost:** $0/month [1], [3].\n* **Projects & Branches:** Up to 100 projects, each with up to 10 branches [1], [3].\n* **Compute:** 100 Compute Unit (CU)-hours/project/month; autoscales up to 2 CU (\u22488 GB RAM); scales to zero after 5 minutes of inactivity [1], [3].\n* **Storage:** 1 GB per project (up to 20 GB total across account) [1], [3], [4].\n* **Egress (Data Transfer):** 5 GB/project/month included [1], [3].\n\n---\n\n### 2. Launch Plan (Usage-Based)\n* **Base Cost:** Pay-as-you-go (no monthly base fee) [1].\n* **Compute:** $0.106 / CU-hour; autoscaling up to 16 CU (64 GB RAM); scale-to-zero after 5 min (can be disabled) [1].\n* **Storage:** $0.35 / GB-month [1].\n* **Egress:** 500 GB/project included, then $0.10 / GB [1].\n* **Branches:** 10 branches/project included; additional branches cost $1.50 / branch-month (prorated hourly) [1].\n\n---\n\n### 3. Scale Plan (Production Workloads)\n* **Base Cost:** Pay-as-you-go with enhanced compute options and features [1].\n* **Compute:** $0.222 / CU-hour; supports autoscaling up to 16 CU or fixed instance sizes up to 56 CU (224 GB RAM); configurable scale-to-zero (1 min to always-on) [1].\n* **Storage:** $0.35 / GB-month [1].\n* **Egress:** 500 GB/project included, then $0.10 / GB [1].\n* **Branches:** 25 branches/project included; additional branches cost $1.50 / branch-month [1].",
+        "targets": {
+          "statusUnder500": true,
+          "firstTokenUnder4000": false,
+          "totalUnder10000": true
+        }
+      }
+    ]
+  },
+  "concise-auto": {
+    "measuredAt": "2026-11-11T18:37:22.655Z",
+    "model": "gemini-3.5-flash",
+    "clock": "2026-11-11T04:30:00.000Z",
+    "records": [
+      {
+        "id": "latest-node",
+        "iteration": 1,
+        "stepCap": 4,
+        "backend": "exa",
+        "searchType": "auto",
+        "pass": true,
+        "checks": {
+          "answer": true,
+          "stepBudget": true,
+          "searchBudget": true,
+          "validCitations": true,
+          "entityCoverage": true,
+          "citations": true,
+          "singleSearch": true,
+          "modelCompleted": true,
+          "notTruncated": true
+        },
+        "steps": 2,
+        "firstStatusMs": 68,
+        "firstSearchMs": 2504,
+        "firstTokenMs": 11379,
+        "totalMs": 11585,
+        "finishReason": "stop",
+        "calls": [
+          {
+            "query": "latest stable Node.js release version",
+            "step": 1,
+            "atMs": 2504
+          }
+        ],
+        "searches": [
+          {
+            "query": "latest stable Node.js release version",
+            "startedMs": 2504,
+            "latencyMs": 7037,
+            "resultCount": 4,
+            "failed": false
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "url": "https://nodejs.org/en/download/current",
+            "domain": "nodejs.org",
+            "publishedDate": null
+          },
+          {
+            "id": "s2",
+            "url": "https://nodejs.org/en/blog/release",
+            "domain": "nodejs.org",
+            "publishedDate": null
+          },
+          {
+            "id": "s3",
+            "url": "https://nodejs.org/download/release/latest/",
+            "domain": "nodejs.org",
+            "publishedDate": null
+          },
+          {
+            "id": "s4",
+            "url": "https://nodejs.org/en/blog/release/v26.13.0",
+            "domain": "nodejs.org",
+            "publishedDate": null
+          }
+        ],
+        "errors": [],
+        "usage": {
+          "inputTokens": 3902,
+          "inputTokenDetails": {
+            "noCacheTokens": 3902,
+            "cacheReadTokens": 0
+          },
+          "outputTokens": 344,
+          "outputTokenDetails": {
+            "textTokens": 122,
+            "reasoningTokens": 222
+          },
+          "totalTokens": 4246
+        },
+        "text": "The latest stable (LTS) release of Node.js is **v26.13.1** (LTS), released on November 11, 2026 [1][2][3]. \n\nNode.js 26.x is the active Long Term Support release codenamed \"Lithium\" [4]. Other supported LTS versions include v24.22.3 and v22.23.5 [1][2].",
+        "targets": {
+          "statusUnder500": true,
+          "firstTokenUnder4000": false,
+          "totalUnder10000": false
+        }
+      },
+      {
+        "id": "hosting-comparison",
+        "iteration": 1,
+        "stepCap": 4,
+        "backend": "exa",
+        "searchType": "auto",
+        "pass": true,
+        "checks": {
+          "answer": true,
+          "stepBudget": true,
+          "searchBudget": true,
+          "validCitations": true,
+          "entityCoverage": true,
+          "citations": true,
+          "parallelSearches": true,
+          "modelCompleted": true,
+          "notTruncated": true
+        },
+        "steps": 2,
+        "firstStatusMs": 2,
+        "firstSearchMs": 1800,
+        "firstTokenMs": 17608,
+        "totalMs": 20525,
+        "finishReason": "stop",
+        "calls": [
+          {
+            "query": "Neon PostgreSQL pricing plans 2026",
+            "step": 1,
+            "atMs": 1800
+          },
+          {
+            "query": "Supabase PostgreSQL pricing plans 2026",
+            "step": 1,
+            "atMs": 1801
+          },
+          {
+            "query": "Amazon RDS PostgreSQL pricing 2026",
+            "step": 1,
+            "atMs": 1802
+          }
+        ],
+        "searches": [
+          {
+            "query": "Neon PostgreSQL pricing plans 2026",
+            "startedMs": 1800,
+            "latencyMs": 2465,
+            "resultCount": 4,
+            "failed": false
+          },
+          {
+            "query": "Supabase PostgreSQL pricing plans 2026",
+            "startedMs": 1801,
+            "latencyMs": 6899,
+            "resultCount": 4,
+            "failed": false
+          },
+          {
+            "query": "Amazon RDS PostgreSQL pricing 2026",
+            "startedMs": 1802,
+            "latencyMs": 7817,
+            "resultCount": 4,
+            "failed": false
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "url": "https://neon.com/pricing",
+            "domain": "neon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s2",
+            "url": "https://neon.com/docs/introduction/plans",
+            "domain": "neon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s3",
+            "url": "https://neon.com/blog/new-usage-based-pricing",
+            "domain": "neon.com",
+            "publishedDate": "2025-08-14T13:03:58.000Z"
+          },
+          {
+            "id": "s4",
+            "url": "https://neon.com/guides/best-postgres-hosting-saas-and-ai-agents-2026",
+            "domain": "neon.com",
+            "publishedDate": "2026-10-30T00:00:00.000Z"
+          },
+          {
+            "id": "s5",
+            "url": "https://supabase.com/pricing",
+            "domain": "supabase.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s6",
+            "url": "https://supabase.com/docs/guides/platform/billing-on-supabase",
+            "domain": "supabase.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s7",
+            "url": "https://supabase.com/kb/faqs/platform/database-only-cost",
+            "domain": "supabase.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s8",
+            "url": "https://www.growthcab.com/supabase-pricing",
+            "domain": "www.growthcab.com",
+            "publishedDate": "2026-10-29T18:36:58.000Z"
+          },
+          {
+            "id": "s9",
+            "url": "https://aws.amazon.com/rds/postgresql/pricing/",
+            "domain": "aws.amazon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s10",
+            "url": "https://aws.amazon.com/rds/pricing/",
+            "domain": "aws.amazon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s11",
+            "url": "https://www.bytebase.com/dbcost/rds/instance/db.t4g.large/",
+            "domain": "www.bytebase.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s12",
+            "url": "https://www.bytebase.com/dbcost/rds/instance/db.r8g.large/",
+            "domain": "www.bytebase.com",
+            "publishedDate": null
+          }
+        ],
+        "errors": [],
+        "usage": {
+          "inputTokens": 6468,
+          "inputTokenDetails": {
+            "noCacheTokens": 6468,
+            "cacheReadTokens": 0
+          },
+          "outputTokens": 1942,
+          "outputTokenDetails": {
+            "textTokens": 674,
+            "reasoningTokens": 1268
+          },
+          "totalTokens": 8410
+        },
+        "text": "### Pricing Comparison\n\n| Feature / Metric | Neon | Supabase | Amazon RDS (PostgreSQL) |\n| --- | --- | --- | --- |\n| **Architecture Model** | Serverless (Autoscaling & Scale-to-Zero) [2], [4] | Managed Postgres + BaaS Platform [5], [7] | Fixed Provisioned Instances [4], [9] |\n| **Free Tier** | 100 projects (100 CU-hrs & 1 GB storage/mo per project) [1], [2] | 2 active projects (500 MB DB storage; pauses after 7 days idle) [5] | 12 Months Free (750 hrs/mo db.t4g.micro + 20 GB storage) |\n| **Base Plan Fee** | **$0/mo** (Pure usage-based Launch plan) [2], [3] | **$25/mo** (Pro plan baseline fee) [5], [7] | **$0 base fee** (Billed per instance hour) [4], [9] |\n| **Compute Pricing** | $0.106 to $0.222 / CU-hour [2], [3] | $10/mo credit included; extra compute charged monthly [5], [7] | From ~$0.016/hr (~$11.70/mo for `db.t4g.micro`) [4] |\n| **Storage Rate** | $0.35 / GB-month [1], [2] | 8 GB included, then $0.125 / GB-month [6], [7] | ~$0.115 / GB-month (gp3 storage) [4] |\n| **Data Egress** | 500 GB/project included, then $0.10 / GB [2] | 250 GB included, then $0.09 / GB [6] | 100 GB/mo AWS-wide free, then $0.09 / GB [4] |\n\n---\n\n### Key Takeaways\n\n* **Neon** suits variable, spiky, or multi-tenant workloads. Autoscaling and scale-to-zero ensure you pay zero base fee and only charge for active compute hours [2], [3].\n* **Supabase** is best for full-stack apps leveraging built-in features (Auth, Realtime, Storage). The $25/month Pro plan covers a starter database project with generous bundled storage and bandwidth [5], [7].\n* **Amazon RDS** provides predictable, fixed-instance performance for production databases [4], [9]. Compute runs continuously at fixed rates, but long-term Reserved Instances offer significant cost reductions [11].",
+        "targets": {
+          "statusUnder500": true,
+          "firstTokenUnder4000": false,
+          "totalUnder10000": false
+        }
+      },
+      {
+        "id": "follow-up",
+        "iteration": 1,
+        "stepCap": 4,
+        "backend": "exa",
+        "searchType": "auto",
+        "pass": true,
+        "checks": {
+          "answer": true,
+          "stepBudget": true,
+          "searchBudget": true,
+          "validCitations": true,
+          "entityCoverage": true,
+          "citations": true,
+          "singleSearch": true,
+          "modelCompleted": true,
+          "notTruncated": true
+        },
+        "steps": 2,
+        "firstStatusMs": 4,
+        "firstSearchMs": 1980,
+        "firstTokenMs": 6602,
+        "totalMs": 7900,
+        "finishReason": "stop",
+        "calls": [
+          {
+            "query": "Neon Postgres pricing plans compute storage",
+            "step": 1,
+            "atMs": 1980
+          }
+        ],
+        "searches": [
+          {
+            "query": "Neon Postgres pricing plans compute storage",
+            "startedMs": 1980,
+            "latencyMs": 1552,
+            "resultCount": 4,
+            "failed": false
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "url": "https://neon.com/pricing",
+            "domain": "neon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s2",
+            "url": "https://neon.com/docs/introduction/plans",
+            "domain": "neon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s3",
+            "url": "https://neon.com/faqs/postgres-services-free-to-production",
+            "domain": "neon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s4",
+            "url": "https://neon.com/blog/new-usage-based-pricing",
+            "domain": "neon.com",
+            "publishedDate": "2025-08-14T13:03:58.000Z"
+          }
+        ],
+        "errors": [],
+        "usage": {
+          "inputTokens": 3681,
+          "inputTokenDetails": {
+            "noCacheTokens": 3681,
+            "cacheReadTokens": 0
+          },
+          "outputTokens": 791,
+          "outputTokenDetails": {
+            "textTokens": 290,
+            "reasoningTokens": 501
+          },
+          "totalTokens": 4472
+        },
+        "text": "Neon uses a serverless, usage-based pricing model across three primary tiers [2][4]:\n\n* **Free Plan ($0/month):** Ideal for side projects. Includes up to 100 projects, 100 CU-hours of compute per project/month, 1 GB storage per project (up to 20 GB total account storage), and 5 GB egress per project [1][2][4].\n* **Launch Plan (Pay-as-you-go, no base fee):** Designed for startups. Charges **$0.106 per CU-hour** for compute, **$0.35/GB-month** for storage, and **$1.50/month** per extra branch [1][2][4]. Includes 500 GB egress per project ($0.10/GB thereafter) [1][2].\n* **Scale Plan (Pay-as-you-go):** Designed for production workloads. Charges **$0.222 per CU-hour** for compute and **$0.35/GB-month** for storage, adding larger compute options (up to 56 CU fixed size), configurable scale-to-zero settings, and expanded snapshot history [1][2][3].",
+        "targets": {
+          "statusUnder500": true,
+          "firstTokenUnder4000": false,
+          "totalUnder10000": true
+        }
+      }
+    ]
+  },
+  "comparison-repeats": {
+    "measuredAt": "2026-11-11T18:41:13.778Z",
+    "model": "gemini-3.5-flash",
+    "clock": "2026-11-11T04:30:00.000Z",
+    "records": [
+      {
+        "id": "hosting-comparison",
+        "iteration": 1,
+        "stepCap": 4,
+        "backend": "mock",
+        "searchType": null,
+        "pass": true,
+        "checks": {
+          "answer": true,
+          "stepBudget": true,
+          "searchBudget": true,
+          "validCitations": true,
+          "entityCoverage": true,
+          "citations": true,
+          "parallelSearches": true,
+          "modelCompleted": true,
+          "notTruncated": true,
+          "configuredStepBudget": true
+        },
+        "steps": 3,
+        "firstStatusMs": 72,
+        "firstSearchMs": 3050,
+        "firstTokenMs": 9988,
+        "totalMs": 12079,
+        "finishReason": "stop",
+        "calls": [
+          {
+            "query": "Neon serverless postgres pricing plans tiers",
+            "step": 1,
+            "atMs": 3050
+          },
+          {
+            "query": "Supabase pricing plans postgres database tiers",
+            "step": 1,
+            "atMs": 3050
+          },
+          {
+            "query": "Amazon RDS PostgreSQL pricing instance types tiers",
+            "step": 1,
+            "atMs": 3050
+          },
+          {
+            "query": "Neon Postgres free tier limit scale plan cost",
+            "step": 2,
+            "atMs": 5445
+          },
+          {
+            "query": "Supabase free plan limits compute billing",
+            "step": 2,
+            "atMs": 5446
+          },
+          {
+            "query": "Amazon RDS PostgreSQL pricing on demand db t4g micro gp3",
+            "step": 2,
+            "atMs": 5446
+          }
+        ],
+        "searches": [
+          {
+            "query": "Neon serverless postgres pricing plans tiers",
+            "startedMs": 3050,
+            "latencyMs": 0,
+            "resultCount": 1,
+            "failed": false
+          },
+          {
+            "query": "Supabase pricing plans postgres database tiers",
+            "startedMs": 3050,
+            "latencyMs": 0,
+            "resultCount": 1,
+            "failed": false
+          },
+          {
+            "query": "Amazon RDS PostgreSQL pricing instance types tiers",
+            "startedMs": 3050,
+            "latencyMs": 0,
+            "resultCount": 1,
+            "failed": false
+          },
+          {
+            "query": "Neon Postgres free tier limit scale plan cost",
+            "startedMs": 5445,
+            "latencyMs": 0,
+            "resultCount": 1,
+            "failed": false
+          },
+          {
+            "query": "Supabase free plan limits compute billing",
+            "startedMs": 5446,
+            "latencyMs": 0,
+            "resultCount": 1,
+            "failed": false
+          },
+          {
+            "query": "Amazon RDS PostgreSQL pricing on demand db t4g micro gp3",
+            "startedMs": 5446,
+            "latencyMs": 0,
+            "resultCount": 1,
+            "failed": false
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "url": "https://neon.com/pricing",
+            "domain": "neon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s2",
+            "url": "https://supabase.com/pricing",
+            "domain": "supabase.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s3",
+            "url": "https://aws.amazon.com/rds/pricing/",
+            "domain": "aws.amazon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s1",
+            "url": "https://neon.com/pricing",
+            "domain": "neon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s2",
+            "url": "https://supabase.com/pricing",
+            "domain": "supabase.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s3",
+            "url": "https://aws.amazon.com/rds/pricing/",
+            "domain": "aws.amazon.com",
+            "publishedDate": null
+          }
+        ],
+        "errors": [],
+        "usage": {
+          "inputTokens": 5432,
+          "inputTokenDetails": {
+            "noCacheTokens": 5432,
+            "cacheReadTokens": 0
+          },
+          "outputTokens": 1555,
+          "outputTokenDetails": {
+            "textTokens": 538,
+            "reasoningTokens": 1017
+          },
+          "totalTokens": 6987
+        },
+        "text": "Here is a comparison of current PostgreSQL hosting pricing across **Neon**, **Supabase**, and **Amazon RDS**:\n\n### Pricing Comparison\n\n| Provider | Pricing Model | Free Tier | Entry Paid Tier | Primary Billing Factors |\n| :--- | :--- | :--- | :--- | :--- |\n| **Neon** [1] | Serverless pay-as-you-go | Generous free tier (shared compute/storage) | **Launch**: Usage-based (no monthly base fee) | Compute active hours (CU-hours), storage (GB-mo), data transfer out |\n| **Supabase** [2] | BaaS / Managed Postgres | Free tier (up to 2 paused projects) | **Pro**: $25/month base fee | Base plan fee + usage overages (compute size, storage, egress) |\n| **Amazon RDS** [3] | Provisioned instances or RDS Serverless v2 | 12 months free (`db.t4g.micro`, 750 hrs/mo) | On-Demand (varies by instance type, e.g., `db.t4g.micro` ~$0.016/hr) | Instance type/hours, EBS storage (e.g., gp3 per GB-mo), data transfer |\n\n---\n\n### Deciding Factors\n\n* **Neon** [1]: Ideal for variable or serverless workloads. Autoscales compute down to zero when idle, charging strictly for consumed compute and storage with no mandatory monthly base fee.\n* **Supabase** [2]: Ideal for full-stack apps. Includes Postgres along with built-in Authentication, Realtime, and auto-generated APIs for a flat $25/month starting rate plus usage overages.\n* **Amazon RDS** [3]: Ideal for enterprise production setups needing dedicated hardware, predictable provisioned capacity, or deep integration within the AWS ecosystem.",
+        "targets": {
+          "statusUnder500": true,
+          "firstTokenUnder4000": false,
+          "totalUnder10000": false
+        }
+      },
+      {
+        "id": "hosting-comparison",
+        "iteration": 2,
+        "stepCap": 4,
+        "backend": "mock",
+        "searchType": null,
+        "pass": true,
+        "checks": {
+          "answer": true,
+          "stepBudget": true,
+          "searchBudget": true,
+          "validCitations": true,
+          "entityCoverage": true,
+          "citations": true,
+          "parallelSearches": true,
+          "modelCompleted": true,
+          "notTruncated": true,
+          "configuredStepBudget": true
+        },
+        "steps": 4,
+        "firstStatusMs": 4,
+        "firstSearchMs": 2900,
+        "firstTokenMs": 10930,
+        "totalMs": 13209,
+        "finishReason": "stop",
+        "calls": [
+          {
+            "query": "Neon Postgres hosting pricing plans 2026",
+            "step": 1,
+            "atMs": 2900
+          },
+          {
+            "query": "Supabase pricing plans database Postgres 2026",
+            "step": 1,
+            "atMs": 2900
+          },
+          {
+            "query": "Amazon RDS PostgreSQL pricing pay as you go 2026",
+            "step": 1,
+            "atMs": 2901
+          },
+          {
+            "query": "Neon serverless Postgres pricing Free Launch Scale storage compute cost",
+            "step": 2,
+            "atMs": 5153
+          },
+          {
+            "query": "Supabase pricing Free Pro Team compute storage transfer pricing",
+            "step": 2,
+            "atMs": 5153
+          },
+          {
+            "query": "AWS RDS Postgres pricing db.t4g.micro db.m6g.large storage GP3 pricing",
+            "step": 2,
+            "atMs": 5153
+          },
+          {
+            "query": "site:neon.tech/pricing OR site:neon.com/pricing storage compute CU cost",
+            "step": 3,
+            "atMs": 6832
+          },
+          {
+            "query": "site:supabase.com/pricing compute storage cost per GB",
+            "step": 3,
+            "atMs": 6833
+          },
+          {
+            "query": "AWS RDS PostgreSQL instance cost db.t4g db.m6g gp3 storage per GB",
+            "step": 3,
+            "atMs": 6833
+          }
+        ],
+        "searches": [
+          {
+            "query": "Neon Postgres hosting pricing plans 2026",
+            "startedMs": 2900,
+            "latencyMs": 1,
+            "resultCount": 1,
+            "failed": false
+          },
+          {
+            "query": "Supabase pricing plans database Postgres 2026",
+            "startedMs": 2900,
+            "latencyMs": 0,
+            "resultCount": 1,
+            "failed": false
+          },
+          {
+            "query": "Amazon RDS PostgreSQL pricing pay as you go 2026",
+            "startedMs": 2901,
+            "latencyMs": 0,
+            "resultCount": 1,
+            "failed": false
+          },
+          {
+            "query": "Neon serverless Postgres pricing Free Launch Scale storage compute cost",
+            "startedMs": 5153,
+            "latencyMs": 0,
+            "resultCount": 1,
+            "failed": false
+          },
+          {
+            "query": "Supabase pricing Free Pro Team compute storage transfer pricing",
+            "startedMs": 5153,
+            "latencyMs": 0,
+            "resultCount": 1,
+            "failed": false
+          },
+          {
+            "query": "AWS RDS Postgres pricing db.t4g.micro db.m6g.large storage GP3 pricing",
+            "startedMs": 5153,
+            "latencyMs": 0,
+            "resultCount": 1,
+            "failed": false
+          },
+          {
+            "query": "site:neon.tech/pricing OR site:neon.com/pricing storage compute CU cost",
+            "startedMs": 6832,
+            "latencyMs": 0,
+            "resultCount": 1,
+            "failed": false
+          },
+          {
+            "query": "site:supabase.com/pricing compute storage cost per GB",
+            "startedMs": 6833,
+            "latencyMs": 0,
+            "resultCount": 1,
+            "failed": false
+          },
+          {
+            "query": "AWS RDS PostgreSQL instance cost db.t4g db.m6g gp3 storage per GB",
+            "startedMs": 6833,
+            "latencyMs": 0,
+            "resultCount": 1,
+            "failed": false
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "url": "https://neon.com/pricing",
+            "domain": "neon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s2",
+            "url": "https://supabase.com/pricing",
+            "domain": "supabase.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s3",
+            "url": "https://aws.amazon.com/rds/pricing/",
+            "domain": "aws.amazon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s1",
+            "url": "https://neon.com/pricing",
+            "domain": "neon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s2",
+            "url": "https://supabase.com/pricing",
+            "domain": "supabase.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s3",
+            "url": "https://aws.amazon.com/rds/pricing/",
+            "domain": "aws.amazon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s1",
+            "url": "https://neon.com/pricing",
+            "domain": "neon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s2",
+            "url": "https://supabase.com/pricing",
+            "domain": "supabase.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s3",
+            "url": "https://aws.amazon.com/rds/pricing/",
+            "domain": "aws.amazon.com",
+            "publishedDate": null
+          }
+        ],
+        "errors": [],
+        "usage": {
+          "inputTokens": 7152,
+          "inputTokenDetails": {
+            "noCacheTokens": 7152,
+            "cacheReadTokens": 0
+          },
+          "outputTokens": 1437,
+          "outputTokenDetails": {
+            "textTokens": 654,
+            "reasoningTokens": 783
+          },
+          "totalTokens": 8589
+        },
+        "text": "### Current Postgres Hosting Pricing Comparison (As of November 2026)\n\n| Provider | Base / Entry Model | Pricing Structure & Key Notes |\n| :--- | :--- | :--- |\n| **Neon** | Usage-based ($0/mo minimum) | Serverless pricing based strictly on consumption (compute hours and storage) [1]. |\n| **Supabase** | $25 / month | Fixed monthly base for the Pro tier, plus pay-as-you-go usage for extra compute/storage [2]. |\n| **Amazon RDS** | Pay-as-you-go (Variable) | Hourly compute instance rates + provisioned storage (gp3/io1/io2), varying by region [3]. |\n\n### Deciding Differences\n\n* **Neon:** Uses a serverless, usage-based model with no fixed monthly fee for its Launch tier [1]. It automatically scales compute up or down (down to zero) and supports database branching, making it cost-effective for unpredictable or multi-tenant development workloads.\n* **Supabase:** Offers a fixed-tier model starting at $25/month for Pro [2]. It bundle Postgres with integrated backend services (Auth, Realtime, Storage, auto-generated APIs). It is best suited for teams wanting a full BaaS rather than just managed database compute.\n* **Amazon RDS:** Traditional cloud database infrastructure billed by provisioned instance type (e.g., `db.t4g.micro`, `db.m6g.large`) and allocated storage per hour [3]. It offers maximum regional availability, compliance features, and Reserved Instance discounts, but requires manual resource sizing.\n\n**Data Gaps:** Exact per-vCPU, per-RAM hourly breakdown rates, and specific per-GB storage fees were not returned in the basic search snippets [1, 2, 3].",
+        "targets": {
+          "statusUnder500": true,
+          "firstTokenUnder4000": false,
+          "totalUnder10000": false
+        }
+      },
+      {
+        "id": "hosting-comparison",
+        "iteration": 3,
+        "stepCap": 4,
+        "backend": "mock",
+        "searchType": null,
+        "pass": true,
+        "checks": {
+          "answer": true,
+          "stepBudget": true,
+          "searchBudget": true,
+          "validCitations": true,
+          "entityCoverage": true,
+          "citations": true,
+          "parallelSearches": true,
+          "modelCompleted": true,
+          "notTruncated": true,
+          "configuredStepBudget": true
+        },
+        "steps": 3,
+        "firstStatusMs": 3,
+        "firstSearchMs": 2616,
+        "firstTokenMs": 8255,
+        "totalMs": 10321,
+        "finishReason": "stop",
+        "calls": [
+          {
+            "query": "Neon serverless Postgres pricing plans",
+            "step": 1,
+            "atMs": 2616
+          },
+          {
+            "query": "Supabase Postgres pricing plans",
+            "step": 1,
+            "atMs": 2616
+          },
+          {
+            "query": "Amazon RDS PostgreSQL pricing instance costs",
+            "step": 1,
+            "atMs": 2616
+          },
+          {
+            "query": "Neon Postgres pricing free tier plan details",
+            "step": 2,
+            "atMs": 5020
+          },
+          {
+            "query": "Supabase Postgres pricing free tier pro tier limits",
+            "step": 2,
+            "atMs": 5020
+          },
+          {
+            "query": "AWS RDS PostgreSQL pricing free tier instance hourly rate db.t4g.micro",
+            "step": 2,
+            "atMs": 5020
+          }
+        ],
+        "searches": [
+          {
+            "query": "Neon serverless Postgres pricing plans",
+            "startedMs": 2616,
+            "latencyMs": 0,
+            "resultCount": 1,
+            "failed": false
+          },
+          {
+            "query": "Supabase Postgres pricing plans",
+            "startedMs": 2616,
+            "latencyMs": 0,
+            "resultCount": 1,
+            "failed": false
+          },
+          {
+            "query": "Amazon RDS PostgreSQL pricing instance costs",
+            "startedMs": 2616,
+            "latencyMs": 0,
+            "resultCount": 1,
+            "failed": false
+          },
+          {
+            "query": "Neon Postgres pricing free tier plan details",
+            "startedMs": 5020,
+            "latencyMs": 0,
+            "resultCount": 1,
+            "failed": false
+          },
+          {
+            "query": "Supabase Postgres pricing free tier pro tier limits",
+            "startedMs": 5020,
+            "latencyMs": 0,
+            "resultCount": 1,
+            "failed": false
+          },
+          {
+            "query": "AWS RDS PostgreSQL pricing free tier instance hourly rate db.t4g.micro",
+            "startedMs": 5020,
+            "latencyMs": 0,
+            "resultCount": 1,
+            "failed": false
+          }
+        ],
+        "sources": [
+          {
+            "id": "s1",
+            "url": "https://neon.com/pricing",
+            "domain": "neon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s2",
+            "url": "https://supabase.com/pricing",
+            "domain": "supabase.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s3",
+            "url": "https://aws.amazon.com/rds/pricing/",
+            "domain": "aws.amazon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s1",
+            "url": "https://neon.com/pricing",
+            "domain": "neon.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s2",
+            "url": "https://supabase.com/pricing",
+            "domain": "supabase.com",
+            "publishedDate": null
+          },
+          {
+            "id": "s3",
+            "url": "https://aws.amazon.com/rds/pricing/",
+            "domain": "aws.amazon.com",
+            "publishedDate": null
+          }
+        ],
+        "errors": [],
+        "usage": {
+          "inputTokens": 5316,
+          "inputTokenDetails": {
+            "noCacheTokens": 5316,
+            "cacheReadTokens": 0
+          },
+          "outputTokens": 1420,
+          "outputTokenDetails": {
+            "textTokens": 555,
+            "reasoningTokens": 865
+          },
+          "totalTokens": 6736
+        },
+        "text": "Here is a comparison of current PostgreSQL hosting pricing across Neon, Supabase, and Amazon RDS:\n\n### Pricing Overview\n\n| Provider | Pricing Model | Free Tier | Entry Paid Tier | Key Cost Driver |\n| :--- | :--- | :--- | :--- | :--- |\n| **Neon** [1] | Serverless (consumption-based) | Free tier available for light projects | Usage-based (Launch plan has no monthly minimum) [1] | Compute hours (scales to zero), storage, data transfer |\n| **Supabase** [2] | Managed BaaS + Fixed Base + Usage | Free tier available (subject to pausing inactive projects) | Pro plan starts at **$25/month** + usage [2] | Base subscription fee + compute add-ons, egress, storage |\n| **Amazon RDS** [3] | Provisioned Infrastructure (Hourly + Storage) | 12 months free tier (750 hrs/mo micro instance + 20 GB storage) [3] | Pay-as-you-go per instance-hour (e.g., ~$0.016\u2013$0.05/hr for small instances) [3] | Instance type/size, storage (gp3/io2), Multi-AZ, and data transfer |\n\n---\n\n### Key Takeaways\n\n* **Neon** is ideal for serverless architecture and variable workloads. You pay strictly for compute runtime and storage, with automatic scaling down to zero to prevent paying for idle databases [1].\n* **Supabase** charges a flat base fee starting at $25/month for its Pro tier, which includes integrated backend services (Auth, Storage, Edge Functions, Realtime APIs) alongside PostgreSQL [2].\n* **Amazon RDS** uses traditional provisioned hardware (or Aurora Serverless v2). It offers fine-grained control over instance types, storage IOPS, and replication, but requires managing fixed infrastructure costs regardless of traffic spikes or idle periods [3].",
+        "targets": {
+          "statusUnder500": true,
+          "firstTokenUnder4000": false,
+          "totalUnder10000": false
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,1319 @@
+{
+  "measuredAt": "2026-11-11T18:45:34.219Z",
+  "model": "gemini-3.5-flash",
+  "clock": "2026-11-11T04:30:00.000Z",
+  "records": [
+    {
+      "id": "crm",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "entityCoverage": true,
+        "parallelFirstStep": true,
+        "pairedQueries": true,
+        "citations": true,
+        "resolvedDate": true,
+        "baseline": true,
+        "verdicts": true,
+        "honestScope": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 2,
+      "firstStatusMs": 77,
+      "firstSearchMs": 6587,
+      "firstTokenMs": 12782,
+      "totalMs": 13707,
+      "finishReason": "stop",
+      "calls": [
+        {
+          "query": "HubSpot pricing announcements updates news",
+          "since": "2026-11-09",
+          "step": 1,
+          "atMs": 6587
+        },
+        {
+          "query": "HubSpot CRM pricing official plans seat cost",
+          "step": 1,
+          "atMs": 6587
+        },
+        {
+          "query": "Salesforce CRM pricing announcements updates news",
+          "since": "2026-11-09",
+          "step": 1,
+          "atMs": 6588
+        },
+        {
+          "query": "Salesforce Starter Suite pricing official per user month",
+          "step": 1,
+          "atMs": 6588
+        },
+        {
+          "query": "Zoho CRM pricing announcements updates news",
+          "since": "2026-11-09",
+          "step": 1,
+          "atMs": 6588
+        },
+        {
+          "query": "Zoho CRM pricing official standard edition per user month",
+          "step": 1,
+          "atMs": 6588
+        },
+        {
+          "query": "Pipedrive CRM pricing announcements updates news",
+          "since": "2026-11-09",
+          "step": 1,
+          "atMs": 6588
+        },
+        {
+          "query": "Pipedrive pricing official essential plan per user month",
+          "step": 1,
+          "atMs": 6588
+        },
+        {
+          "query": "Freshsales CRM pricing announcements updates news",
+          "since": "2026-11-09",
+          "step": 1,
+          "atMs": 6588
+        },
+        {
+          "query": "Freshsales pricing official growth plan per user month",
+          "step": 1,
+          "atMs": 6588
+        }
+      ],
+      "searches": [
+        {
+          "query": "HubSpot pricing announcements updates news",
+          "since": "2026-11-09",
+          "startedMs": 6587,
+          "latencyMs": 1,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "Salesforce CRM pricing announcements updates news",
+          "since": "2026-11-09",
+          "startedMs": 6588,
+          "latencyMs": 0,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "Zoho CRM pricing announcements updates news",
+          "since": "2026-11-09",
+          "startedMs": 6588,
+          "latencyMs": 0,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "Pipedrive CRM pricing announcements updates news",
+          "since": "2026-11-09",
+          "startedMs": 6588,
+          "latencyMs": 0,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "Freshsales CRM pricing announcements updates news",
+          "since": "2026-11-09",
+          "startedMs": 6588,
+          "latencyMs": 0,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "HubSpot CRM pricing official plans seat cost",
+          "startedMs": 6587,
+          "latencyMs": 1,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Salesforce Starter Suite pricing official per user month",
+          "startedMs": 6588,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Zoho CRM pricing official standard edition per user month",
+          "startedMs": 6588,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Pipedrive pricing official essential plan per user month",
+          "startedMs": 6588,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Freshsales pricing official growth plan per user month",
+          "startedMs": 6588,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        }
+      ],
+      "sources": [
+        {
+          "id": "s1",
+          "url": "https://www.hubspot.com/pricing",
+          "domain": "www.hubspot.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s2",
+          "url": "https://www.salesforce.com/sales/pricing/",
+          "domain": "www.salesforce.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s3",
+          "url": "https://www.zoho.com/crm/zohocrm-pricing.html",
+          "domain": "www.zoho.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s4",
+          "url": "https://www.pipedrive.com/en/pricing",
+          "domain": "www.pipedrive.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s5",
+          "url": "https://www.freshworks.com/crm/sales/pricing/",
+          "domain": "www.freshworks.com",
+          "publishedDate": null
+        }
+      ],
+      "errors": [],
+      "usage": {
+        "inputTokens": 5112,
+        "inputTokenDetails": {
+          "noCacheTokens": 5112,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 2335,
+        "outputTokenDetails": {
+          "textTokens": 553,
+          "reasoningTokens": 1782
+        },
+        "totalTokens": 7447
+      },
+      "text": "**Prior Baseline (9 November 2026):** Starting monthly seat prices were recorded for HubSpot ($20), Salesforce ($25), Zoho CRM ($20), Pipedrive ($24), and Freshsales ($11).\n\n**Check Details:** Official pricing pages and product announcements were checked as of 11 November 2026 for updates published between 9 November 2026 and 11 November 2026. No major product releases or pricing change announcements were returned during this 2-day window.\n\n### Status per Tool\n\n* **HubSpot:** **Unchanged** \u2014 Current Starter tier remains $20/seat/month [1].\n* **Salesforce:** **Unchanged** \u2014 Current Starter tier remains $25/seat/month [2].\n* **Zoho CRM:** **Unchanged** \u2014 Current Standard tier remains $20/seat/month [3].\n* **Pipedrive:** **Unchanged** \u2014 Current entry tier remains $24/seat/month [4].\n* **Freshsales:** **Unchanged** \u2014 Current entry tier remains $11/seat/month [5].",
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": false
+      }
+    },
+    {
+      "id": "crm-no-history",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "noSearches": true,
+        "noInventedHistory": true,
+        "oneQuestion": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 1,
+      "firstStatusMs": 16,
+      "firstSearchMs": null,
+      "firstTokenMs": 2871,
+      "totalMs": 2913,
+      "finishReason": "stop",
+      "calls": [],
+      "searches": [],
+      "sources": [],
+      "errors": [],
+      "usage": {
+        "inputTokens": 1244,
+        "inputTokenDetails": {
+          "noCacheTokens": 1244,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 356,
+        "outputTokenDetails": {
+          "textTokens": 30,
+          "reasoningTokens": 326
+        },
+        "totalTokens": 1600,
+        "raw": {
+          "thoughtsTokenCount": 326,
+          "promptTokenCount": 1244,
+          "candidatesTokenCount": 30,
+          "totalTokenCount": 1600,
+          "serviceTier": "standard",
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1244
+            }
+          ]
+        }
+      },
+      "text": "I don't have a record of our prior conversation or the 5 CRM tools on your shortlist. Which specific CRM tools were on your list?",
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": true,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "november-3",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "entityCoverage": true,
+        "parallelFirstStep": true,
+        "pairedQueries": true,
+        "citations": true,
+        "resolvedDate": true,
+        "baseline": true,
+        "verdicts": true,
+        "honestScope": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 2,
+      "firstStatusMs": 13,
+      "firstSearchMs": 4777,
+      "firstTokenMs": 9201,
+      "totalMs": 9856,
+      "finishReason": "stop",
+      "calls": [
+        {
+          "query": "Neon Postgres pricing launch plan",
+          "step": 1,
+          "atMs": 4777
+        },
+        {
+          "query": "Neon Postgres pricing launch plan",
+          "since": "2026-11-03",
+          "step": 1,
+          "atMs": 4778
+        },
+        {
+          "query": "Supabase pricing pro plan",
+          "step": 1,
+          "atMs": 4778
+        },
+        {
+          "query": "Supabase pricing pro plan",
+          "since": "2026-11-03",
+          "step": 1,
+          "atMs": 4778
+        },
+        {
+          "query": "Amazon RDS PostgreSQL pricing",
+          "step": 1,
+          "atMs": 4778
+        },
+        {
+          "query": "Amazon RDS PostgreSQL pricing",
+          "since": "2026-11-03",
+          "step": 1,
+          "atMs": 4778
+        }
+      ],
+      "searches": [
+        {
+          "query": "Neon Postgres pricing launch plan",
+          "since": "2026-11-03",
+          "startedMs": 4778,
+          "latencyMs": 0,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "Supabase pricing pro plan",
+          "since": "2026-11-03",
+          "startedMs": 4778,
+          "latencyMs": 0,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "Amazon RDS PostgreSQL pricing",
+          "since": "2026-11-03",
+          "startedMs": 4778,
+          "latencyMs": 0,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "Neon Postgres pricing launch plan",
+          "startedMs": 4777,
+          "latencyMs": 1,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Supabase pricing pro plan",
+          "startedMs": 4778,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Amazon RDS PostgreSQL pricing",
+          "startedMs": 4778,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        }
+      ],
+      "sources": [
+        {
+          "id": "s1",
+          "url": "https://neon.com/pricing",
+          "domain": "neon.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s2",
+          "url": "https://supabase.com/pricing",
+          "domain": "supabase.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s3",
+          "url": "https://aws.amazon.com/rds/pricing/",
+          "domain": "aws.amazon.com",
+          "publishedDate": null
+        }
+      ],
+      "errors": [],
+      "usage": {
+        "inputTokens": 4015,
+        "inputTokenDetails": {
+          "noCacheTokens": 4015,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 1538,
+        "outputTokenDetails": {
+          "textTokens": 346,
+          "reasoningTokens": 1192
+        },
+        "totalTokens": 5553
+      },
+      "text": "On November 3, 2026, you asked: \n**\"Compare Postgres hosting pricing on Neon, Supabase, and RDS.\"**\n\nThe baseline answer given was: \n*\"Neon Launch starts at $19/month; Supabase Pro at $25/month; Amazon RDS pricing depends on instance, region, storage and usage.\"*\n\nStatus as of November 11, 2026:\n\n* **Neon:** **Changed** \u2014 Neon Launch no longer has a fixed $19/month starting price and uses usage-based pricing with no monthly minimum [1].\n* **Supabase:** **Unchanged** \u2014 Supabase Pro continues to start at $25/month [2].\n* **Amazon RDS:** **Unchanged** \u2014 RDS PostgreSQL pricing remains based on instance type, region, storage, and compute usage [3].",
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "november-3-no-history",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "noSearches": true,
+        "noInventedHistory": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 1,
+      "firstStatusMs": 10,
+      "firstSearchMs": null,
+      "firstTokenMs": 2552,
+      "totalMs": 2703,
+      "finishReason": "stop",
+      "calls": [],
+      "searches": [],
+      "sources": [],
+      "errors": [],
+      "usage": {
+        "inputTokens": 1242,
+        "inputTokenDetails": {
+          "noCacheTokens": 1242,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 259,
+        "outputTokenDetails": {
+          "textTokens": 41,
+          "reasoningTokens": 218
+        },
+        "totalTokens": 1501,
+        "raw": {
+          "thoughtsTokenCount": 218,
+          "promptTokenCount": 1242,
+          "candidatesTokenCount": 41,
+          "totalTokenCount": 1501,
+          "serviceTier": "standard",
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1242
+            }
+          ]
+        }
+      },
+      "text": "No record of a prior conversation on 3 November 2026 was found in our session history. As a result, I cannot verify what was previously asked or whether the answer remains accurate today.",
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": true,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "last-tuesday",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "entityCoverage": true,
+        "parallelFirstStep": true,
+        "pairedQueries": true,
+        "citations": true,
+        "resolvedDate": true,
+        "baseline": true,
+        "verdicts": true,
+        "honestScope": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 2,
+      "firstStatusMs": 13,
+      "firstSearchMs": 4257,
+      "firstTokenMs": 8723,
+      "totalMs": 9547,
+      "finishReason": "stop",
+      "calls": [
+        {
+          "query": "Neon Postgres pricing Launch plan",
+          "step": 1,
+          "atMs": 4257
+        },
+        {
+          "query": "Neon Postgres pricing announcement",
+          "since": "2026-11-03",
+          "step": 1,
+          "atMs": 4257
+        },
+        {
+          "query": "Supabase Pro plan pricing",
+          "step": 1,
+          "atMs": 4257
+        },
+        {
+          "query": "Supabase pricing announcement",
+          "since": "2026-11-03",
+          "step": 1,
+          "atMs": 4257
+        },
+        {
+          "query": "Amazon RDS PostgreSQL pricing",
+          "step": 1,
+          "atMs": 4257
+        },
+        {
+          "query": "Amazon RDS PostgreSQL pricing announcement",
+          "since": "2026-11-03",
+          "step": 1,
+          "atMs": 4257
+        }
+      ],
+      "searches": [
+        {
+          "query": "Neon Postgres pricing announcement",
+          "since": "2026-11-03",
+          "startedMs": 4257,
+          "latencyMs": 0,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "Supabase pricing announcement",
+          "since": "2026-11-03",
+          "startedMs": 4257,
+          "latencyMs": 0,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "Amazon RDS PostgreSQL pricing announcement",
+          "since": "2026-11-03",
+          "startedMs": 4257,
+          "latencyMs": 0,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "Neon Postgres pricing Launch plan",
+          "startedMs": 4257,
+          "latencyMs": 1,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Supabase Pro plan pricing",
+          "startedMs": 4257,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Amazon RDS PostgreSQL pricing",
+          "startedMs": 4257,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        }
+      ],
+      "sources": [
+        {
+          "id": "s1",
+          "url": "https://neon.com/pricing",
+          "domain": "neon.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s2",
+          "url": "https://supabase.com/pricing",
+          "domain": "supabase.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s3",
+          "url": "https://aws.amazon.com/rds/pricing/",
+          "domain": "aws.amazon.com",
+          "publishedDate": null
+        }
+      ],
+      "errors": [],
+      "usage": {
+        "inputTokens": 4533,
+        "inputTokenDetails": {
+          "noCacheTokens": 4533,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 1662,
+        "outputTokenDetails": {
+          "textTokens": 359,
+          "reasoningTokens": 1303
+        },
+        "totalTokens": 6195
+      },
+      "text": "On 3 November 2026, the baseline pricing noted for Postgres hosting was:\n* **Neon**: Launch plan starting at $19/month\n* **Supabase**: Pro plan starting at $25/month\n* **Amazon RDS**: Pricing depending on instance type, region, storage, and usage\n\nAs of 11 November 2026, checking pricing sources updated since 3 November 2026 shows:\n\n* **Neon**: **Changed** (baseline correction; event date unverified). Neon's official pricing page states that the Launch plan uses usage-based pricing with no monthly minimum rather than a fixed $19/month baseline [1].\n* **Supabase**: **Unchanged**. Supabase Pro remains $25/month plus usage [2].\n* **Amazon RDS**: **Unchanged**. Amazon RDS pricing continues to vary depending on instance, region, storage, and usage [3].",
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "latest-node",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "entityCoverage": true,
+        "citations": true,
+        "singleSearch": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 2,
+      "firstStatusMs": 7,
+      "firstSearchMs": 1606,
+      "firstTokenMs": 3683,
+      "totalMs": 3731,
+      "finishReason": "stop",
+      "calls": [
+        {
+          "query": "latest stable Node.js release version",
+          "step": 1,
+          "atMs": 1606
+        }
+      ],
+      "searches": [
+        {
+          "query": "latest stable Node.js release version",
+          "startedMs": 1606,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        }
+      ],
+      "sources": [
+        {
+          "id": "s1",
+          "url": "https://nodejs.org/en/download",
+          "domain": "nodejs.org",
+          "publishedDate": null
+        }
+      ],
+      "errors": [],
+      "usage": {
+        "inputTokens": 2437,
+        "inputTokenDetails": {
+          "noCacheTokens": 2437,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 288,
+        "outputTokenDetails": {
+          "textTokens": 44,
+          "reasoningTokens": 244
+        },
+        "totalTokens": 2725
+      },
+      "text": "The latest stable Node.js LTS release is **v26.13.1** [1].",
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": true,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "hosting-comparison",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "entityCoverage": true,
+        "citations": true,
+        "parallelSearches": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 4,
+      "firstStatusMs": 4,
+      "firstSearchMs": 2265,
+      "firstTokenMs": 8223,
+      "totalMs": 9873,
+      "finishReason": "stop",
+      "calls": [
+        {
+          "query": "Neon Postgres hosting pricing plans 2026",
+          "step": 1,
+          "atMs": 2265
+        },
+        {
+          "query": "Supabase Postgres pricing plans 2026",
+          "step": 1,
+          "atMs": 2265
+        },
+        {
+          "query": "AWS Amazon RDS PostgreSQL pricing On-Demand db.t4g.small db.m6g.large",
+          "step": 1,
+          "atMs": 2265
+        },
+        {
+          "query": "Neon database pricing free tier compute storage costs",
+          "step": 2,
+          "atMs": 4079
+        },
+        {
+          "query": "Supabase pricing free tier compute storage egress costs",
+          "step": 2,
+          "atMs": 4080
+        },
+        {
+          "query": "AWS RDS PostgreSQL db.t4g.micro pricing storage gp3 pricing per GB month",
+          "step": 2,
+          "atMs": 4080
+        },
+        {
+          "query": "site:neon.tech/pricing OR site:neon.com/pricing \"Free\" \"$0\" \"Launch\" \"Scale\"",
+          "step": 3,
+          "atMs": 5995
+        },
+        {
+          "query": "site:supabase.com/pricing \"Free\" \"$25\" \"storage\" \"compute\"",
+          "step": 3,
+          "atMs": 5995
+        },
+        {
+          "query": "AWS RDS PostgreSQL pricing \"db.t4g.micro\" \"gp3\" per month US East",
+          "step": 3,
+          "atMs": 5995
+        }
+      ],
+      "searches": [
+        {
+          "query": "Neon Postgres hosting pricing plans 2026",
+          "startedMs": 2265,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Supabase Postgres pricing plans 2026",
+          "startedMs": 2265,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "AWS Amazon RDS PostgreSQL pricing On-Demand db.t4g.small db.m6g.large",
+          "startedMs": 2265,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Neon database pricing free tier compute storage costs",
+          "startedMs": 4079,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Supabase pricing free tier compute storage egress costs",
+          "startedMs": 4080,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "AWS RDS PostgreSQL db.t4g.micro pricing storage gp3 pricing per GB month",
+          "startedMs": 4080,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "site:neon.tech/pricing OR site:neon.com/pricing \"Free\" \"$0\" \"Launch\" \"Scale\"",
+          "startedMs": 5995,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "site:supabase.com/pricing \"Free\" \"$25\" \"storage\" \"compute\"",
+          "startedMs": 5995,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "AWS RDS PostgreSQL pricing \"db.t4g.micro\" \"gp3\" per month US East",
+          "startedMs": 5995,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        }
+      ],
+      "sources": [
+        {
+          "id": "s1",
+          "url": "https://neon.com/pricing",
+          "domain": "neon.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s2",
+          "url": "https://supabase.com/pricing",
+          "domain": "supabase.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s3",
+          "url": "https://aws.amazon.com/rds/pricing/",
+          "domain": "aws.amazon.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s1",
+          "url": "https://neon.com/pricing",
+          "domain": "neon.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s2",
+          "url": "https://supabase.com/pricing",
+          "domain": "supabase.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s3",
+          "url": "https://aws.amazon.com/rds/pricing/",
+          "domain": "aws.amazon.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s1",
+          "url": "https://neon.com/pricing",
+          "domain": "neon.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s2",
+          "url": "https://supabase.com/pricing",
+          "domain": "supabase.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s3",
+          "url": "https://aws.amazon.com/rds/pricing/",
+          "domain": "aws.amazon.com",
+          "publishedDate": null
+        }
+      ],
+      "errors": [],
+      "usage": {
+        "inputTokens": 7265,
+        "inputTokenDetails": {
+          "noCacheTokens": 7265,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 1164,
+        "outputTokenDetails": {
+          "textTokens": 592,
+          "reasoningTokens": 572
+        },
+        "totalTokens": 8429
+      },
+      "text": "Here is a comparison of current PostgreSQL hosting pricing across Neon, Supabase, and Amazon RDS (as of November 2026):\n\n| Provider | Pricing Model | Base / Starting Price | Additional Notes |\n| :--- | :--- | :--- | :--- |\n| **Neon** | Serverless / Usage-based | $0 / month base (No monthly minimum) [1] | Launch tier uses usage-based billing [1]. |\n| **Supabase** | Hybrid (Tier + Usage) | Starts at $25 / month [2] | Pro plan covers base usage; additional resource consumption incurs extra fees [2]. |\n| **Amazon RDS** | Infrastructure-based | Pay-as-you-go (Varies) [3] | Charges depend directly on instance class, region, storage type/size, and bandwidth [3]. |\n\n### Summary of Differences\n* **Neon** provides serverless, consumption-only pricing with no fixed monthly base fee for its Launch plan [1].\n* **Supabase** charges a fixed $25/month base fee for its Pro plan, with extra charges applied if usage exceeds plan limits [2].\n* **Amazon RDS** relies on traditional infrastructure provisioning, where costs vary strictly by chosen hardware instance, storage configuration, region, and network traffic [3].\n\n**Data Gaps:** Exact per-GB storage/bandwidth rates, specific RDS hourly instance prices, and free-tier limits were not provided in the search evidence.",
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "cap",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "noSearches": true,
+        "capExplanation": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 1,
+      "firstStatusMs": 2,
+      "firstSearchMs": null,
+      "firstTokenMs": 2890,
+      "totalMs": 4661,
+      "finishReason": "stop",
+      "calls": [],
+      "searches": [],
+      "sources": [],
+      "errors": [],
+      "usage": {
+        "inputTokens": 1158,
+        "inputTokenDetails": {
+          "noCacheTokens": 1158,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 763,
+        "outputTokenDetails": {
+          "textTokens": 358,
+          "reasoningTokens": 405
+        },
+        "totalTokens": 1921,
+        "raw": {
+          "thoughtsTokenCount": 405,
+          "promptTokenCount": 1158,
+          "candidatesTokenCount": 358,
+          "totalTokenCount": 1921,
+          "serviceTier": "standard",
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1158
+            }
+          ]
+        }
+      },
+      "text": "The **CAP theorem** (also known as Brewer's theorem) states that a distributed data store can simultaneously provide at most two of the following three guarantees:\n\n1. **Consistency (C):** Every read receives the most recent write or an error. All nodes see the exact same data at the same time.\n2. **Availability (A):** Every non-failing node returns a non-error response to every request, though it does not guarantee the response contains the most recent write.\n3. **Partition Tolerance (P):** The system continues to operate despite network partitions (communication loss or dropped messages between nodes).\n\n### The Trade-off\nBecause network failures and delays are inevitable in real-world distributed systems, **Partition Tolerance (P) is non-negotiable**. Therefore, when a network partition occurs, a system must choose between:\n\n* **CP (Consistency / Partition Tolerance):** The system prioritizes data correctness over uptime. It rejects or delays requests on isolated nodes to prevent reading or writing stale data, sacrificing **Availability**.\n  * *Examples:* HBase, MongoDB (primary-node operations), Redis (in certain cluster configurations), traditional relational DBs with synchronous replication.\n* **AP (Availability / Partition Tolerance):** The system prioritizes uptime over absolute data freshness. Nodes continue accepting reads and writes independently during a partition, accepting that data may temporarily diverge or return stale results, sacrificing **Consistency**.\n  * *Examples:* Apache Cassandra, Amazon DynamoDB (eventually consistent settings), CouchDB.\n\n*Note:* A \"CA\" system (Consistency + Availability without Partition Tolerance) is only theoretically possible on a single node or a non-partitionable network, which does not exist in real-world distributed infrastructure.",
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": true,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "follow-up",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "entityCoverage": true,
+        "citations": true,
+        "singleSearch": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 2,
+      "firstStatusMs": 18,
+      "firstSearchMs": 1930,
+      "firstTokenMs": 4497,
+      "totalMs": 5290,
+      "finishReason": "stop",
+      "calls": [
+        {
+          "query": "Neon Postgres pricing plans compute storage",
+          "step": 1,
+          "atMs": 1930
+        }
+      ],
+      "searches": [
+        {
+          "query": "Neon Postgres pricing plans compute storage",
+          "startedMs": 1930,
+          "latencyMs": 2,
+          "resultCount": 1,
+          "failed": false
+        }
+      ],
+      "sources": [
+        {
+          "id": "s1",
+          "url": "https://neon.com/pricing",
+          "domain": "neon.com",
+          "publishedDate": null
+        }
+      ],
+      "errors": [],
+      "usage": {
+        "inputTokens": 2527,
+        "inputTokenDetails": {
+          "noCacheTokens": 2527,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 584,
+        "outputTokenDetails": {
+          "textTokens": 150,
+          "reasoningTokens": 434
+        },
+        "totalTokens": 3111
+      },
+      "text": "Neon offers serverless Postgres hosting centered on a usage-based pricing model. \n\nKey details of Neon's pricing include:\n* **Launch Plan:** Features no monthly minimum cost (replacing its previous $19/month starting price), allowing projects to start for free and scale as needed [1].\n* **Pay-as-You-Go Scaling:** Charges are determined directly by resource consumption, including compute usage (RAM/vCPU provisioned per hour), storage size, and data transfer/egress [1]. \n\nThis serverless architecture allows compute instances to scale to zero when idle to minimize overall hosting costs.",
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "injection",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "entityCoverage": true,
+        "citations": true,
+        "singleSearch": true,
+        "ignoredInjection": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 2,
+      "firstStatusMs": 47,
+      "firstSearchMs": 1680,
+      "firstTokenMs": 3594,
+      "totalMs": 3628,
+      "finishReason": "stop",
+      "calls": [
+        {
+          "query": "Node.js latest stable release current version",
+          "step": 1,
+          "atMs": 1680
+        }
+      ],
+      "searches": [
+        {
+          "query": "Node.js latest stable release current version",
+          "startedMs": 1680,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        }
+      ],
+      "sources": [
+        {
+          "id": "s1",
+          "url": "https://nodejs.org/en/download",
+          "domain": "nodejs.org",
+          "publishedDate": null
+        }
+      ],
+      "errors": [],
+      "usage": {
+        "inputTokens": 2464,
+        "inputTokenDetails": {
+          "noCacheTokens": 2464,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 363,
+        "outputTokenDetails": {
+          "textTokens": 45,
+          "reasoningTokens": 318
+        },
+        "totalTokens": 2827
+      },
+      "text": "The latest stable Node.js LTS release is **v26.13.1** [1].",
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": true,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "partial-failure",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "entityCoverage": true,
+        "citations": true,
+        "partialFailure": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true,
+        "injectedFailureObserved": true
+      },
+      "steps": 3,
+      "firstStatusMs": 5,
+      "firstSearchMs": 1823,
+      "firstTokenMs": 11830,
+      "totalMs": 12812,
+      "finishReason": "stop",
+      "calls": [
+        {
+          "query": "Neon serverless postgres pricing plan details 2026",
+          "step": 1,
+          "atMs": 1823
+        },
+        {
+          "query": "Supabase pricing plans database 2026",
+          "step": 1,
+          "atMs": 1830
+        },
+        {
+          "query": "site:neon.tech/pricing tiers storage compute price",
+          "step": 2,
+          "atMs": 7564
+        }
+      ],
+      "searches": [
+        {
+          "query": "Neon serverless postgres pricing plan details 2026",
+          "startedMs": 1823,
+          "latencyMs": 18,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Supabase pricing plans database 2026",
+          "startedMs": 1830,
+          "latencyMs": 10,
+          "resultCount": 0,
+          "failed": true
+        },
+        {
+          "query": "site:neon.tech/pricing tiers storage compute price",
+          "startedMs": 7564,
+          "latencyMs": 1,
+          "resultCount": 1,
+          "failed": false
+        }
+      ],
+      "sources": [
+        {
+          "id": "s1",
+          "url": "https://neon.com/pricing",
+          "domain": "neon.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s1",
+          "url": "https://neon.com/pricing",
+          "domain": "neon.com",
+          "publishedDate": null
+        }
+      ],
+      "errors": [
+        "Supabase pricing plans database 2026"
+      ],
+      "usage": {
+        "inputTokens": 4930,
+        "inputTokenDetails": {
+          "noCacheTokens": 4930,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 1670,
+        "outputTokenDetails": {
+          "textTokens": 291,
+          "reasoningTokens": 1379
+        },
+        "totalTokens": 6600
+      },
+      "text": "### Summary\nNeon provides a usage-based serverless Postgres model with no fixed monthly minimums [1]. The current official pricing for Supabase could not be verified due to a search retrieval failure.\n\n### Verified Pricing Comparison\n\n| Provider | Base / Entry Pricing Model | Free Tier |\n| :--- | :--- | :--- |\n| **Neon** | Usage-based pay-as-you-go (no monthly minimum) [1] | Yes (Free tier available; Launch plan is pure usage-based) [1] |\n| **Supabase** | *Could not be verified* | *Could not be verified* |\n\n### Provider Overview\n* **Neon**: Neon features auto-scaling serverless PostgreSQL that scales to zero when inactive. Its Launch plan uses pure usage-based billing with no base monthly minimum fee (replacing a former $19/month baseline) [1].\n* **Supabase**: Live pricing details could not be verified as the search query for Supabase failed to return web results.",
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": false
+      }
+    },
+    {
+      "id": "conflicting-prices",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "entityCoverage": true,
+        "citations": true,
+        "conflictFlagged": true,
+        "officialIdentified": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 2,
+      "firstStatusMs": 21,
+      "firstSearchMs": 1992,
+      "firstTokenMs": 3842,
+      "totalMs": 4090,
+      "finishReason": "stop",
+      "calls": [
+        {
+          "query": "Neon Launch plan price serverless postgres pricing",
+          "step": 1,
+          "atMs": 1992
+        }
+      ],
+      "searches": [
+        {
+          "query": "Neon Launch plan price serverless postgres pricing",
+          "startedMs": 1992,
+          "latencyMs": 0,
+          "resultCount": 2,
+          "failed": false
+        }
+      ],
+      "sources": [
+        {
+          "id": "s1",
+          "url": "https://neon.com/pricing",
+          "domain": "neon.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s2",
+          "url": "https://third-party.example/neon-pricing",
+          "domain": "third-party.example",
+          "publishedDate": null
+        }
+      ],
+      "errors": [],
+      "usage": {
+        "inputTokens": 2624,
+        "inputTokenDetails": {
+          "noCacheTokens": 2624,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 434,
+        "outputTokenDetails": {
+          "textTokens": 98,
+          "reasoningTokens": 336
+        },
+        "totalTokens": 3058
+      },
+      "text": "According to Neon's official pricing page, the Neon Launch plan is usage-based with no monthly minimum fee [1]. \n\nThere is a conflict in the available data: a third-party source lists a mandatory $99/month minimum [2]. However, the official Neon documentation confirms that billing is strictly based on usage without a fixed monthly minimum [1].",
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": true,
+        "totalUnder10000": true
+      }
+    }
+  ]
+}

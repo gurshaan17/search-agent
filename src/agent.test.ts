@@ -57,11 +57,33 @@ test('NOW uses the supplied timezone and timeless knowledge needs no search', ()
 });
 
  test('four-step cap reserves the last call for synthesis', async () => {
-  const model = modelWithCalls(1, true);
+  const model = modelWithCalls(3, true);
   const result = runAgent({ messages: [{ role: 'user', content: 'Research' }], model,
     search: { search: async () => ({ searchedAt: new Date().toISOString(), results: [] }) },
   });
   await result.consumeStream();
   expect(model.doStreamCalls).toHaveLength(4);
   expect(model.doStreamCalls.at(-1)?.toolChoice).toEqual({ type: 'none' });
+});
+
+test('Gemini synthesis receives plain evidence without function-call history', async () => {
+  const { createGoogleGenerativeAI } = await import('@ai-sdk/google');
+  const requests: { tools?: unknown[]; contents?: unknown[] }[] = [];
+  const google = createGoogleGenerativeAI({ apiKey: 'offline-test-key', fetch: async (_url, init) => {
+    requests.push(JSON.parse(String(init?.body)));
+    const part = requests.length === 1
+      ? { functionCall: { name: 'web_search', args: { query: 'Node release' } }, thoughtSignature: 'dGVzdA==' }
+      : { text: 'Node release [1]' };
+    return new Response(`data: ${JSON.stringify({ candidates: [{ content: { role: 'model', parts: [part] }, finishReason: 'STOP' }], usageMetadata: { promptTokenCount: 1, candidatesTokenCount: 1, totalTokenCount: 2 } })}\n\n`, { headers: { 'Content-Type': 'text/event-stream' } });
+  } });
+  const result = runAgent({ messages: [{ role: 'user', content: 'Node release?' }], model: google('gemini-3.5-flash'), maxSteps: 2,
+    search: { search: async () => ({ searchedAt: new Date().toISOString(), results: [] }) },
+  });
+  let text = '';
+  for await (const delta of result.textStream) text += delta;
+  expect(text).toBe('Node release [1]');
+  expect(requests).toHaveLength(2);
+  expect(requests[1].tools).toBeUndefined();
+  expect(JSON.stringify(requests[1].contents)).not.toMatch(/functionCall|functionResponse/);
+  expect(JSON.stringify(requests[1].contents)).toContain('Research is complete');
 });

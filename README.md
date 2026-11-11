@@ -33,7 +33,17 @@ node --import tsx scripts/temporal-smoke.ts --live
 
 Both commands call Gemini. The first uses mock searches; `--live` runs two cases against Exa. JSON results include assertions, queries, source URLs, timings, and answer text; timestamped search events go to stderr. Use `--case=last-tuesday` (or another case ID from `evals/cases.ts`) to focus a run. These checks use an in-memory database and do not modify CLI history. Synthetic baseline prices are test data, not verified historical prices.
 
-`npm run eval` is reserved for Phase 6; its runner is currently a placeholder.
+Run the full 12-case evaluation suite with real Gemini and deterministic mock search:
+
+```sh
+npm run eval
+npm run eval -- --output=/tmp/eval-results.json
+npm run eval -- --live --case=latest-node,hosting-comparison,follow-up --output=/tmp/live-results.json
+```
+
+The table reports assertions, model steps, search count, local first-status time, first-search time, first answer token, and total latency. Optional JSON also records query/date filters, per-search durations and failures, returned sources, token/cache usage, finish reason, full answers, and latency targets. A failed assertion, model error, or truncated answer exits nonzero. `npm test` is offline; `npm run eval` needs `GEMINI_API_KEY` and makes model API calls even with mock searches. Live search additionally requires `EXA_API_KEY`; injection, failure, and conflict cases always retain controlled fixtures.
+
+Use `--case=ID` (comma-separated IDs accepted), `--repeat=1` through `--repeat=10`, `--search-type=auto|fast` for live comparisons, or `--step-cap=2|4` for evaluation experiments. Production retains the four-step ceiling, with early synthesis after a single-query research round. The two-step global-cap candidate was rejected. The eval clock stays fixed to 11 November 2026 in Asia/Kolkata and uses an in-memory database. These are structural assertions; claim attribution and answer tone still require human review. Latency targets are reported rather than used as correctness gates.
 
 Source modules live in `src/`, browser assets in `public/`, manual tools in `scripts/`, evaluation cases in `evals/`, and architecture decisions in `docs/decisions.md`. Runtime SQLite files live in ignored `data/`.
 

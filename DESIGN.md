@@ -1,6 +1,6 @@
 # Design
 
-The project has a TypeScript scaffold, an implemented search provider, and a Gemini terminal agent. Phase 2 automated checks pass; a live Gemini CAP response used zero searches. The Node.js and pricing acceptance prompts remain unverified. Phase 3 persistence and recall pass automated checks and a live cross-session recall check. Phase 1 acceptance is still pending because three of twenty live smoke requests timed out. Phase 4 adds fixed-clock temporal checks and refined baseline comparison policy; the browser streaming UI is implemented.
+The project has a TypeScript scaffold, an implemented search provider, and a Gemini terminal agent. Phase 2 automated checks pass; live Gemini/Exa lookup and comparison checks were completed during Phase 6, and CAP uses zero searches. Phase 3 persistence and recall pass automated checks and a live cross-session recall check. Phase 1 acceptance is still pending because three of twenty live smoke requests timed out. Phase 4 adds fixed-clock temporal checks and refined baseline comparison policy; the browser streaming UI is implemented.
 
 The planned request flow is browser → Hono → context builder → single-tool agent → search provider. SQLite supplies dated recall before the model runs. The terminal agent exposes one tool, `web_search`, with a four-step cap and twelve-search budget. It streams answers and logs search timestamps and step numbers. `MODEL` defaults to `gemini-3.5-flash`, using `GEMINI_API_KEY`; this replaces the originally planned Anthropic provider at the owner’s request. The search provider can also be exercised independently through the smoke script.
 
@@ -37,7 +37,7 @@ Exa did not consistently honor the requested 600-character setting; local normal
 
 ## Remaining work
 
-Resolve or explicitly accept the live timeout results before marking Phase 1 complete. Verify the remaining Phase 2 live search prompts. Later phases add the general eval runner, latency tuning, and hardening. End-to-end answer quality and latency have not been measured. The final design document will be revised as those decisions gain evidence.
+Resolve or explicitly accept the live timeout results before marking Phase 1 complete. Phase 6 adds the general eval runner and latency measurements; hardening remains Phase 7. Structural assertions do not certify every generated claim. The final design document will be revised as those decisions gain evidence.
 
 Decision details and verification history are in [docs/decisions.md](docs/decisions.md).
 
@@ -46,3 +46,6 @@ Phase 4 verification covers five temporal scenarios with Gemini and mock search,
 
 
 The Phase 5 Hono server serves one buildless chat page and streams status, sources, answer deltas, completion timings, and errors over SSE. Browser user and conversation IDs persist locally; the server loads the last 40 saved conversation messages for follow-ups after reload. New chat rotates the conversation ID. Disconnecting aborts the model and searches; partial text and evidence are retained with interruption markers. Browser formatting uses DOM text nodes and safe HTTP/HTTPS links, with per-answer citation anchors. The server binds to localhost; these IDs are namespaces rather than authenticated identities. Verification includes 23 passing tests, clean dependency installation and startup, live browser search and reload recall, mobile layout, and hostile-markup rendering checks.
+
+
+Phase 6's `npm run eval` covers twelve scenarios with real Gemini and mock searches, with an optional live Exa mode. The retained configuration passed 12/12 structural evals and 28 offline tests. Median total time in the final mock run was 4.976 seconds; live lookup/follow-up first-token times in the measured retained trial were 6.6–11.4 seconds, and the comparison took 20.5 seconds. The latency goals are therefore not consistently met. Early synthesis after a single-query round avoids redundant lookups; final synthesis receives plain evidence without function-call history so the model produces an answer within the four-step ceiling. Concise-answer and numeric-citation instructions address overlong output. Keep auto search, four default results, and a 1200-character cap: the fast-mode trial was mixed, and a global two-step cap failed. No caching or routing-model benefit is claimed. Full measurements, failed trials, and limitations are in [docs/phase6-results.md](docs/phase6-results.md).
