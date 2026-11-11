@@ -11,11 +11,10 @@
     "chat": "tsx scripts/chat-cli.ts",
     "start": "tsx src/server.ts",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run --passWithNoTests",
+    "test": "vitest run",
     "eval": "tsx evals/run.ts"
   },
   "dependencies": {
-    "@ai-sdk/anthropic": "*",
     "@ai-sdk/google": "^4.0.117",
     "@hono/node-server": "*",
     "ai": "*",

@@ -1,57 +1,41 @@
-# Design
+# Fieldnote design
 
-The project has a TypeScript scaffold, an implemented search provider, and a Gemini terminal agent. Phase 2 automated checks pass; live Gemini/Exa lookup and comparison checks were completed during Phase 6, and CAP uses zero searches. Phase 3 persistence and recall pass automated checks and a live cross-session recall check. Phase 1 acceptance is still pending because three of twenty live smoke requests timed out. Phase 4 adds fixed-clock temporal checks and refined baseline comparison policy; the browser streaming UI is implemented.
+Fieldnote is a local research chat for current facts, comparisons, and revisiting earlier answers. Gemini plans searches; Exa supplies sources; SQLite keeps dated conversations. The browser streams progress and answers, then saves the transcript for reopening from the sidebar. This document describes the implemented system. Detailed decisions and failed experiments remain in [the decision log](docs/decisions.md).
 
-The planned request flow is browser → Hono → context builder → single-tool agent → search provider. SQLite supplies dated recall before the model runs. The terminal agent exposes one tool, `web_search`, with a four-step cap and twelve-search budget. It streams answers and logs search timestamps and step numbers. `MODEL` defaults to `gemini-3.5-flash`, using `GEMINI_API_KEY`; this replaces the originally planned Anthropic provider at the owner’s request. The search provider can also be exercised independently through the smoke script.
+```text
+Browser / CLI → context builder → Gemini → web_search → Exa
+                       ↑                         ↓
+                    SQLite ← validated answer + sources + searches
+```
 
-## Dated memory
+## How it works
 
-The CLI stores timestamped questions and answers in `data/chat.sqlite`, along with source snapshots and search logs. Each CLI session starts a new conversation; `CLI_USER_ID` identifies the memory owner across sessions. This local identity scopes queries but is not authentication.
+Hono serves one buildless HTML page and a streaming chat endpoint. Before generation, code injects the current ISO time, local date, weekday, timezone, recent conversation messages, and relevant saved turns. The browser supplies its timezone; the CLI uses the system timezone. `AGENT_NOW` fixes the clock for tests. The agent exposes exactly one tool, `web_search`. Search events and answer deltas travel over SSE; source links use stable IDs within each turn.
 
-Before generation, code parses English dates with chrono-node against the request clock and system timezone. Local-day bounds are converted separately to UTC to respect daylight-saving changes; bare weekdays resolve into the past. FTS5 keyword matches within seven days of a resolved date rank ahead of date-only candidates. At most six questions are paired with their following assistant reply in the same conversation, truncated to 2000 characters per answer, and injected with timestamps, sources, and a suggested `since` date. Missing history is explicit. Recall adds no model tool or extra model call.
+Questions, answers, sources, and search records are stored in SQLite. Browser storage holds only the user and selected-conversation IDs. History endpoints scope reads to that user and paginate chats and messages; the model receives the latest forty conversation messages. These IDs are local namespaces, not authentication. The server binds to localhost.
 
-## Search behavior
+## Decisions and tradeoffs
 
-`SearchProvider` accepts a query, optional publication-date bounds, and a result count. The Exa implementation requests highlights with `maxAgeHours: 0` for freshness and maps date bounds to published-date filters. Date-filtered responses include a reminder that publication dates alone cannot establish whether an existing page changed.
+**Recall runs in code.** chrono-node resolves English dates against the request clock. Local-day boundaries are converted separately to UTC, including daylight-saving changes. FTS5 topic matches within seven days of a resolved date rank ahead of unrelated date-only hits. Up to six question/reply pairs provide a dated baseline. This preserves the one-tool interface and avoids another model round-trip. A vector database would add infrastructure without improving exact date lookup.
 
-Results default to four and are capped at eight. Normalization removes URL fragments, deduplicates URLs within each response, derives domains, and limits titles to 300 characters and total highlights to 1200 characters per source. One provider instance should be shared within a turn so sources keep stable IDs across searches. Highlights keep model context bounded; full-page text has no measured benefit yet.
+**One bounded agent loop plans research.** Independent entity queries can run in parallel. There are at most four model steps, twelve provider searches, and 2048 output tokens per model step. A single-query round proceeds directly to synthesis. Final synthesis receives plain, explicitly untrusted evidence without function-call history; this addressed observed Gemini tool-loop failures. A separate planner/executor framework or routing model adds complexity without a measured benefit here.
 
-Each search has an eight-second budget, including one retry after a short backoff for HTTP 429 or 5xx failures. Callers can also cancel through an abort signal. A mock provider supplies query-matched fixtures, empty responses, failures, and untrusted text for testing.
+**Change checks use two searches.** Dated announcements and an unfiltered official page complement each other: pricing pages can change without a publication date. The model compares current evidence with the saved baseline, distinguishes a baseline correction from a proven change event, and states missing history or evidence rather than inventing it.
 
-## Verification results
+**Search context is bounded.** Exa defaults to auto mode, four results, fresh-crawl requests, and highlights. Local normalization deduplicates URLs, caps results at eight, and caps excerpts at 1200 characters per source. Full-page text has no demonstrated benefit. Fast mode produced mixed timings; a global two-step cap failed cases. Neither replaced the retained settings.
 
-On 11 November 2026, typecheck and all four unit tests passed. Tests cover normalization and deduplication, stable source IDs, highlight limits, transient retry, timeout cancellation, and mock behavior.
+**Output remains inspectable.** Search content is treated as data rather than instructions. Citation validation buffers split references and flags unknown source numbers while preserving code literals. Browser formatting uses text nodes and safe links. Failures retain partial text with an interruption marker. Citation membership does not prove that a source supports a claim.
 
-The live comparison ran the same five queries for each mode and requested highlight size:
+The server caps requests at 64 KiB and questions at 20,000 characters, with twenty chat requests per minute per socket IP. Metrics logs omit prompts, query text, credentials, and upstream error details. The frontend pairs Instrument Serif display type with DM Sans; local fallbacks keep it usable if external fonts fail.
 
-| Mode | Requested characters | Successful requests | Mean latency, including failures |
-| --- | ---: | ---: | ---: |
-| auto | 600 | 4/5 | 4678 ms |
-| auto | 1200 | 4/5 | 3372 ms |
-| fast | 600 | 5/5 | 1716 ms |
-| fast | 1200 | 4/5 | 2552 ms |
+## Measurements and limits
 
-All three failures were timeouts for “Supabase new features.” Successful responses passed result-count, URL deduplication, domain consistency, and local highlight-cap checks. Quality spot-checks found relevant official release, pricing, and announcement sources, plus directory listings with little useful prose.
+| Verification | Measured result |
+| --- | --- |
+| Phase 7 model evals, mock search | 14/14 structural passes |
+| Offline tests after sidebar history | 42 passes |
+| Phase 6 mock median completion | 4.976 seconds |
+| Retained live lookup/follow-up first token | 6.6–11.4 seconds |
+| Retained live comparison total | 20.5 seconds |
 
-Exa did not consistently honor the requested 600-character setting; local normalization enforced the 1200-character cap. This limits conclusions about highlight size. Fast/600 performed best in this run, but one small comparison does not establish a reliable quality or latency advantage. The implementation still defaults to auto/1200.
-
-## Remaining work
-
-Resolve or explicitly accept the live timeout results before marking Phase 1 complete. Phase 6 adds the general eval runner and latency measurements; Phase 7 hardening is implemented; final documentation and fresh-clone review remain Phase 8. Structural assertions do not certify every generated claim. The final design document will be revised as those decisions gain evidence.
-
-Decision details and verification history are in [docs/decisions.md](docs/decisions.md).
-
-
-Phase 4 verification covers five temporal scenarios with Gemini and mock search, plus two live Exa spot-checks. The model pairs dated announcements with unfiltered current pages and asks for the missing shortlist without searching. Synthetic baseline differences on undated pricing pages are detected. Some runs split research into two parallel batches; structural passes do not guarantee every generated claim is supported. Measurements and remaining quality limits are in [docs/phase4-results.md](docs/phase4-results.md).
-
-
-The Phase 5 Hono server serves one buildless chat page and streams status, sources, answer deltas, completion timings, and errors over SSE. Browser user and conversation IDs persist locally; the server loads the last 40 saved conversation messages for follow-ups after reload. New chat rotates the conversation ID. Disconnecting aborts the model and searches; partial text and evidence are retained with interruption markers. Browser formatting uses DOM text nodes and safe HTTP/HTTPS links, with per-answer citation anchors. The server binds to localhost; these IDs are namespaces rather than authenticated identities. Verification includes 23 passing tests, clean dependency installation and startup, live browser search and reload recall, mobile layout, and hostile-markup rendering checks.
-
-
-Phase 6's `npm run eval` covers twelve scenarios with real Gemini and mock searches, with an optional live Exa mode. The retained configuration passed 12/12 structural evals and 28 offline tests. Median total time in the final mock run was 4.976 seconds; live lookup/follow-up first-token times in the measured retained trial were 6.6–11.4 seconds, and the comparison took 20.5 seconds. The latency goals are therefore not consistently met. Early synthesis after a single-query round avoids redundant lookups; final synthesis receives plain evidence without function-call history so the model produces an answer within the four-step ceiling. Concise-answer and numeric-citation instructions address overlong output. Keep auto search, four default results, and a 1200-character cap: the fast-mode trial was mixed, and a global two-step cap failed. No caching or routing-model benefit is claimed. Full measurements, failed trials, and limitations are in [docs/phase6-results.md](docs/phase6-results.md).
-
-
-Phase 7 validates citations incrementally before browser/CLI display and persistence, including references split between chunks. Unmapped numbers become explicit unverified-source markers; code examples remain literal. The HTTP boundary enforces a 64 KiB body cap, 20,000-character message limit, and 20 requests per minute per direct socket IP. Structured turn logs expose only IDs, outcomes, counts, durations, numeric usage and invalid-reference counts. Upstream exception details are suppressed. Empty/poor search responses carry explicit evidence-gap instructions, partial failures retain other results, and interrupted or token-truncated replies produce errors rather than successful completion. Forty offline tests and fourteen real-Gemini/mock-search evals pass. A browser test with an actual test-server TCP disconnect preserved partial text, showed recovery guidance, unlocked the composer and allowed New chat. Citation membership is not claim verification, and the local per-process rate limiter and browser namespaces are not an authentication or distributed quota system.
-
-
-Saved chats now appear in the frontend sidebar, with a first-question title and most-recent activity ordering. User-scoped, non-cached history endpoints paginate conversations (30) and messages (100); reopening a chat restores its transcript and per-answer source anchors, while the model context remains limited to the latest 40 messages. Reload restores the selected conversation. New chat preserves older history, and mobile exposes it through a keyboard-accessible drawer. Existing SQLite rows are reused, with an additive conversation index and no new storage or model dependency. Verification covers 42 offline tests and browser checks for saving, reopening, continuing the same conversation, sources, pagination, user isolation and mobile interaction.
+[Raw evals](docs/evals/phase7-gate.json) and [latency trials](docs/phase6-results.md) include limitations. Live speed targets are not consistently met, and earlier Exa smoke runs had timeouts. Model outputs vary; structural assertions cannot certify factual accuracy or tone. With another week, I would measure reranking and another search provider, keep dated claim snapshots for clearer comparisons, and expand human-reviewed answer-quality cases.
