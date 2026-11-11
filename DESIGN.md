@@ -1,8 +1,14 @@
 # Design
 
-The project has a TypeScript scaffold, an implemented search provider, and a Gemini terminal agent. Phase 2 automated checks pass; live model acceptance awaits a local Gemini key. Phase 1 acceptance is still pending because three of twenty live smoke requests timed out. Persistence and the browser streaming UI remain planned work.
+The project has a TypeScript scaffold, an implemented search provider, and a Gemini terminal agent. Phase 2 automated checks pass; a live Gemini CAP response used zero searches. The Node.js and pricing acceptance prompts remain unverified. Phase 3 persistence and recall pass automated checks and a live cross-session recall check. Phase 1 acceptance is still pending because three of twenty live smoke requests timed out. The browser streaming UI remains planned work.
 
-The planned request flow is browser → Hono → context builder → single-tool agent → search provider. SQLite will supply dated recall before the model runs. The terminal agent exposes one tool, `web_search`, with a four-step cap and twelve-search budget. It streams answers and logs search timestamps and step numbers. `MODEL` defaults to `gemini-3.5-flash`, using `GEMINI_API_KEY`; this replaces the originally planned Anthropic provider at the owner’s request. The search provider can also be exercised independently through the smoke script.
+The planned request flow is browser → Hono → context builder → single-tool agent → search provider. SQLite supplies dated recall before the model runs. The terminal agent exposes one tool, `web_search`, with a four-step cap and twelve-search budget. It streams answers and logs search timestamps and step numbers. `MODEL` defaults to `gemini-3.5-flash`, using `GEMINI_API_KEY`; this replaces the originally planned Anthropic provider at the owner’s request. The search provider can also be exercised independently through the smoke script.
+
+## Dated memory
+
+The CLI stores timestamped questions and answers in `data/chat.sqlite`, along with source snapshots and search logs. Each CLI session starts a new conversation; `CLI_USER_ID` identifies the memory owner across sessions. This local identity scopes queries but is not authentication.
+
+Before generation, code parses English dates with chrono-node against the request clock and system timezone. Local-day bounds are converted separately to UTC to respect daylight-saving changes; bare weekdays resolve into the past. FTS5 keyword matches within seven days of a resolved date rank ahead of date-only candidates. At most six questions are paired with their following assistant reply in the same conversation, truncated to 2000 characters per answer, and injected with timestamps, sources, and a suggested `since` date. Missing history is explicit. Recall adds no model tool or extra model call.
 
 ## Search behavior
 
@@ -31,6 +37,6 @@ Exa did not consistently honor the requested 600-character setting; local normal
 
 ## Remaining work
 
-Resolve or explicitly accept the live timeout results before marking Phase 1 complete. Verify the three live terminal acceptance prompts once the Gemini key is configured. Later phases add dated persistence and recall, change detection, streaming chat, evals, and hardening. End-to-end answer quality and latency have not been measured. The final design document will be revised as those decisions gain evidence.
+Resolve or explicitly accept the live timeout results before marking Phase 1 complete. Verify the remaining Phase 2 live search prompts. Later phases refine temporal change detection, streaming chat, evals, and hardening. End-to-end answer quality and latency have not been measured. The final design document will be revised as those decisions gain evidence.
 
 Decision details and verification history are in [docs/decisions.md](docs/decisions.md).

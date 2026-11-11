@@ -10,7 +10,7 @@ export interface SearchEvent {
 }
 export function runAgent(options: {
   messages: ModelMessage[]; search: SearchProvider; model?: LanguageModel;
-  now?: Date; timezone?: string; signal?: AbortSignal;
+  now?: Date; timezone?: string; signal?: AbortSignal; context?: string;
   onSearch?: (event: SearchEvent) => void;
 }) {
   let calls = 0;
@@ -18,7 +18,7 @@ export function runAgent(options: {
   const google = createGoogleGenerativeAI({ apiKey: process.env.GEMINI_API_KEY });
   return streamText({
     model: options.model ?? google(process.env.MODEL?.trim() || DEFAULT_MODEL),
-    system: buildPrompt(options.now, options.timezone),
+    system: buildPrompt(options.now, options.timezone) + (options.context ? `\n\n${options.context}` : ''),
     messages: options.messages, abortSignal: options.signal,
     stopWhen: stepCountIs(4), maxOutputTokens: 2048, maxRetries: 0,
     prepareStep: ({ stepNumber }) => {
