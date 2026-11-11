@@ -4,7 +4,7 @@ Phase 0 scaffold for a TypeScript agent with one web-search tool, dated memory, 
 
 ## Setup
 
-Requires Node.js 20 or newer and npm.
+Requires Node.js 22.12+, 24.x, or 26+. With nvm, run `nvm install` and `nvm use` to select Node 26 from `.nvmrc`.
 
 ```sh
 npm install
