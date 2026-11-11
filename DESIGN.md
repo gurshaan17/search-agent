@@ -1,8 +1,8 @@
 # Design
 
-The project has a TypeScript scaffold and an implemented search provider. Phase 1 acceptance is still pending because three of twenty live smoke requests timed out. The chat agent, persistence, and streaming UI remain planned work.
+The project has a TypeScript scaffold, an implemented search provider, and a Gemini terminal agent. Phase 2 automated checks pass; live model acceptance awaits a local Gemini key. Phase 1 acceptance is still pending because three of twenty live smoke requests timed out. Persistence and the browser streaming UI remain planned work.
 
-The planned request flow is browser → Hono → context builder → single-tool agent → search provider. SQLite will supply dated recall before the model runs. The model will have one tool, `web_search`; the current provider can be exercised independently through the smoke script.
+The planned request flow is browser → Hono → context builder → single-tool agent → search provider. SQLite will supply dated recall before the model runs. The terminal agent exposes one tool, `web_search`, with a four-step cap and twelve-search budget. It streams answers and logs search timestamps and step numbers. `MODEL` defaults to `gemini-3.5-flash`, using `GEMINI_API_KEY`; this replaces the originally planned Anthropic provider at the owner’s request. The search provider can also be exercised independently through the smoke script.
 
 ## Search behavior
 
@@ -31,6 +31,6 @@ Exa did not consistently honor the requested 600-character setting; local normal
 
 ## Remaining work
 
-Resolve or explicitly accept the live timeout results before marking Phase 1 complete. Later phases add the terminal agent, dated persistence and recall, change detection, streaming chat, evals, and hardening. End-to-end answer quality and latency have not been measured. The final design document will be revised as those decisions gain evidence.
+Resolve or explicitly accept the live timeout results before marking Phase 1 complete. Verify the three live terminal acceptance prompts once the Gemini key is configured. Later phases add dated persistence and recall, change detection, streaming chat, evals, and hardening. End-to-end answer quality and latency have not been measured. The final design document will be revised as those decisions gain evidence.
 
 Decision details and verification history are in [docs/decisions.md](docs/decisions.md).

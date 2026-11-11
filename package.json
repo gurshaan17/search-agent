@@ -8,27 +8,29 @@
   },
   "scripts": {
     "dev": "tsx watch src/server.ts",
+    "chat": "tsx scripts/chat-cli.ts",
     "start": "tsx src/server.ts",
     "typecheck": "tsc --noEmit",
     "test": "vitest run --passWithNoTests",
     "eval": "tsx evals/run.ts"
   },
   "dependencies": {
-    "ai": "*",
     "@ai-sdk/anthropic": "*",
+    "@ai-sdk/google": "^4.0.117",
+    "@hono/node-server": "*",
+    "ai": "*",
+    "better-sqlite3": "*",
+    "chrono-node": "*",
+    "dotenv": "*",
     "exa-js": "*",
     "hono": "*",
-    "@hono/node-server": "*",
-    "better-sqlite3": "*",
-    "zod": "*",
-    "dotenv": "*",
-    "chrono-node": "*"
+    "zod": "*"
   },
   "devDependencies": {
-    "typescript": "*",
-    "tsx": "*",
-    "vitest": "*",
+    "@types/better-sqlite3": "*",
     "@types/node": "*",
-    "@types/better-sqlite3": "*"
+    "tsx": "*",
+    "typescript": "*",
+    "vitest": "*"
   }
 }

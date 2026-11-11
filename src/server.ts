@@ -13,8 +13,8 @@ if (!['exa', 'mock'].includes(provider)) {
   throw new Error('SEARCH_PROVIDER must be exa or mock.');
 }
 const required = provider === 'mock'
-  ? ['ANTHROPIC_API_KEY']
-  : ['ANTHROPIC_API_KEY', 'EXA_API_KEY'];
+  ? ['GEMINI_API_KEY']
+  : ['GEMINI_API_KEY', 'EXA_API_KEY'];
 const missing = required.filter((name) => !process.env[name]?.trim());
 if (missing.length) {
   throw new Error(`Missing required environment variables: ${missing.join(', ')}. Copy .env.example to .env and fill them in.`);
