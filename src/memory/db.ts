@@ -53,6 +53,9 @@ export class MemoryStore {
         .run(turnId, s.query, s.since ?? null, s.until ?? null, s.resultCount, s.latencyMs, Number(s.failed ?? false));
     })();
   }
+  conversationTurns(userId: string, conversationId: string): Turn[] {
+    return this.db.prepare<[string, string], Turn>('SELECT * FROM (SELECT * FROM turns WHERE user_id=? AND conversation_id=? ORDER BY id DESC LIMIT 40) ORDER BY id').all(userId, conversationId);
+  }
   turnsInRange(userId: string, start: string, end: string): Turn[] {
     return this.db.prepare<[string, string, string], Turn>(`SELECT * FROM turns WHERE user_id=? AND role='user' AND created_at>=? AND created_at<? ORDER BY created_at DESC,id DESC LIMIT 100`).all(userId,start,end);
   }
