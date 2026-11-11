@@ -137,3 +137,37 @@ test('default logging emits one allowlisted line without SDK console error dumps
   expect(JSON.parse(line)).toMatchObject({event:'turn',outcome:'error'});
   expect(stderr).not.toHaveBeenCalled();
 });
+
+test('history lists and restores only the requested owner, including saved sources', async () => {
+  const s=store();const now='2026-11-12T00:00:00Z';
+  const seed=(user: string, conversation: string, content: string) => s.saveTurn({user_id:user,conversation_id:conversation,role:'user',content,created_at:now,tz:'UTC'});
+  seed('alice','old','First question');seed('bob','private','Private question');seed('alice','new','Latest question');
+  const reply=s.saveTurn({user_id:'alice',conversation_id:'old',role:'assistant',content:'Saved answer [1]',created_at:now,tz:'UTC'});
+  s.saveEvidence(reply,[{id:'s1',title:'Source',url:'https://example.com',domain:'example.com',publishedDate:null,highlights:[]}],[],now);
+  const app=createApp({store:s,search:evidence,logTurn:()=>{}});
+  const response=await app.request('/conversations?userId=alice');
+  expect(response.headers.get('cache-control')).toBe('no-store');
+  const list=await response.json();
+  expect(list.conversations.map((c:{id:string})=>c.id)).toEqual(['old','new']);
+  expect(list.conversations[0].title).toBe('First question');
+  const history=await (await app.request('/conversations/old?userId=alice')).json();
+  expect(history.messages.map((m:{content:string})=>m.content)).toEqual(['First question','Saved answer [1]']);
+  expect(history.messages[1].sources[0]).toMatchObject({n:1,url:'https://example.com',domain:'example.com'});
+  expect(await (await app.request('/conversations/old?userId=bob')).json()).toEqual({messages:[],nextCursor:null});
+  expect((await app.request('/conversations?userId=alice&before=invalid')).status).toBe(400);
+  expect((await app.request('/conversations')).status).toBe(400);
+});
+test('history pagination exposes every conversation and every message without the model-context cap', async () => {
+  const s=store();const base={user_id:'alice',role:'user' as const,created_at:'2026-11-12T00:00:00Z',tz:'UTC'};
+  for(let i=0;i<32;i++) s.saveTurn({...base,conversation_id:`chat-${i}`,content:`Question ${i}`});
+  for(let i=0;i<105;i++) s.saveTurn({...base,conversation_id:'long',content:`Message ${i}`});
+  const app=createApp({store:s,search:evidence,logTurn:()=>{}});
+  const first=await (await app.request('/conversations?userId=alice')).json();
+  const older=await (await app.request(`/conversations?userId=alice&before=${first.nextCursor}`)).json();
+  expect(first.conversations).toHaveLength(30);expect(older.conversations).toHaveLength(3);expect(older.nextCursor).toBeNull();
+  const recent=await (await app.request('/conversations/long?userId=alice')).json();
+  const beginning=await (await app.request(`/conversations/long?userId=alice&before=${recent.nextCursor}`)).json();
+  expect(recent.messages).toHaveLength(100);expect(beginning.messages).toHaveLength(5);
+  expect([...beginning.messages,...recent.messages].map((m:{content:string})=>m.content)).toEqual(Array.from({length:105},(_,i)=>`Message ${i}`));
+  expect(beginning.nextCursor).toBeNull();expect(s.conversationTurns('alice','long')).toHaveLength(40);
+});

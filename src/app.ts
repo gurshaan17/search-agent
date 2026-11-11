@@ -38,6 +38,20 @@ export function createApp(options: { store: MemoryStore; search: () => SearchPro
   const busy = new Set<string>();
   app.get('/', async c => c.html(await readFile(new URL('../public/index.html', import.meta.url), 'utf8')));
   app.get('/health', c => c.json({ status: 'ok', phase: 7 }));
+  const historyQuery = z.object({ userId: z.string().min(1).max(100), before: z.coerce.number().int().positive().safe().optional() });
+  app.get('/conversations', c => {
+    const query = historyQuery.safeParse(c.req.query());
+    if (!query.success) return c.json({ error: 'Provide a valid userId and history cursor.' }, 400);
+    c.header('Cache-Control','no-store');
+    return c.json(options.store.conversationList(query.data.userId, query.data.before));
+  });
+  app.get('/conversations/:conversationId', c => {
+    const query = historyQuery.safeParse(c.req.query());
+    const id = z.string().min(1).max(100).safeParse(c.req.param('conversationId'));
+    if (!query.success || !id.success) return c.json({ error: 'Provide a valid conversation, userId, and history cursor.' }, 400);
+    c.header('Cache-Control','no-store');
+    return c.json(options.store.conversationPage(query.data.userId, id.data, query.data.before));
+  });
   app.post('/chat', async c => {
     let body: unknown;
     try { body = await c.req.json(); } catch { return c.json({ error: 'Send a JSON chat request.' }, 400); }

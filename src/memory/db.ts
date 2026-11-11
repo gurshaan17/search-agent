@@ -23,6 +23,7 @@ export class MemoryStore {
         role TEXT NOT NULL CHECK(role IN ('user','assistant')), content TEXT NOT NULL,
         created_at TEXT NOT NULL, tz TEXT NOT NULL);
       CREATE INDEX IF NOT EXISTS turns_user_date ON turns(user_id, created_at);
+      CREATE INDEX IF NOT EXISTS turns_conversation ON turns(user_id, conversation_id, id);
       CREATE TABLE IF NOT EXISTS sources (
         id INTEGER PRIMARY KEY, turn_id INTEGER NOT NULL REFERENCES turns(id), n INTEGER NOT NULL,
         url TEXT NOT NULL, title TEXT NOT NULL, published_date TEXT, retrieved_at TEXT NOT NULL);
@@ -55,6 +56,28 @@ export class MemoryStore {
   }
   conversationTurns(userId: string, conversationId: string): Turn[] {
     return this.db.prepare<[string, string], Turn>('SELECT * FROM (SELECT * FROM turns WHERE user_id=? AND conversation_id=? ORDER BY id DESC LIMIT 40) ORDER BY id').all(userId, conversationId);
+  }
+  conversationList(userId: string, before?: number) {
+    const rows = this.db.prepare<[string, number | null, number | null], { id: string; title: string; updatedAt: string; lastTurnId: number }>(`
+      SELECT t.conversation_id AS id,
+        COALESCE((SELECT substr(f.content,1,100) FROM turns f WHERE f.user_id=t.user_id AND f.conversation_id=t.conversation_id AND f.role='user' ORDER BY f.id LIMIT 1),'Untitled chat') AS title,
+        (SELECT l.created_at FROM turns l WHERE l.user_id=t.user_id AND l.conversation_id=t.conversation_id ORDER BY l.id DESC LIMIT 1) AS updatedAt,
+        MAX(t.id) AS lastTurnId
+      FROM turns t WHERE t.user_id=? GROUP BY t.conversation_id
+      HAVING (? IS NULL OR MAX(t.id)<?) ORDER BY lastTurnId DESC LIMIT 31
+    `).all(userId, before ?? null, before ?? null);
+    const conversations = rows.slice(0,30);
+    return { conversations, nextCursor: rows.length > 30 ? conversations.at(-1)!.lastTurnId : null };
+  }
+  conversationPage(userId: string, conversationId: string, before?: number) {
+    const rows = this.db.prepare<[string, string, number | null, number | null], Turn>(`
+      SELECT * FROM turns WHERE user_id=? AND conversation_id=? AND (? IS NULL OR id<?) ORDER BY id DESC LIMIT 101
+    `).all(userId, conversationId, before ?? null, before ?? null);
+    const page = rows.slice(0,100).reverse();
+    return { messages: page.map(t => ({ id: t.id, role: t.role, content: t.content, createdAt: t.created_at,
+      sources: t.role === 'assistant' ? this.sources(t.id).map(s => ({ n: s.n, title: s.title, url: s.url,
+        domain: URL.canParse(s.url) ? new URL(s.url).hostname : '', publishedDate: s.published_date })) : [],
+    })), nextCursor: rows.length > 100 ? page[0].id : null };
   }
   turnsInRange(userId: string, start: string, end: string): Turn[] {
     return this.db.prepare<[string, string, string], Turn>(`SELECT * FROM turns WHERE user_id=? AND role='user' AND created_at>=? AND created_at<? ORDER BY created_at DESC,id DESC LIMIT 100`).all(userId,start,end);

@@ -9,20 +9,27 @@
 @media(max-width:760px){.rail{position:relative;width:auto;height:76px;padding:14px 22px;flex-direction:row;align-items:center;justify-content:space-between;border-right:0;border-bottom:1px solid var(--line)}.brand{font-size:23px;margin:0}.brand-mark{width:25px;height:25px}.new-chat{min-height:40px;font-size:12px;padding:7px 12px;gap:7px}.new-chat .icon{width:16px;height:16px}.rail nav,.rail-caption,.rail-note{display:none}.workspace{margin-left:0}.topbar{height:53px;padding:0 24px}.connection{font-size:10px}.breadcrumb{font-size:10px;gap:9px}.stage{padding:20px 24px 25px}.intro{padding-bottom:25px}.intro h1{font-size:48px;letter-spacing:-2px}.intro p{font-size:14px;max-width:390px}.flower{width:58px;height:58px;margin-bottom:12px}.intro .eyebrow{font-size:10px}.composer{padding:17px 18px 13px}.composer textarea{font-size:16px;min-height:78px}.examples{gap:10px}.example{padding:15px}.example p{font-size:10px}.researching .composer-wrap{left:0;padding:22px 20px 14px}.researching .stage{padding-bottom:225px}.guide{font-size:9px;gap:15px}.input-note{font-size:10px}.message.user{margin-left:20px}}
 @media(max-width:500px){.topbar .connection span{display:none}.intro h1{font-size:43px;letter-spacing:-1.9px}.intro p{font-size:13px;max-width:300px}.stage{padding:13px 20px 24px}.flower{width:52px;height:52px}.intro .eyebrow{margin-bottom:8px}.intro{padding-bottom:22px}.starter{margin-top:27px}.starter-heading span{display:none}.examples{grid-template-columns:1fr;gap:9px}.example{padding:15px 40px 15px 61px;min-height:83px}.example .example-icon{position:absolute;left:15px;top:19px;margin:0;padding:7px}.example strong{font-size:12px;margin:0 0 3px}.example p{font-size:11px;line-height:1.6}.example .launch{right:16px;top:30px}.guide{flex-wrap:wrap;gap:12px 20px;justify-content:flex-start;padding:20px 2px 0;margin-top:25px}.footnote{text-align:left;margin-top:17px}.primary{padding:10px 13px;font-size:11px}.primary .icon{width:14px}.input-note{font-size:9px;gap:5px}.input-note .icon{width:12px}.composer-bottom{gap:8px}.status{font-size:10px}.message .body{font-size:14px}.message.user{margin-left:10px}.researching .composer{padding:13px 15px}.researching .composer textarea{min-height:52px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+
+.history-panel{display:flex;flex-direction:column;flex:1;min-height:0;margin:24px 0 18px}.history-panel h2{font-size:11px;font-weight:500;color:#6d637a;margin:0 12px 10px}.history-list{overflow:auto;min-height:0;display:flex;flex-direction:column;gap:4px;scrollbar-width:thin}.history-item{display:block;flex-shrink:0;width:100%;border:0;border-radius:7px;background:transparent;text-align:left;padding:10px 12px;color:var(--ink)}.history-item:hover{background:#e9e4f1}.history-item[aria-current=true]{background:#e6def4}.history-title{display:block;font-size:12px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.history-item time{display:block;font-size:10px;color:#6d637a;margin-top:2px}.history-message{font-size:11px;color:#6d637a;line-height:1.6;margin:6px 12px}.history-more{margin:10px 5px 0;font-size:11px;flex-shrink:0}.rail-note{flex-shrink:0}.new-chat,.brand,.rail nav,.rail-caption{flex-shrink:0}.history-toggle,.history-close,.history-backdrop{display:none}.messages-more{display:block;margin:0 auto 24px;font-size:12px}.breadcrumb{min-width:0}.breadcrumb strong{max-width:280px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+@media(max-width:760px){.history-panel{display:none}.history-toggle{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;font-size:11px}.topbar .connection{display:none}.breadcrumb{flex:1}.history-backdrop:not([hidden]){display:block;position:fixed;inset:0;width:100%;height:100%;border:0;background:#28253266;z-index:20}.sidebar-open{overflow:hidden}.sidebar-open .rail{position:fixed;inset:0 auto 0 0;height:100dvh;width:min(330px,calc(100vw - 28px));padding:24px;z-index:30;flex-direction:column;align-items:stretch;justify-content:flex-start;border-right:1px solid var(--line)}.sidebar-open .brand{align-self:flex-start;margin:0 0 28px}.sidebar-open .history-panel{display:flex;margin-top:26px}.sidebar-open .history-close{display:block;position:absolute;right:18px;top:23px;border:0;background:transparent;color:var(--ink);font-size:12px;padding:10px}.sidebar-open .rail-note{display:block}.sidebar-open .new-chat{margin-top:0}.breadcrumb strong{max-width:180px}}
 </style></head>
 <body>
 <a class="skip" href="#input">Skip to your question</a>
+<button class="history-backdrop" id="history-backdrop" aria-label="Close history" hidden></button>
 <aside class="rail" aria-label="Workspace navigation">
+<button class="history-close" id="history-close" type="button">Close</button>
 <a class="brand" href="/" aria-label="Fieldnote home"><svg class="brand-mark" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="m4 6 10-3v11L4 17V6Z" fill="currentColor"/><path d="m16 16 10-3v11l-10 3V16Z" fill="currentColor"/><path d="m16 3 10 3v5l-10 3V3ZM4 19l10-3v11L4 24v-5Z" fill="currentColor" opacity=".45"/></svg>Fieldnote</a>
 <button class="new-chat" id="new"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>New chat</button>
 <p class="rail-caption">Your workspace</p>
 <nav><a class="current" href="#thread" aria-current="page"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg>Research</a><a class="help-link" href="#guide"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4m0 3h.01"/></svg>How it works</a></nav>
+<section class="history-panel" id="chat-history" aria-label="Saved chats"><h2>Recent chats</h2><div class="history-list" id="history-list"></div><p class="history-message" id="history-message" role="status">Loading history…</p><button type="button" class="quiet history-more" id="history-more" hidden>Show older chats</button></section>
 <div class="rail-note"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6c2 0 2 1 2 2v15c0-2-2-3-4-3H4V4Zm16 0h-6c-2 0-2 1-2 2v15c0-2 2-3 4-3h4V4Z"/></svg><strong>A thread worth keeping.</strong><p>Return to earlier questions with dated research memory.</p></div>
 </aside>
 <div class="workspace">
-<header class="topbar"><div class="breadcrumb">Workspace <span aria-hidden="true">/</span> <strong>Research</strong></div><div class="connection"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg><span>Web search, with context</span></div></header>
+<header class="topbar"><button class="quiet history-toggle" id="history-toggle" type="button" aria-controls="chat-history" aria-expanded="false">History</button><div class="breadcrumb">Workspace <span aria-hidden="true">/</span> <strong>Research</strong></div><div class="connection"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg><span>Web search, with context</span></div></header>
 <div class="stage">
 <main id="thread" aria-label="Conversation">
+<button type="button" class="quiet messages-more" id="messages-more" hidden>Load earlier messages</button>
 <section class="intro" id="intro"><svg class="flower" aria-hidden="true" viewBox="0 0 100 100"><ellipse cx="50" cy="29" rx="10.5" ry="24" fill="#7555cc" transform="rotate(0 50 50)"/><ellipse cx="50" cy="29" rx="10.5" ry="24" fill="#9376e2" transform="rotate(45 50 50)"/><ellipse cx="50" cy="29" rx="10.5" ry="24" fill="#bba8ec" transform="rotate(90 50 50)"/><ellipse cx="50" cy="29" rx="10.5" ry="24" fill="#a18ada" transform="rotate(135 50 50)"/><ellipse cx="50" cy="29" rx="10.5" ry="24" fill="#7555cc" transform="rotate(180 50 50)"/><ellipse cx="50" cy="29" rx="10.5" ry="24" fill="#9376e2" transform="rotate(225 50 50)"/><ellipse cx="50" cy="29" rx="10.5" ry="24" fill="#bba8ec" transform="rotate(270 50 50)"/><ellipse cx="50" cy="29" rx="10.5" ry="24" fill="#a18ada" transform="rotate(315 50 50)"/><circle cx="50" cy="50" r="9" fill="#f3effc"/></svg><p class="eyebrow">A space for your next question</p><h1>Follow your curiosity.</h1><p>Find what’s current. Compare the details.<br>Pick up where your last question left off.</p></section>
 </main>
 <div class="composer-wrap"><form class="composer" id="form"><label for="input">What are you looking into?</label><textarea id="input" placeholder="Ask a question. Follow a thought…" required maxlength="20000" rows="2"></textarea><div class="composer-bottom"><p class="input-note"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg>Web search <span aria-hidden="true">·</span> <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Dated memory</p><div class="actions"><button type="button" class="quiet" id="stop" hidden>Stop</button><button class="primary" id="send" type="submit">Start research <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div></div></form><p class="status" id="status" role="status" aria-live="polite">Answers with sources. Room for follow-up questions.</p></div>
@@ -43,6 +50,33 @@ try {
   localStorage.setItem('fieldnote-user',userId);localStorage.setItem('fieldnote-conversation',conversationId);
 } catch { userId = crypto.randomUUID();conversationId = crypto.randomUUID();status.textContent = 'Browser storage is unavailable; history will last for this page visit.'; }
 let active;
+let loadingConversation=false, conversationVersion=0, historyVersion=0;
+let historyCursor=null, messageCursor=null;
+const mobile=matchMedia('(max-width:760px)');
+function closeHistory(restoreFocus=false){
+  document.body.classList.remove('sidebar-open');$('history-backdrop').hidden=true;
+  $('history-toggle').setAttribute('aria-expanded','false');document.querySelector('.workspace').inert=false;
+  const rail=document.querySelector('.rail');rail.removeAttribute('role');rail.removeAttribute('aria-modal');rail.setAttribute('aria-label','Workspace navigation');
+  if(restoreFocus&&mobile.matches)$('history-toggle').focus();
+}
+$('history-toggle').onclick=()=>{
+  if(document.body.classList.contains('sidebar-open')){closeHistory(true);return;}
+  document.body.classList.add('sidebar-open');$('history-backdrop').hidden=false;
+  $('history-toggle').setAttribute('aria-expanded','true');document.querySelector('.workspace').inert=true;
+  const rail=document.querySelector('.rail');rail.setAttribute('role','dialog');rail.setAttribute('aria-modal','true');rail.setAttribute('aria-label','Chat history');$('history-close').focus();
+};
+$('history-close').onclick=()=>closeHistory(true);$('history-backdrop').onclick=()=>closeHistory(true);
+mobile.addEventListener('change',event=>{if(!event.matches)closeHistory();});
+document.addEventListener('keydown',event=>{
+  if(!mobile.matches||!document.body.classList.contains('sidebar-open'))return;
+  if(event.key==='Escape'){event.preventDefault();closeHistory(true);}
+  if(event.key==='Tab'){
+    const controls=[...document.querySelector('.rail').querySelectorAll('a,button:not(:disabled)')].filter(el=>el.getClientRects().length);
+    const first=controls[0],last=controls.at(-1);
+    if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+    else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+  }
+});
 function safeURL(raw){try{const u=new URL(raw);return ['http:','https:'].includes(u.protocol)?u.href:null;}catch{return null;}}
 function inline(parent,text,sources,prefix){
   // Build DOM nodes directly; model text is never parsed as HTML.
@@ -73,17 +107,76 @@ function render(node,text,sources,prefix){
 function message(role,text=''){
   const article=document.createElement('article');article.className=`message ${role}`;const title=document.createElement('h2');title.textContent=role==='user'?'You':'Fieldnote';const body=document.createElement('div');body.className='body';body.textContent=text;article.append(title,body);thread.append(article);return {article,body};
 }
-function setBusy(value){$('send').disabled=value;input.disabled=value;$('new').disabled=value;$('stop').hidden=!value;for(const b of document.querySelectorAll('[data-prompt]'))b.disabled=value;}
+function setBusy(value){$('send').disabled=value;input.disabled=value;$('new').disabled=value;$('stop').hidden=!active;for(const b of document.querySelectorAll('[data-prompt],.history-item,#history-more,#messages-more'))b.disabled=value;}
+function renderSources(list,items,prefix,sources=new Map()){
+  sources.clear();list.replaceChildren();
+  for(const source of items){
+    const url=safeURL(source.url);if(!url)continue;
+    sources.set(source.n,source);const li=document.createElement('li');li.id=`${prefix}-source-${source.n}`;li.value=source.n;
+    const a=document.createElement('a');a.href=url;a.textContent=source.title;a.target='_blank';a.rel='noopener noreferrer';
+    const small=document.createElement('small');small.textContent=source.domain+(source.publishedDate?' · '+source.publishedDate.slice(0,10):'');
+    li.append(a,small);list.append(li);
+  }return sources;
+}
+function markSelected(){for(const button of $('history-list').querySelectorAll('button'))button.setAttribute('aria-current',String(button.dataset.conversation===conversationId));}
+async function refreshHistory(older=false){
+  const version=++historyVersion;$('history-more').disabled=true;
+  const query=new URLSearchParams({userId});if(older&&historyCursor)query.set('before',String(historyCursor));
+  try{
+    const response=await fetch(`/conversations?${query}`,{cache:'no-store'});if(!response.ok)throw new Error('History unavailable');
+    const data=await response.json();if(version!==historyVersion)return;
+    if(!older)$('history-list').replaceChildren();
+    for(const chat of data.conversations){
+      const button=document.createElement('button');button.type='button';button.className='history-item';button.dataset.conversation=chat.id;
+      const title=document.createElement('span');title.className='history-title';title.textContent=chat.title.trim()||'Untitled chat';button.title=title.textContent;
+      const time=document.createElement('time');time.dateTime=chat.updatedAt;time.textContent=new Date(chat.updatedAt).toLocaleDateString(undefined,{month:'short',day:'numeric'});
+      button.append(title,time);button.disabled=!!active||loadingConversation;button.onclick=()=>openConversation(chat.id);$('history-list').append(button);
+    }
+    historyCursor=data.nextCursor;$('history-more').hidden=!historyCursor;markSelected();
+    $('history-message').textContent=$('history-list').children.length?'':'Your saved chats will appear here.';
+  }catch{if(version===historyVersion)$('history-message').textContent='History could not load. Reload the page to try again.';}
+  finally{if(version===historyVersion)$('history-more').disabled=!!active||loadingConversation;}
+}
+async function openConversation(id,{older=false,initial=false}={}){
+  if(active||loadingConversation)return;
+  const version=++conversationVersion;loadingConversation=true;setBusy(true);
+  const query=new URLSearchParams({userId});if(older&&messageCursor)query.set('before',String(messageCursor));
+  try{
+    const response=await fetch(`/conversations/${encodeURIComponent(id)}?${query}`,{cache:'no-store'});if(!response.ok)throw new Error('Chat unavailable');
+    const data=await response.json();if(version!==conversationVersion)return;
+    const first=thread.querySelector('.message');const oldHeight=document.documentElement.scrollHeight,oldScroll=scrollY;
+    if(!older){for(const item of thread.querySelectorAll('.message'))item.remove();conversationId=id;try{localStorage.setItem('fieldnote-conversation',id);}catch{}input.value='';}
+    const fragment=document.createDocumentFragment();
+    for(const saved of data.messages){
+      const item=message(saved.role);const prefix=`saved-turn-${saved.id}`;
+      if(saved.role==='assistant'){
+        const list=document.createElement('ol');list.className='sources';item.article.append(list);
+        const sources=renderSources(list,saved.sources,prefix);render(item.body,saved.content,sources,prefix);
+      }else item.body.textContent=saved.content;
+      fragment.append(item.article);
+    }
+    if(older)thread.insertBefore(fragment,first);else thread.append(fragment);
+    const hasMessages=!!thread.querySelector('.message');$('intro').hidden=hasMessages;document.body.classList.toggle('researching',hasMessages);
+    messageCursor=data.nextCursor;$('messages-more').hidden=!messageCursor;markSelected();closeHistory();
+    if(hasMessages)status.textContent='Chat restored. Pick up where you left off.';
+    else if(!initial)status.textContent='No saved messages in this chat yet.';
+    if(older)window.scrollTo(0,oldScroll+document.documentElement.scrollHeight-oldHeight);
+    else window.scrollTo(0,hasMessages?document.documentElement.scrollHeight:0);
+  }catch{status.textContent='The saved chat could not load. Please try selecting it again.';}
+  finally{loadingConversation=false;setBusy(!!active);if(!initial&&!older)input.focus({preventScroll:true});}
+}
+$('history-more').onclick=()=>refreshHistory(true);
+$('messages-more').onclick=()=>openConversation(conversationId,{older:true});
 $('stop').onclick=()=>active?.abort();
-$('new').onclick=()=>{conversationId=crypto.randomUUID();try{localStorage.setItem('fieldnote-conversation',conversationId);}catch{}for(const m of thread.querySelectorAll('.message'))m.remove();$('intro').hidden=false;document.body.classList.remove('researching');status.textContent='New chat. You can still ask about earlier research.';input.focus();};
+$('new').onclick=()=>{if(active||loadingConversation)return;conversationVersion++;conversationId=crypto.randomUUID();try{localStorage.setItem('fieldnote-conversation',conversationId);}catch{}for(const m of thread.querySelectorAll('.message'))m.remove();$('intro').hidden=false;$('messages-more').hidden=true;messageCursor=null;document.body.classList.remove('researching');status.textContent='New chat. You can still ask about earlier research.';input.value='';markSelected();closeHistory();input.focus();};
 for(const button of document.querySelectorAll('[data-prompt]'))button.onclick=()=>{input.value=button.dataset.prompt;$('form').requestSubmit();};
 input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();if(!active)$('form').requestSubmit();}});
 $('form').addEventListener('submit',async e=>{
-  e.preventDefault();const question=input.value.trim();if(!question||active)return;
-  $('intro').hidden=true;document.body.classList.add('researching');message('user',question);input.value='';const reply=message('assistant');const sourceList=document.createElement('ol');sourceList.className='sources';reply.article.append(sourceList);
+  e.preventDefault();const question=input.value.trim();if(!question||active||loadingConversation)return;
+  $('intro').hidden=true;document.body.classList.add('researching');message('user',question);input.value='';const reply=message('assistant');window.scrollTo(0,document.documentElement.scrollHeight);const sourceList=document.createElement('ol');sourceList.className='sources';reply.article.append(sourceList);
   const prefix=`turn-${crypto.randomUUID()}`;const sources=new Map();let text='',done=false,failed=false;
   const controller=new AbortController();active=controller;setBusy(true);status.textContent='Thinking…';
-  const showSources=items=>{sources.clear();sourceList.replaceChildren();for(const s of items){const url=safeURL(s.url);if(!url)continue;sources.set(s.n,s);const li=document.createElement('li');li.id=`${prefix}-source-${s.n}`;li.value=s.n;const a=document.createElement('a');a.href=url;a.textContent=s.title;a.target='_blank';a.rel='noopener noreferrer';const small=document.createElement('small');small.textContent=s.domain+(s.publishedDate?' · '+s.publishedDate.slice(0,10):'');li.append(a,small);sourceList.append(li);}render(reply.body,text,sources,prefix);};
+  const showSources=items=>{renderSources(sourceList,items,prefix,sources);render(reply.body,text,sources,prefix);};
   function event(frame){const lines=frame.split('\n');const type=lines.find(l=>l.startsWith('event:'))?.slice(6).trim();const raw=lines.filter(l=>l.startsWith('data:')).map(l=>l.slice(5).trimStart()).join('\n');if(!raw)return;const data=JSON.parse(raw);
     if(type==='status')status.textContent=data.type==='searching'?`Searching: ${data.query}`:'Thinking…';
     if(type==='sources')showSources(data.sources);
@@ -94,13 +187,16 @@ $('form').addEventListener('submit',async e=>{
   try{
     const response=await fetch('/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:question,userId,conversationId,timezone:Intl.DateTimeFormat().resolvedOptions().timeZone}),signal:controller.signal});
     if(!response.ok)throw new Error((await response.json()).error||'Unable to start the reply.');
+    void refreshHistory();
     if(!response.body)throw new Error('Streaming is unavailable in this browser.');
     const reader=response.body.getReader();const decoder=new TextDecoder();let pending='';
     try{while(true){const chunk=await reader.read();pending+=decoder.decode(chunk.value,{stream:!chunk.done});let boundary;while((boundary=pending.indexOf('\n\n'))!==-1){event(pending.slice(0,boundary));pending=pending.slice(boundary+2);}if(chunk.done)break;}if(pending.trim())event(pending);}finally{reader.releaseLock();}
     if(!done&&!failed)throw new Error('The connection ended before the reply finished. Please try again.');
   }catch(error){controller.abort();const note=document.createElement('p');note.className='error';note.setAttribute('role','alert');note.textContent=error.name==='AbortError'?'Reply stopped. You can ask another question.':error.name==='TypeError'?'Connection lost. Your reply is incomplete. Check your connection and try again.':error.name==='SyntaxError'?'The reply could not be read. Please try again.':error.message;reply.article.append(note);status.textContent='Reply incomplete.';}
-  finally{active=null;setBusy(false);input.focus();}
+  finally{active=null;setBusy(false);input.focus();void refreshHistory();}
 });
+void refreshHistory();
+void openConversation(conversationId,{initial:true});
 </script>
 </body>
 </html>
