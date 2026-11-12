@@ -171,3 +171,23 @@ test('history pagination exposes every conversation and every message without th
   expect([...beginning.messages,...recent.messages].map((m:{content:string})=>m.content)).toEqual(Array.from({length:105},(_,i)=>`Message ${i}`));
   expect(beginning.nextCursor).toBeNull();expect(s.conversationTurns('alice','long')).toHaveLength(40);
 });
+
+test('chat injects semantic memory after initial status, excludes the new question, and indexes the saved reply', async () => {
+  const { SemanticMemory } = await import('./memory/semantic.js');
+  const s = store();
+  const base = {user_id:'alice',conversation_id:'older',created_at:'2026-11-01T00:00:00Z',tz:'UTC'};
+  s.saveTurn({...base,role:'user',content:'Help me choose'});
+  s.saveTurn({...base,role:'assistant',content:'SQLite works locally.'});
+  const m = model(false);
+  let documents = 0;
+  const memory = new SemanticMemory(s,{version:'app-test',async embed(texts,kind) { if (kind === 'document') documents += texts.length; return texts.map(() => [1,0]); }});
+  const app = createApp({store:s,memory,model:m,now:()=>new Date('2026-11-11T00:00:00Z'),search:()=>({search:async()=>({searchedAt:'',results:[]})}),logTurn:()=>{}});
+  const events = frames(await (await app.request('/chat',request('Which storage engine did you recommend?'))).text());
+  expect(events[0].event).toBe('status');
+  const prompt = JSON.stringify(m.doStreamCalls[0].prompt);
+  expect(prompt).toContain('SQLite works locally');
+  expect(prompt).not.toContain('"questionId":3');
+  await memory.drain();
+  expect(s.pendingExchanges('alice','2026-11-12T00:00:00Z','app-test')).toEqual([]);
+  expect(documents).toBe(4);
+});

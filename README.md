@@ -50,3 +50,7 @@ npm run eval -- --live --case=latest-node,hosting-comparison,follow-up
 Synthetic fixture prices are not historical price claims. Structural passes do not establish factual accuracy; review the cited sources. Live latency targets are not consistently met.
 
 See [usage and API details](docs/usage.md), [design](DESIGN.md), [measured evals](docs/phase6-results.md), [decisions](docs/decisions.md), and the [final acceptance checklist](docs/final-check.md).
+
+Saved-history recall combines dates, keyword search, and Gemini embeddings cached in SQLite. Existing chats are indexed incrementally; run `npm run memory:index` to index all saved history immediately using your Gemini key. This sends saved message passages to Gemini for embedding. If embeddings are unavailable, date/keyword recall still works. No extra database or API key is needed.
+
+Run `npm run eval:memory` to compare keyword and hybrid retrieval on synthetic multilingual, paraphrased, corrected, and missing-history questions. `npm run eval` additionally checks complete Gemini answers and web-search behavior.

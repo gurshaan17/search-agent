@@ -8,7 +8,8 @@ import { readFile } from 'node:fs/promises';
 import { z } from 'zod';
 import type { LanguageModel } from 'ai';
 import { runAgent, MAX_INPUT_CHARACTERS } from './agent.js';
-import { buildContext } from './context.js';
+import { prepareContext } from './context.js';
+import type { SemanticMemory } from './memory/semantic.js';
 import { MemoryStore, type SearchLog } from './memory/db.js';
 import type { SearchProvider, SearchResult } from './search/types.js';
 import { tokenMetrics, type TurnLog } from './telemetry.js';
@@ -19,7 +20,7 @@ const requestSchema = z.object({
   timezone: z.string().max(100).refine(value => { try { new Intl.DateTimeFormat('en', { timeZone: value }); return true; } catch { return false; } }),
 });
 export function createApp(options: { store: MemoryStore; search: () => SearchProvider; model?: LanguageModel; now?: () => Date;
-  rateLimit?: { limit: number; windowMs: number }; logTurn?: (record: TurnLog) => void;
+  memory?: SemanticMemory; rateLimit?: { limit: number; windowMs: number }; logTurn?: (record: TurnLog) => void;
 }) {
   const app = new Hono<{ Bindings: HttpBindings }>();
   const limiter = new RateLimiter(options.rateLimit?.limit, options.rateLimit?.windowMs);
@@ -62,7 +63,6 @@ export function createApp(options: { store: MemoryStore; search: () => SearchPro
     if (busy.has(key)) return c.json({ error: 'Wait for the current reply to finish.' }, 409);
     const now = options.now?.() ?? new Date();
     const history = options.store.conversationTurns(userId, conversationId).map(t => ({ role: t.role, content: t.content }));
-    const context = buildContext({ store: options.store, userId, message, history, now, timezone });
     const base = { user_id: userId, conversation_id: conversationId, created_at: now.toISOString(), tz: timezone };
     const userTurn = options.store.saveTurn({ ...base, role: 'user', content: message });
     busy.add(key);
@@ -79,6 +79,7 @@ export function createApp(options: { store: MemoryStore; search: () => SearchPro
       let complete = false;
       let outcome: TurnLog['outcome'] = 'error';
       let tokens = tokenMetrics();
+      let retrieval: { semantic: string; latencyMs: number; selected: number; ambiguous: boolean } | undefined;
       const sources = new Map<string, SearchResult>();
       const searches: SearchLog[] = [];
       const citations = new CitationFilter(n => sources.has(`s${n}`));
@@ -91,6 +92,9 @@ export function createApp(options: { store: MemoryStore; search: () => SearchPro
       try {
         await send('status', { type: 'thinking' });
         ttfbMs = Math.round(performance.now() - start);
+        const context = await prepareContext({ store: options.store, userId, message, history, now, timezone,
+          memory: options.memory, signal: controller.signal, excludeQuestionId: userTurn });
+        retrieval = { semantic: context.retrieval.semantic, latencyMs: context.retrieval.latencyMs, selected: context.retrieval.selectedIds.length, ambiguous: context.retrieval.ambiguous };
         const provider = options.search();
         const result = runAgent({ ...context, model: options.model, now, timezone, signal: controller.signal,
           onSearch: e => { if (e.phase === 'start') void send('status', { type: 'searching', query: e.query, since: e.since }); },
@@ -135,7 +139,11 @@ export function createApp(options: { store: MemoryStore; search: () => SearchPro
         try {
           turnId = complete || text ? options.store.saveTurn({ ...base, role: 'assistant', content: text + (complete ? '' : '\n[Generation interrupted.]') }) : userTurn;
           options.store.saveEvidence(turnId, [...sources.values()], searches, now.toISOString());
-          if (complete) await send('done', { turnId, timings, searches });
+          if (complete) {
+            await send('done', { turnId, timings, searches });
+            // Index after the answer is delivered; failure never discards the saved exchange.
+            options.memory?.scheduleIndex(userId,now.toISOString());
+          }
         } catch {
           outcome = 'error';
           if (!controller.signal.aborted) await send('error', { message: 'The reply could not be saved. Please try again.' });
@@ -145,7 +153,7 @@ export function createApp(options: { store: MemoryStore; search: () => SearchPro
           // Log only allowlisted metrics, never prompts, queries, headers or upstream errors.
           try { logTurn({ event: 'turn', userTurnId: userTurn, turnId, outcome,
             searches: searches.map(s => ({ resultCount: s.resultCount, latencyMs: s.latencyMs, failed: s.failed ?? false })),
-            timings, tokens, invalidCitations: citations.invalidCount }); } catch {}
+            timings, tokens, retrieval, invalidCitations: citations.invalidCount }); } catch {}
         }
       }
     });

@@ -2,10 +2,13 @@ import 'dotenv/config';
 import { writeFile } from 'node:fs/promises';
 import type { ModelMessage } from 'ai';
 import { MemoryStore } from '../src/memory/db.js';
-import { buildContext } from '../src/context.js';
+import { SemanticMemory } from '../src/memory/semantic.js';
+import { createEmbedder } from '../src/memory/embeddings.js';
+import { prepareContext } from '../src/context.js';
 import { runAgent, DEFAULT_MODEL } from '../src/agent.js';
 import { createExaProvider } from '../src/search/exa.js';
 import { NOW, TIMEZONE, USER, seedHistory, mockSearch } from './fixtures.js';
+import { memoryCases, seedMemoryCases } from './memory-fixtures.js';
 import { evalCases } from './cases.js';
 import { CitationFilter } from '../src/citations.js';
 import { assertions, type EvalCall, type EvalEvidence } from './assertions.js';
@@ -39,14 +42,29 @@ for (let iteration = 1; iteration <= repeat; iteration++) for (const c of evalCa
   let text = '', steps = 0, completed = false;
   let finishReason: string | null = null;
   let usage: unknown;
+  let retrieval: unknown;
+  let retrievalCorrect: boolean | undefined;
   try {
-    if (c.seeded) seedHistory(store);
+    let expectedMemoryId: number | null | undefined;
+    if (c.kind === 'memory-general') {
+      const ids = seedMemoryCases(store,USER);
+      const expected = memoryCases.find(m => `memory-${m.id}` === c.id)!.expected;
+      expectedMemoryId = expected ? ids[expected] : null;
+    }
+    else if (c.kind === 'memory' && c.seeded) {
+      const base = { user_id: USER, conversation_id: 'old-greeting', created_at: '2026-11-01T04:30:00Z', tz: TIMEZONE };
+      store.saveTurn({ ...base, role: 'user', content: 'Say hello' });
+      store.saveTurn({ ...base, role: 'assistant', content: 'ਸਤ ਸ੍ਰੀ ਅਕਾਲ!' });
+    } else if (c.seeded) seedHistory(store);
     else if (c.id === 'november-3-no-history') seedHistory(store,true);
     const history: ModelMessage[] = c.kind === 'follow-up' ? [
       { role: 'user', content: 'Compare Postgres hosting pricing on Neon, Supabase, and RDS.' },
       { role: 'assistant', content: 'Neon Launch uses usage-based pricing with no monthly minimum; Supabase Pro starts at $25/month; RDS depends on region, instance, storage and usage.' },
     ] : [];
-    const context = buildContext({ store, userId: USER, message: c.question, history, now: NOW, timezone: TIMEZONE });
+    firstStatusMs = elapsed();
+    const context = await prepareContext({ memory: new SemanticMemory(store,createEmbedder(),15000), store, userId: USER, message: c.question, history, now: NOW, timezone: TIMEZONE });
+    retrieval = context.retrieval;
+    if (expectedMemoryId !== undefined) retrievalCorrect = expectedMemoryId === null ? context.retrieval.selectedIds.length === 0 : context.retrieval.selectedIds.includes(expectedMemoryId);
     const provider = useLive ? createExaProvider(process.env.EXA_API_KEY!, searchType) : mockSearch(c.kind);
     const result = runAgent({ ...context, now: NOW, timezone: TIMEZONE, maxSteps: stepCap, signal: AbortSignal.timeout(120000),
       onStep: step => { steps = step; },
@@ -78,13 +96,14 @@ for (let iteration = 1; iteration <= repeat; iteration++) for (const c of evalCa
   const citationFilter = new CitationFilter(n => sources.some(s => s.id === `s${n}`));
   const validatedText = citationFilter.push(text) + citationFilter.flush();
   const checks = assertions(c,calls,text,sources,steps);
+  if (retrievalCorrect !== undefined) checks.correctRetrievedMemory = retrievalCorrect;
   checks.modelCompleted = completed;
   checks.notTruncated = finishReason !== 'length';
   checks.configuredStepBudget = steps <= stepCap;
   if (c.kind === 'failure') checks.injectedFailureObserved = errors.length > 0;
   const pass = Object.values(checks).every(Boolean);
   const record = { id:c.id, iteration, stepCap, backend:useLive ? 'exa' : 'mock', searchType:useLive ? searchType : null, pass, checks, steps,
-    firstStatusMs, firstSearchMs, firstTokenMs, totalMs, finishReason, calls, searches, sources, errors, usage, text, validatedText, invalidCitations: citationFilter.invalidCount,
+    firstStatusMs, firstSearchMs, firstTokenMs, totalMs, finishReason, retrieval, calls, searches, sources, errors, usage, text, validatedText, invalidCitations: citationFilter.invalidCount,
     targets: { statusUnder500: firstStatusMs !== null && firstStatusMs < 500, firstTokenUnder4000: firstTokenMs !== null && firstTokenMs < 4000, totalUnder10000: totalMs < 10000 },
   };
   records.push(record);

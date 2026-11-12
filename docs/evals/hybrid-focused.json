@@ -1,0 +1,607 @@
+{
+  "measuredAt": "2026-11-12T07:43:18.470Z",
+  "model": "gemini-3.5-flash",
+  "clock": "2026-11-11T04:30:00.000Z",
+  "records": [
+    {
+      "id": "memory-french-query",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": false,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": false,
+        "noSearches": true,
+        "noStatelessDisclaimer": true,
+        "correctMemory": true,
+        "correctRetrievedMemory": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 1,
+      "firstStatusMs": 1,
+      "firstSearchMs": null,
+      "firstTokenMs": 4939,
+      "totalMs": 5005,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [
+          1
+        ],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 1892
+      },
+      "calls": [],
+      "searches": [],
+      "sources": [],
+      "errors": [],
+      "usage": {
+        "inputTokens": 1770,
+        "inputTokenDetails": {
+          "noCacheTokens": 1770,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 295,
+        "outputTokenDetails": {
+          "textTokens": 64,
+          "reasoningTokens": 231
+        },
+        "totalTokens": 2065,
+        "raw": {
+          "thoughtsTokenCount": 231,
+          "promptTokenCount": 1770,
+          "candidatesTokenCount": 64,
+          "totalTokenCount": 2065,
+          "serviceTier": "standard",
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1770
+            }
+          ]
+        }
+      },
+      "text": "Dans notre échange du **3 novembre 2026**, j'avais recommandé **SQLite** [1]. \n\nVoici un extrait de ma réponse de l'époque :\n> *« SQLite is the relational database I recommend. It stores data locally in a single file and works without a server. »*",
+      "validatedText": "Dans notre échange du **3 novembre 2026**, j'avais recommandé **SQLite** [unverified source]. \n\nVoici un extrait de ma réponse de l'époque :\n> *« SQLite is the relational database I recommend. It stores data locally in a single file and works without a server. »*",
+      "invalidCitations": 1,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "crm",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "entityCoverage": true,
+        "parallelFirstStep": true,
+        "pairedQueries": true,
+        "citations": true,
+        "resolvedDate": true,
+        "baseline": true,
+        "verdicts": true,
+        "honestScope": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 3,
+      "firstStatusMs": 1,
+      "firstSearchMs": 7939,
+      "firstTokenMs": 13849,
+      "totalMs": 14707,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [
+          3
+        ],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 881
+      },
+      "calls": [
+        {
+          "query": "HubSpot CRM pricing starting monthly plan cost 2026",
+          "step": 1,
+          "atMs": 7939
+        },
+        {
+          "query": "HubSpot pricing change new features announcements product updates",
+          "since": "2026-11-09",
+          "step": 1,
+          "atMs": 7940
+        },
+        {
+          "query": "Salesforce Starter Pro Suite CRM pricing monthly seat cost 2026",
+          "step": 1,
+          "atMs": 7941
+        },
+        {
+          "query": "Salesforce pricing change new features announcements product updates",
+          "since": "2026-11-09",
+          "step": 1,
+          "atMs": 7941
+        },
+        {
+          "query": "Zoho CRM pricing standard plan monthly seat cost 2026",
+          "step": 1,
+          "atMs": 7941
+        },
+        {
+          "query": "Zoho CRM pricing change new features announcements product updates",
+          "since": "2026-11-09",
+          "step": 1,
+          "atMs": 7941
+        },
+        {
+          "query": "Pipedrive pricing essential plan monthly seat cost 2026",
+          "step": 1,
+          "atMs": 7941
+        },
+        {
+          "query": "Pipedrive pricing change new features announcements product updates",
+          "since": "2026-11-09",
+          "step": 1,
+          "atMs": 7941
+        },
+        {
+          "query": "Freshsales pricing Growth plan monthly seat cost 2026",
+          "step": 2,
+          "atMs": 10141
+        },
+        {
+          "query": "Freshsales pricing change new features announcements product updates",
+          "since": "2026-11-09",
+          "step": 2,
+          "atMs": 10141
+        }
+      ],
+      "searches": [
+        {
+          "query": "HubSpot pricing change new features announcements product updates",
+          "since": "2026-11-09",
+          "startedMs": 7940,
+          "latencyMs": 1,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "Salesforce pricing change new features announcements product updates",
+          "since": "2026-11-09",
+          "startedMs": 7941,
+          "latencyMs": 0,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "Zoho CRM pricing change new features announcements product updates",
+          "since": "2026-11-09",
+          "startedMs": 7941,
+          "latencyMs": 0,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "Pipedrive pricing change new features announcements product updates",
+          "since": "2026-11-09",
+          "startedMs": 7941,
+          "latencyMs": 0,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "HubSpot CRM pricing starting monthly plan cost 2026",
+          "startedMs": 7939,
+          "latencyMs": 2,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Salesforce Starter Pro Suite CRM pricing monthly seat cost 2026",
+          "startedMs": 7941,
+          "latencyMs": 1,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Zoho CRM pricing standard plan monthly seat cost 2026",
+          "startedMs": 7941,
+          "latencyMs": 1,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Pipedrive pricing essential plan monthly seat cost 2026",
+          "startedMs": 7941,
+          "latencyMs": 1,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Freshsales pricing change new features announcements product updates",
+          "since": "2026-11-09",
+          "startedMs": 10141,
+          "latencyMs": 0,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "Freshsales pricing Growth plan monthly seat cost 2026",
+          "startedMs": 10141,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        }
+      ],
+      "sources": [
+        {
+          "id": "s1",
+          "url": "https://www.hubspot.com/pricing",
+          "domain": "www.hubspot.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s2",
+          "url": "https://www.salesforce.com/sales/pricing/",
+          "domain": "www.salesforce.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s3",
+          "url": "https://www.zoho.com/crm/zohocrm-pricing.html",
+          "domain": "www.zoho.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s4",
+          "url": "https://www.pipedrive.com/en/pricing",
+          "domain": "www.pipedrive.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s5",
+          "url": "https://www.freshworks.com/crm/sales/pricing/",
+          "domain": "www.freshworks.com",
+          "publishedDate": null
+        }
+      ],
+      "errors": [],
+      "usage": {
+        "inputTokens": 9761,
+        "inputTokenDetails": {
+          "noCacheTokens": 9761,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 2411,
+        "outputTokenDetails": {
+          "textTokens": 690,
+          "reasoningTokens": 1721
+        },
+        "totalTokens": 12172
+      },
+      "text": "Based on your shortlist from Monday, 9 November 2026 (HubSpot, Salesforce, Zoho CRM, Pipedrive, and Freshsales), here is the status check as of 11 November 2026:\n\n### Pricing Baseline Check\n* **HubSpot:** **Unchanged** at $20/seat monthly [1].\n* **Salesforce:** **Unchanged** at $25/seat monthly [2].\n* **Zoho CRM:** **Unchanged** at $20/seat monthly [3].\n* **Pipedrive:** **Unchanged** at $24/seat monthly [4].\n* **Freshsales:** **Unchanged** at $11/seat monthly [5].\n\n### Major Product Releases\n* **Could not verify:** Searches for news or major feature announcements published since 9 November 2026 returned no dated results for any of the five tools.",
+      "validatedText": "Based on your shortlist from Monday, 9 November 2026 (HubSpot, Salesforce, Zoho CRM, Pipedrive, and Freshsales), here is the status check as of 11 November 2026:\n\n### Pricing Baseline Check\n* **HubSpot:** **Unchanged** at $20/seat monthly [1].\n* **Salesforce:** **Unchanged** at $25/seat monthly [2].\n* **Zoho CRM:** **Unchanged** at $20/seat monthly [3].\n* **Pipedrive:** **Unchanged** at $24/seat monthly [4].\n* **Freshsales:** **Unchanged** at $11/seat monthly [5].\n\n### Major Product Releases\n* **Could not verify:** Searches for news or major feature announcements published since 9 November 2026 returned no dated results for any of the five tools.",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": false
+      }
+    },
+    {
+      "id": "memory-french-query",
+      "iteration": 2,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "noSearches": true,
+        "noStatelessDisclaimer": true,
+        "correctMemory": true,
+        "correctRetrievedMemory": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 1,
+      "firstStatusMs": 2,
+      "firstSearchMs": null,
+      "firstTokenMs": 4193,
+      "totalMs": 4323,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [
+          1
+        ],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 1210
+      },
+      "calls": [],
+      "searches": [],
+      "sources": [],
+      "errors": [],
+      "usage": {
+        "inputTokens": 1770,
+        "inputTokenDetails": {
+          "noCacheTokens": 1770,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 373,
+        "outputTokenDetails": {
+          "textTokens": 55,
+          "reasoningTokens": 318
+        },
+        "totalTokens": 2143,
+        "raw": {
+          "thoughtsTokenCount": 318,
+          "promptTokenCount": 1770,
+          "candidatesTokenCount": 55,
+          "totalTokenCount": 2143,
+          "serviceTier": "standard",
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1770
+            }
+          ]
+        }
+      },
+      "text": "J'avais conseillé **SQLite** le 3 novembre 2026. \n\nVoici l'extrait exact de ma réponse :\n> *\"SQLite is the relational database I recommend. It stores data locally in a single file and works without a server.\"*",
+      "validatedText": "J'avais conseillé **SQLite** le 3 novembre 2026. \n\nVoici l'extrait exact de ma réponse :\n> *\"SQLite is the relational database I recommend. It stores data locally in a single file and works without a server.\"*",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "crm",
+      "iteration": 2,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "entityCoverage": true,
+        "parallelFirstStep": true,
+        "pairedQueries": true,
+        "citations": true,
+        "resolvedDate": true,
+        "baseline": true,
+        "verdicts": true,
+        "honestScope": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 2,
+      "firstStatusMs": 1,
+      "firstSearchMs": 10069,
+      "firstTokenMs": 14091,
+      "totalMs": 14799,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [
+          3
+        ],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 1343
+      },
+      "calls": [
+        {
+          "query": "HubSpot CRM pricing official plans",
+          "step": 1,
+          "atMs": 10069
+        },
+        {
+          "query": "HubSpot CRM price change new features release updates announcements",
+          "since": "2026-11-09",
+          "step": 1,
+          "atMs": 10070
+        },
+        {
+          "query": "Salesforce CRM Starter Pro pricing official plans",
+          "step": 1,
+          "atMs": 10070
+        },
+        {
+          "query": "Salesforce CRM price change new features release updates announcements",
+          "since": "2026-11-09",
+          "step": 1,
+          "atMs": 10070
+        },
+        {
+          "query": "Zoho CRM pricing official plans",
+          "step": 1,
+          "atMs": 10070
+        },
+        {
+          "query": "Zoho CRM price change new features release updates announcements",
+          "since": "2026-11-09",
+          "step": 1,
+          "atMs": 10070
+        },
+        {
+          "query": "Pipedrive CRM pricing official plans",
+          "step": 1,
+          "atMs": 10070
+        },
+        {
+          "query": "Pipedrive CRM price change new features release updates announcements",
+          "since": "2026-11-09",
+          "step": 1,
+          "atMs": 10071
+        },
+        {
+          "query": "Freshsales CRM pricing official plans",
+          "step": 1,
+          "atMs": 10071
+        },
+        {
+          "query": "Freshsales CRM price change new features release updates announcements",
+          "since": "2026-11-09",
+          "step": 1,
+          "atMs": 10071
+        }
+      ],
+      "searches": [
+        {
+          "query": "HubSpot CRM price change new features release updates announcements",
+          "since": "2026-11-09",
+          "startedMs": 10070,
+          "latencyMs": 1,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "Salesforce CRM price change new features release updates announcements",
+          "since": "2026-11-09",
+          "startedMs": 10070,
+          "latencyMs": 0,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "Zoho CRM price change new features release updates announcements",
+          "since": "2026-11-09",
+          "startedMs": 10070,
+          "latencyMs": 0,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "Pipedrive CRM price change new features release updates announcements",
+          "since": "2026-11-09",
+          "startedMs": 10071,
+          "latencyMs": 0,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "Freshsales CRM price change new features release updates announcements",
+          "since": "2026-11-09",
+          "startedMs": 10071,
+          "latencyMs": 0,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "HubSpot CRM pricing official plans",
+          "startedMs": 10069,
+          "latencyMs": 2,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Salesforce CRM Starter Pro pricing official plans",
+          "startedMs": 10070,
+          "latencyMs": 1,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Zoho CRM pricing official plans",
+          "startedMs": 10070,
+          "latencyMs": 1,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Pipedrive CRM pricing official plans",
+          "startedMs": 10070,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Freshsales CRM pricing official plans",
+          "startedMs": 10071,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        }
+      ],
+      "sources": [
+        {
+          "id": "s1",
+          "url": "https://www.hubspot.com/pricing",
+          "domain": "www.hubspot.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s2",
+          "url": "https://www.salesforce.com/sales/pricing/",
+          "domain": "www.salesforce.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s3",
+          "url": "https://www.zoho.com/crm/zohocrm-pricing.html",
+          "domain": "www.zoho.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s4",
+          "url": "https://www.pipedrive.com/en/pricing",
+          "domain": "www.pipedrive.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s5",
+          "url": "https://www.freshworks.com/crm/sales/pricing/",
+          "domain": "www.freshworks.com",
+          "publishedDate": null
+        }
+      ],
+      "errors": [],
+      "usage": {
+        "inputTokens": 5155,
+        "inputTokenDetails": {
+          "noCacheTokens": 5155,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 2434,
+        "outputTokenDetails": {
+          "textTokens": 914,
+          "reasoningTokens": 1520
+        },
+        "totalTokens": 7589
+      },
+      "text": "Based on a check of official pricing pages as of November 11, 2026 against the baseline from Monday, November 9, 2026, **none of the five CRM tools have changed their starting seat prices**:\n\n* **HubSpot:** Unchanged at $20/seat/month [1].\n* **Salesforce:** Unchanged at $25/seat/month [2].\n* **Zoho CRM:** Unchanged at $20/seat/month [3].\n* **Pipedrive:** Unchanged at $24/seat/month [4].\n* **Freshsales:** Unchanged at $11/seat/month [5].\n\n**Major Product/Feature Releases:**\nCould not be verified. Search queries for major product announcements or release notes published between November 9 and November 11, 2026 returned no dated results.",
+      "validatedText": "Based on a check of official pricing pages as of November 11, 2026 against the baseline from Monday, November 9, 2026, **none of the five CRM tools have changed their starting seat prices**:\n\n* **HubSpot:** Unchanged at $20/seat/month [1].\n* **Salesforce:** Unchanged at $25/seat/month [2].\n* **Zoho CRM:** Unchanged at $20/seat/month [3].\n* **Pipedrive:** Unchanged at $24/seat/month [4].\n* **Freshsales:** Unchanged at $11/seat/month [5].\n\n**Major Product/Feature Releases:**\nCould not be verified. Search queries for major product announcements or release notes published between November 9 and November 11, 2026 returned no dated results.",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": false
+      }
+    }
+  ]
+}

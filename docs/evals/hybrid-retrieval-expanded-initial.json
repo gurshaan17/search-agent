@@ -1,0 +1,810 @@
+{
+  "indexingMs": 1274,
+  "records": [
+    {
+      "id": "paraphrase",
+      "expected": 1,
+      "lexical": [
+        1
+      ],
+      "hybrid": [
+        1
+      ],
+      "lexicalPass": true,
+      "hybridPass": true,
+      "top1": true,
+      "scores": [
+        {
+          "id": 1,
+          "score": 0.7967394650819947
+        },
+        {
+          "id": 7,
+          "score": 0.6718045912625135
+        },
+        {
+          "id": 9,
+          "score": 0.6629253250755294
+        },
+        {
+          "id": 13,
+          "score": 0.6342369584263615
+        },
+        {
+          "id": 11,
+          "score": 0.6078009189075348
+        },
+        {
+          "id": 5,
+          "score": 0.5729864772225083
+        },
+        {
+          "id": 3,
+          "score": 0.5570389534389893
+        }
+      ],
+      "latencyMs": 1571,
+      "semantic": "ready",
+      "matches": [
+        {
+          "questionId": 1,
+          "answerId": 2,
+          "askedAt": "Tuesday, 3 November 2026 at 04:30",
+          "timezone": "UTC",
+          "question": "Help me choose something for this offline desktop app.",
+          "answer": "SQLite is the relational database I recommend. It stores data locally in a single file and works without a server.",
+          "answerIsExcerpt": false,
+          "relevance": {
+            "lexical": 0.3333333333333333,
+            "semantic": 0.7967394650819947,
+            "strength": "strong"
+          },
+          "nearbyTurns": [],
+          "sources": [],
+          "hint": "Prior answer given at 2026-11-03T04:30:00.000Z; use since=2026-11-03 for change checks."
+        }
+      ]
+    },
+    {
+      "id": "translation",
+      "expected": 3,
+      "lexical": [],
+      "hybrid": [
+        3
+      ],
+      "lexicalPass": false,
+      "hybridPass": true,
+      "top1": true,
+      "scores": [
+        {
+          "id": 3,
+          "score": 0.7197692978166853
+        },
+        {
+          "id": 11,
+          "score": 0.6683509064319977
+        },
+        {
+          "id": 13,
+          "score": 0.6016490411642833
+        },
+        {
+          "id": 1,
+          "score": 0.5956205961618026
+        },
+        {
+          "id": 5,
+          "score": 0.5905858920697251
+        },
+        {
+          "id": 9,
+          "score": 0.5741115016065353
+        },
+        {
+          "id": 7,
+          "score": 0.5702150336687719
+        }
+      ],
+      "latencyMs": 541,
+      "semantic": "ready",
+      "matches": [
+        {
+          "questionId": 3,
+          "answerId": 4,
+          "askedAt": "Wednesday, 4 November 2026 at 04:30",
+          "timezone": "UTC",
+          "question": "¿Cómo preparo pan casero?",
+          "answer": "Mezcla harina, agua, levadura y sal. Amasa, deja fermentar y hornea hasta que esté dorado.",
+          "answerIsExcerpt": false,
+          "relevance": {
+            "lexical": 0,
+            "semantic": 0.7197692978166853,
+            "strength": "weak"
+          },
+          "nearbyTurns": [],
+          "sources": [],
+          "hint": "Prior answer given at 2026-11-04T04:30:00.000Z; use since=2026-11-04 for change checks."
+        }
+      ]
+    },
+    {
+      "id": "language",
+      "expected": 5,
+      "lexical": [
+        13
+      ],
+      "hybrid": [
+        13,
+        5
+      ],
+      "lexicalPass": false,
+      "hybridPass": true,
+      "top1": false,
+      "scores": [
+        {
+          "id": 13,
+          "score": 0.7752109385851561
+        },
+        {
+          "id": 5,
+          "score": 0.7190660242500293
+        },
+        {
+          "id": 9,
+          "score": 0.6515277105302155
+        },
+        {
+          "id": 1,
+          "score": 0.6348543076699763
+        },
+        {
+          "id": 11,
+          "score": 0.62918667781632
+        },
+        {
+          "id": 7,
+          "score": 0.6233319462568966
+        },
+        {
+          "id": 3,
+          "score": 0.6205789753854242
+        }
+      ],
+      "latencyMs": 538,
+      "semantic": "ready",
+      "matches": [
+        {
+          "questionId": 13,
+          "answerId": 14,
+          "askedAt": "Tuesday, 10 November 2026 at 04:30",
+          "timezone": "UTC",
+          "question": "What languages could we use later?",
+          "answer": "We could discuss Punjabi or Spanish in a future session. This is a suggestion, not a previous reply in those languages.",
+          "answerIsExcerpt": false,
+          "relevance": {
+            "lexical": 1,
+            "semantic": 0.7752109385851561,
+            "strength": "strong"
+          },
+          "nearbyTurns": [],
+          "sources": [],
+          "hint": "Prior answer given at 2026-11-10T04:30:00.000Z; use since=2026-11-10 for change checks."
+        },
+        {
+          "questionId": 5,
+          "answerId": 6,
+          "askedAt": "Thursday, 5 November 2026 at 04:30",
+          "timezone": "UTC",
+          "question": "Say hello",
+          "answer": "ਸਤ ਸ੍ਰੀ ਅਕਾਲ! ਤੁਹਾਡਾ ਦਿਨ ਚੰਗਾ ਲੰਘੇ।",
+          "answerIsExcerpt": false,
+          "relevance": {
+            "lexical": 0,
+            "semantic": 0.7190660242500293,
+            "strength": "weak"
+          },
+          "nearbyTurns": [],
+          "sources": [],
+          "hint": "Prior answer given at 2026-11-05T04:30:00.000Z; use since=2026-11-05 for change checks."
+        }
+      ]
+    },
+    {
+      "id": "assistant-only",
+      "expected": 1,
+      "lexical": [
+        1,
+        7
+      ],
+      "hybrid": [
+        1,
+        7
+      ],
+      "lexicalPass": true,
+      "hybridPass": true,
+      "top1": true,
+      "scores": [
+        {
+          "id": 1,
+          "score": 0.7465203181500155
+        },
+        {
+          "id": 7,
+          "score": 0.6945061972638834
+        },
+        {
+          "id": 9,
+          "score": 0.6649152339361786
+        },
+        {
+          "id": 13,
+          "score": 0.585628620629504
+        },
+        {
+          "id": 11,
+          "score": 0.5771266346634992
+        },
+        {
+          "id": 5,
+          "score": 0.5445766222040493
+        },
+        {
+          "id": 3,
+          "score": 0.5064163509727888
+        }
+      ],
+      "latencyMs": 545,
+      "semantic": "ready",
+      "matches": [
+        {
+          "questionId": 1,
+          "answerId": 2,
+          "askedAt": "Tuesday, 3 November 2026 at 04:30",
+          "timezone": "UTC",
+          "question": "Help me choose something for this offline desktop app.",
+          "answer": "SQLite is the relational database I recommend. It stores data locally in a single file and works without a server.",
+          "answerIsExcerpt": false,
+          "relevance": {
+            "lexical": 1,
+            "semantic": 0.7465203181500155,
+            "strength": "strong"
+          },
+          "nearbyTurns": [],
+          "sources": [],
+          "hint": "Prior answer given at 2026-11-03T04:30:00.000Z; use since=2026-11-03 for change checks."
+        },
+        {
+          "questionId": 7,
+          "answerId": 8,
+          "askedAt": "Friday, 6 November 2026 at 04:30",
+          "timezone": "UTC",
+          "question": "Which Postgres hosting service should we choose?",
+          "answer": "Use Neon for the managed database.",
+          "answerIsExcerpt": false,
+          "relevance": {
+            "lexical": 0.5,
+            "semantic": 0.6945061972638834,
+            "strength": "strong"
+          },
+          "nearbyTurns": [],
+          "sources": [],
+          "hint": "Prior answer given at 2026-11-06T04:30:00.000Z; use since=2026-11-06 for change checks."
+        }
+      ]
+    },
+    {
+      "id": "weekday",
+      "expected": 1,
+      "lexical": [
+        1,
+        13,
+        11
+      ],
+      "hybrid": [
+        1,
+        13,
+        11
+      ],
+      "lexicalPass": true,
+      "hybridPass": true,
+      "top1": true,
+      "scores": [
+        {
+          "id": 1,
+          "score": 0.7830389402007465
+        },
+        {
+          "id": 13,
+          "score": 0.6594698116762329
+        },
+        {
+          "id": 11,
+          "score": 0.6466797357890475
+        }
+      ],
+      "latencyMs": 1515,
+      "semantic": "ready",
+      "matches": [
+        {
+          "questionId": 1,
+          "answerId": 2,
+          "askedAt": "Tuesday, 3 November 2026 at 04:30",
+          "timezone": "UTC",
+          "question": "Help me choose something for this offline desktop app.",
+          "answer": "SQLite is the relational database I recommend. It stores data locally in a single file and works without a server.",
+          "answerIsExcerpt": false,
+          "relevance": {
+            "lexical": 0.2,
+            "semantic": 0.7830389402007465,
+            "strength": "strong"
+          },
+          "nearbyTurns": [],
+          "sources": [],
+          "hint": "Prior answer given at 2026-11-03T04:30:00.000Z; use since=2026-11-03 for change checks."
+        },
+        {
+          "questionId": 13,
+          "answerId": 14,
+          "askedAt": "Tuesday, 10 November 2026 at 04:30",
+          "timezone": "UTC",
+          "question": "What languages could we use later?",
+          "answer": "We could discuss Punjabi or Spanish in a future session. This is a suggestion, not a previous reply in those languages.",
+          "answerIsExcerpt": false,
+          "relevance": {
+            "lexical": 0,
+            "semantic": 0,
+            "strength": "weak"
+          },
+          "nearbyTurns": [],
+          "sources": [],
+          "hint": "Prior answer given at 2026-11-10T04:30:00.000Z; use since=2026-11-10 for change checks."
+        },
+        {
+          "questionId": 11,
+          "answerId": 12,
+          "askedAt": "Tuesday, 10 November 2026 at 04:30",
+          "timezone": "UTC",
+          "question": "What can I cook tonight?",
+          "answer": "Make vegetable soup for dinner.",
+          "answerIsExcerpt": false,
+          "relevance": {
+            "lexical": 0,
+            "semantic": 0,
+            "strength": "weak"
+          },
+          "nearbyTurns": [],
+          "sources": [],
+          "hint": "Prior answer given at 2026-11-10T04:30:00.000Z; use since=2026-11-10 for change checks."
+        }
+      ]
+    },
+    {
+      "id": "explicit-date",
+      "expected": 11,
+      "lexical": [
+        13,
+        11
+      ],
+      "hybrid": [
+        13,
+        11
+      ],
+      "lexicalPass": true,
+      "hybridPass": true,
+      "top1": false,
+      "scores": [
+        {
+          "id": 11,
+          "score": 0.6702579666518927
+        },
+        {
+          "id": 13,
+          "score": 0.6461024204603134
+        }
+      ],
+      "latencyMs": 619,
+      "semantic": "ready",
+      "matches": [
+        {
+          "questionId": 13,
+          "answerId": 14,
+          "askedAt": "Tuesday, 10 November 2026 at 04:30",
+          "timezone": "UTC",
+          "question": "What languages could we use later?",
+          "answer": "We could discuss Punjabi or Spanish in a future session. This is a suggestion, not a previous reply in those languages.",
+          "answerIsExcerpt": false,
+          "relevance": {
+            "lexical": 0,
+            "semantic": 0,
+            "strength": "date-only"
+          },
+          "nearbyTurns": [],
+          "sources": [],
+          "hint": "Prior answer given at 2026-11-10T04:30:00.000Z; use since=2026-11-10 for change checks."
+        },
+        {
+          "questionId": 11,
+          "answerId": 12,
+          "askedAt": "Tuesday, 10 November 2026 at 04:30",
+          "timezone": "UTC",
+          "question": "What can I cook tonight?",
+          "answer": "Make vegetable soup for dinner.",
+          "answerIsExcerpt": false,
+          "relevance": {
+            "lexical": 0,
+            "semantic": 0,
+            "strength": "date-only"
+          },
+          "nearbyTurns": [],
+          "sources": [],
+          "hint": "Prior answer given at 2026-11-10T04:30:00.000Z; use since=2026-11-10 for change checks."
+        }
+      ]
+    },
+    {
+      "id": "correction",
+      "expected": 9,
+      "lexical": [
+        7,
+        9,
+        1
+      ],
+      "hybrid": [
+        9,
+        7,
+        1
+      ],
+      "lexicalPass": true,
+      "hybridPass": true,
+      "top1": true,
+      "scores": [
+        {
+          "id": 9,
+          "score": 0.755483939207546
+        },
+        {
+          "id": 7,
+          "score": 0.7346342160054735
+        },
+        {
+          "id": 1,
+          "score": 0.6966739433596129
+        },
+        {
+          "id": 13,
+          "score": 0.5871652186476165
+        },
+        {
+          "id": 11,
+          "score": 0.5766678214464984
+        },
+        {
+          "id": 5,
+          "score": 0.5483730347001243
+        },
+        {
+          "id": 3,
+          "score": 0.5371487510958983
+        }
+      ],
+      "latencyMs": 539,
+      "semantic": "ready",
+      "matches": [
+        {
+          "questionId": 9,
+          "answerId": 10,
+          "askedAt": "Saturday, 7 November 2026 at 04:30",
+          "timezone": "UTC",
+          "question": "Please correct the hosting recommendation for our compliance requirement.",
+          "answer": "Correction: use Amazon RDS instead of Neon because you require deployment in your existing AWS account.",
+          "answerIsExcerpt": false,
+          "relevance": {
+            "lexical": 0.3333333333333333,
+            "semantic": 0.755483939207546,
+            "strength": "strong"
+          },
+          "nearbyTurns": [],
+          "sources": [],
+          "hint": "Prior answer given at 2026-11-07T04:30:00.000Z; use since=2026-11-07 for change checks."
+        },
+        {
+          "questionId": 7,
+          "answerId": 8,
+          "askedAt": "Friday, 6 November 2026 at 04:30",
+          "timezone": "UTC",
+          "question": "Which Postgres hosting service should we choose?",
+          "answer": "Use Neon for the managed database.",
+          "answerIsExcerpt": false,
+          "relevance": {
+            "lexical": 0.6666666666666666,
+            "semantic": 0.7346342160054735,
+            "strength": "strong"
+          },
+          "nearbyTurns": [],
+          "sources": [],
+          "hint": "Prior answer given at 2026-11-06T04:30:00.000Z; use since=2026-11-06 for change checks."
+        },
+        {
+          "questionId": 1,
+          "answerId": 2,
+          "askedAt": "Tuesday, 3 November 2026 at 04:30",
+          "timezone": "UTC",
+          "question": "Help me choose something for this offline desktop app.",
+          "answer": "SQLite is the relational database I recommend. It stores data locally in a single file and works without a server.",
+          "answerIsExcerpt": false,
+          "relevance": {
+            "lexical": 0.3333333333333333,
+            "semantic": 0.6966739433596129,
+            "strength": "weak"
+          },
+          "nearbyTurns": [],
+          "sources": [],
+          "hint": "Prior answer given at 2026-11-03T04:30:00.000Z; use since=2026-11-03 for change checks."
+        }
+      ]
+    },
+    {
+      "id": "french-query",
+      "expected": 1,
+      "lexical": [],
+      "hybrid": [],
+      "lexicalPass": false,
+      "hybridPass": false,
+      "top1": false,
+      "scores": [],
+      "latencyMs": 562,
+      "semantic": "ready",
+      "matches": []
+    },
+    {
+      "id": "dinner",
+      "expected": 11,
+      "lexical": [
+        11
+      ],
+      "hybrid": [
+        11
+      ],
+      "lexicalPass": true,
+      "hybridPass": true,
+      "top1": true,
+      "scores": [
+        {
+          "id": 11,
+          "score": 0.7264490939317877
+        },
+        {
+          "id": 1,
+          "score": 0.6125358484723681
+        },
+        {
+          "id": 3,
+          "score": 0.612488371494181
+        },
+        {
+          "id": 13,
+          "score": 0.6011385292439375
+        },
+        {
+          "id": 9,
+          "score": 0.5934684527071012
+        },
+        {
+          "id": 7,
+          "score": 0.5829056967371059
+        },
+        {
+          "id": 5,
+          "score": 0.5705080777832293
+        }
+      ],
+      "latencyMs": 613,
+      "semantic": "ready",
+      "matches": [
+        {
+          "questionId": 11,
+          "answerId": 12,
+          "askedAt": "Tuesday, 10 November 2026 at 04:30",
+          "timezone": "UTC",
+          "question": "What can I cook tonight?",
+          "answer": "Make vegetable soup for dinner.",
+          "answerIsExcerpt": false,
+          "relevance": {
+            "lexical": 0.25,
+            "semantic": 0.7264490939317877,
+            "strength": "weak"
+          },
+          "nearbyTurns": [],
+          "sources": [],
+          "hint": "Prior answer given at 2026-11-10T04:30:00.000Z; use since=2026-11-10 for change checks."
+        }
+      ]
+    },
+    {
+      "id": "revision",
+      "expected": 9,
+      "lexical": [
+        13,
+        9,
+        7
+      ],
+      "hybrid": [
+        9,
+        13,
+        7
+      ],
+      "lexicalPass": true,
+      "hybridPass": true,
+      "top1": true,
+      "scores": [
+        {
+          "id": 9,
+          "score": 0.7332043087350235
+        },
+        {
+          "id": 7,
+          "score": 0.6674401810263937
+        },
+        {
+          "id": 1,
+          "score": 0.6055917880713874
+        },
+        {
+          "id": 13,
+          "score": 0.5820017135747109
+        },
+        {
+          "id": 11,
+          "score": 0.5648456064011449
+        },
+        {
+          "id": 5,
+          "score": 0.5300561663636533
+        },
+        {
+          "id": 3,
+          "score": 0.516385738270743
+        }
+      ],
+      "latencyMs": 575,
+      "semantic": "ready",
+      "matches": [
+        {
+          "questionId": 9,
+          "answerId": 10,
+          "askedAt": "Saturday, 7 November 2026 at 04:30",
+          "timezone": "UTC",
+          "question": "Please correct the hosting recommendation for our compliance requirement.",
+          "answer": "Correction: use Amazon RDS instead of Neon because you require deployment in your existing AWS account.",
+          "answerIsExcerpt": false,
+          "relevance": {
+            "lexical": 0.2,
+            "semantic": 0.7332043087350235,
+            "strength": "weak"
+          },
+          "nearbyTurns": [],
+          "sources": [],
+          "hint": "Prior answer given at 2026-11-07T04:30:00.000Z; use since=2026-11-07 for change checks."
+        },
+        {
+          "questionId": 13,
+          "answerId": 14,
+          "askedAt": "Tuesday, 10 November 2026 at 04:30",
+          "timezone": "UTC",
+          "question": "What languages could we use later?",
+          "answer": "We could discuss Punjabi or Spanish in a future session. This is a suggestion, not a previous reply in those languages.",
+          "answerIsExcerpt": false,
+          "relevance": {
+            "lexical": 0.2,
+            "semantic": 0,
+            "strength": "weak"
+          },
+          "nearbyTurns": [],
+          "sources": [],
+          "hint": "Prior answer given at 2026-11-10T04:30:00.000Z; use since=2026-11-10 for change checks."
+        },
+        {
+          "questionId": 7,
+          "answerId": 8,
+          "askedAt": "Friday, 6 November 2026 at 04:30",
+          "timezone": "UTC",
+          "question": "Which Postgres hosting service should we choose?",
+          "answer": "Use Neon for the managed database.",
+          "answerIsExcerpt": false,
+          "relevance": {
+            "lexical": 0.2,
+            "semantic": 0,
+            "strength": "weak"
+          },
+          "nearbyTurns": [],
+          "sources": [],
+          "hint": "Prior answer given at 2026-11-06T04:30:00.000Z; use since=2026-11-06 for change checks."
+        }
+      ]
+    },
+    {
+      "id": "absent-heldout",
+      "expected": null,
+      "lexical": [],
+      "hybrid": [],
+      "lexicalPass": true,
+      "hybridPass": true,
+      "top1": true,
+      "scores": [
+        {
+          "id": 1,
+          "score": 0.5546201259049582
+        },
+        {
+          "id": 13,
+          "score": 0.5474935707196793
+        },
+        {
+          "id": 5,
+          "score": 0.5377425498628492
+        },
+        {
+          "id": 11,
+          "score": 0.5366474557326019
+        },
+        {
+          "id": 9,
+          "score": 0.5317057485387626
+        },
+        {
+          "id": 7,
+          "score": 0.5171810298074246
+        },
+        {
+          "id": 3,
+          "score": 0.5069313178684848
+        }
+      ],
+      "latencyMs": 1252,
+      "semantic": "ready",
+      "matches": []
+    },
+    {
+      "id": "absent",
+      "expected": null,
+      "lexical": [],
+      "hybrid": [],
+      "lexicalPass": true,
+      "hybridPass": true,
+      "top1": true,
+      "scores": [
+        {
+          "id": 7,
+          "score": 0.5945201315065253
+        },
+        {
+          "id": 1,
+          "score": 0.5910667541366135
+        },
+        {
+          "id": 13,
+          "score": 0.5807340524579983
+        },
+        {
+          "id": 9,
+          "score": 0.5776177243404779
+        },
+        {
+          "id": 11,
+          "score": 0.5571386312402793
+        },
+        {
+          "id": 5,
+          "score": 0.5099281461081905
+        },
+        {
+          "id": 3,
+          "score": 0.500259261214115
+        }
+      ],
+      "latencyMs": 1292,
+      "semantic": "ready",
+      "matches": []
+    }
+  ]
+}

@@ -13,7 +13,26 @@ export function assertions(c: EvalCase, calls: EvalCall[], text: string, sources
     validCitations: ids.every(id => found.has(id)),
   };
   const coverage = () => c.entities.every(e => calls.some(call => matches(call.query, e)));
-  if (c.kind === 'temporal') {
+  if (c.kind === 'memory-general') {
+    checks.noSearches = calls.length === 0;
+    checks.noStatelessDisclaimer = !/stateless|each session is independent/i.test(text);
+    if (['memory-paraphrase','memory-assistant-only','memory-weekday','memory-french-query'].includes(c.id)) checks.correctMemory = /SQLite/i.test(text);
+    if (c.id === 'memory-translation') checks.correctMemory = /bread|flour|pan|harina/i.test(text);
+    if (c.id === 'memory-language') checks.correctMemory = text.includes('ਸਤ ਸ੍ਰੀ ਅਕਾਲ');
+    if (['memory-explicit-date','memory-dinner'].includes(c.id)) checks.correctMemory = /soup|dinner|cook|vegetable/i.test(text);
+    if (['memory-correction','memory-revision'].includes(c.id)) checks.correctMemory = /RDS/i.test(text) && /Neon/i.test(text);
+    if (['memory-absent','memory-absent-heldout'].includes(c.id)) checks.honestGap = /(?:couldn.t|could not|can.t|cannot|no|not|don.t).*?(?:find|found|matching|record|saved|have|see)/i.test(text);
+  } else if (c.kind === 'memory') {
+    checks.noSearches = calls.length === 0;
+    checks.noStatelessDisclaimer = !/stateless|each session is independent|(?:no|not have|cannot|can't|don't have) access to (?:your |any |previous |past )?(?:chat history|conversations|sessions)/i.test(text);
+    if (c.seeded) {
+      checks.savedReply = text.includes('ਸਤ ਸ੍ਰੀ ਅਕਾਲ');
+      checks.savedDate = /1\s*Nov|Nov(?:ember)?\s*1|2026-11-01/i.test(text);
+    } else {
+      checks.honestGap = /(?:couldn.t|could not|can.t|cannot|no|not).*?(?:find|found|matching|record|saved)/i.test(text);
+      checks.noInventedReply = !text.includes('ਸਤ ਸ੍ਰੀ ਅਕਾਲ');
+    }
+  } else if (c.kind === 'temporal') {
     if (c.seeded) {
       checks.entityCoverage = coverage();
       checks.parallelFirstStep = calls.filter(call => call.step === 1).length >= c.entities.length;

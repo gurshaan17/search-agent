@@ -1,7 +1,9 @@
 import 'dotenv/config';
 import { randomUUID } from 'node:crypto';
+import { SemanticMemory } from '../src/memory/semantic.js';
+import { createEmbedder } from '../src/memory/embeddings.js';
 import { MemoryStore, type SearchLog } from '../src/memory/db.js';
-import { buildContext } from '../src/context.js';
+import { prepareContext } from '../src/context.js';
 import { createInterface } from 'node:readline';
 import type { ModelMessage } from 'ai';
 import { CitationFilter } from '../src/citations.js';
@@ -16,6 +18,7 @@ if (!['exa', 'mock'].includes(backend)) throw new Error('SEARCH_PROVIDER must be
 if (!process.env.GEMINI_API_KEY?.trim()) throw new Error('GEMINI_API_KEY is required.');
 if (backend === 'exa' && !process.env.EXA_API_KEY?.trim()) throw new Error('EXA_API_KEY is required.');
 const store = new MemoryStore();
+const memory = new SemanticMemory(store,createEmbedder());
 const userId = process.env.CLI_USER_ID?.trim() || 'local';
 const conversationId = randomUUID();
 const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -28,7 +31,7 @@ try {
     if (!line.trim()) continue;
     if (line.length > MAX_INPUT_CHARACTERS) { console.error('The question is too long (maximum 20000 characters).'); continue; }
     const now = process.env.AGENT_NOW?.trim() ? new Date(process.env.AGENT_NOW) : new Date();
-    const context = buildContext({ store, userId, message: line, history: messages, now, timezone });
+    const context = await prepareContext({ memory, store, userId, message: line, history: messages, now, timezone });
     const user: ModelMessage = { role: 'user', content: line };
     const base = { user_id: userId, conversation_id: conversationId, created_at: now.toISOString(), tz: timezone };
     const userTurnId = store.saveTurn({ ...base, role: 'user', content: line });
@@ -43,7 +46,7 @@ try {
     let outcome: TurnLog['outcome'] = 'error';
     let tokens = tokenMetrics();
     try {
-      const result = runAgent({ messages: context.messages, context: context.context, search: { search: async (query, options) => {
+      const result = runAgent({ ...context, search: { search: async (query, options) => {
         const start = performance.now();
         const log: SearchLog = { query, since: options?.since, until: options?.until, resultCount: 0, latencyMs: 0 };
         try {
@@ -79,6 +82,7 @@ try {
       process.exitCode = 1;
     } finally {
       store.saveEvidence(evidenceTurnId, [...sources.values()], searches, now.toISOString());
+      if (outcome === 'complete') await memory.index(userId,now.toISOString(),AbortSignal.timeout(4000)).catch(() => {});
       const log: TurnLog = { event: 'turn', userTurnId, turnId: evidenceTurnId, outcome,
         searches: searches.map(s => ({ resultCount: s.resultCount, latencyMs: s.latencyMs, failed: s.failed ?? false })),
         timings: { ttfbMs: 0, firstTokenMs, totalMs: Math.round(performance.now() - started) }, tokens, invalidCitations: citations.invalidCount };

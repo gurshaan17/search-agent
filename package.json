@@ -12,7 +12,9 @@
     "start": "tsx src/server.ts",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "eval": "tsx evals/run.ts"
+    "eval": "tsx evals/run.ts",
+    "memory:index": "tsx scripts/index-memory.ts",
+    "eval:memory": "tsx evals/memory.ts"
   },
   "dependencies": {
     "@ai-sdk/google": "^4.0.117",

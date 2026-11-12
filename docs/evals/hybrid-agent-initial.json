@@ -1,0 +1,2365 @@
+{
+  "measuredAt": "2026-11-12T07:41:31.736Z",
+  "model": "gemini-3.5-flash",
+  "clock": "2026-11-11T04:30:00.000Z",
+  "records": [
+    {
+      "id": "memory-paraphrase",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "noSearches": true,
+        "noStatelessDisclaimer": true,
+        "correctMemory": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 1,
+      "firstStatusMs": 1,
+      "firstSearchMs": null,
+      "firstTokenMs": 4097,
+      "totalMs": 4251,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [
+          1
+        ],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 1115
+      },
+      "calls": [],
+      "searches": [],
+      "sources": [],
+      "errors": [],
+      "usage": {
+        "inputTokens": 1782,
+        "inputTokenDetails": {
+          "noCacheTokens": 1782,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 318,
+        "outputTokenDetails": {
+          "textTokens": 49,
+          "reasoningTokens": 269
+        },
+        "totalTokens": 2100,
+        "raw": {
+          "thoughtsTokenCount": 269,
+          "promptTokenCount": 1782,
+          "candidatesTokenCount": 49,
+          "totalTokenCount": 2100,
+          "serviceTier": "standard",
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1782
+            }
+          ]
+        }
+      },
+      "text": "I recommended **SQLite** on Tuesday, 3 November 2026.\n\nFrom the saved history:\n> *\"SQLite is the relational database I recommend. It stores data locally in a single file and works without a server.\"*",
+      "validatedText": "I recommended **SQLite** on Tuesday, 3 November 2026.\n\nFrom the saved history:\n> *\"SQLite is the relational database I recommend. It stores data locally in a single file and works without a server.\"*",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "memory-translation",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "noSearches": true,
+        "noStatelessDisclaimer": true,
+        "correctMemory": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 1,
+      "firstStatusMs": 1,
+      "firstSearchMs": null,
+      "firstTokenMs": 4529,
+      "totalMs": 4792,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [
+          3
+        ],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 1202
+      },
+      "calls": [],
+      "searches": [],
+      "sources": [],
+      "errors": [],
+      "usage": {
+        "inputTokens": 1764,
+        "inputTokenDetails": {
+          "noCacheTokens": 1764,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 384,
+        "outputTokenDetails": {
+          "textTokens": 60,
+          "reasoningTokens": 324
+        },
+        "totalTokens": 2148,
+        "raw": {
+          "thoughtsTokenCount": 324,
+          "promptTokenCount": 1764,
+          "candidatesTokenCount": 60,
+          "totalTokenCount": 2148,
+          "serviceTier": "standard",
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1764
+            }
+          ]
+        }
+      },
+      "text": "On Wednesday, 4 November 2026, in response to your question (\"¿Cómo preparo pan casero?\"), I told you:\n\n> \"Mezcla harina, agua, levadura y sal. Amasa, deja fermentar y hornea hasta que esté dorado.\"",
+      "validatedText": "On Wednesday, 4 November 2026, in response to your question (\"¿Cómo preparo pan casero?\"), I told you:\n\n> \"Mezcla harina, agua, levadura y sal. Amasa, deja fermentar y hornea hasta que esté dorado.\"",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "memory-language",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "noSearches": true,
+        "noStatelessDisclaimer": true,
+        "correctMemory": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 1,
+      "firstStatusMs": 2,
+      "firstSearchMs": null,
+      "firstTokenMs": 6396,
+      "totalMs": 6424,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [
+          13,
+          5
+        ],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 1308
+      },
+      "calls": [],
+      "searches": [],
+      "sources": [],
+      "errors": [],
+      "usage": {
+        "inputTokens": 1935,
+        "inputTokenDetails": {
+          "noCacheTokens": 1935,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 601,
+        "outputTokenDetails": {
+          "textTokens": 50,
+          "reasoningTokens": 551
+        },
+        "totalTokens": 2536,
+        "raw": {
+          "thoughtsTokenCount": 551,
+          "promptTokenCount": 1935,
+          "candidatesTokenCount": 50,
+          "totalTokenCount": 2536,
+          "serviceTier": "standard",
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1935
+            }
+          ]
+        }
+      },
+      "text": "Yes. According to saved history, I replied to you in Punjabi on Thursday, 5 November 2026:\n\n> \"ਸਤ ਸ੍ਰੀ ਅਕਾਲ! ਤੁਹਾਡਾ ਦਿਨ ਚੰਗਾ ਲੰਘੇ।\"",
+      "validatedText": "Yes. According to saved history, I replied to you in Punjabi on Thursday, 5 November 2026:\n\n> \"ਸਤ ਸ੍ਰੀ ਅਕਾਲ! ਤੁਹਾਡਾ ਦਿਨ ਚੰਗਾ ਲੰਘੇ।\"",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "memory-assistant-only",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "noSearches": true,
+        "noStatelessDisclaimer": true,
+        "correctMemory": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 1,
+      "firstStatusMs": 1,
+      "firstSearchMs": null,
+      "firstTokenMs": 4563,
+      "totalMs": 4928,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [
+          1,
+          7
+        ],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 843
+      },
+      "calls": [],
+      "searches": [],
+      "sources": [],
+      "errors": [],
+      "usage": {
+        "inputTokens": 1922,
+        "inputTokenDetails": {
+          "noCacheTokens": 1922,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 628,
+        "outputTokenDetails": {
+          "textTokens": 84,
+          "reasoningTokens": 544
+        },
+        "totalTokens": 2550,
+        "raw": {
+          "thoughtsTokenCount": 544,
+          "promptTokenCount": 1922,
+          "candidatesTokenCount": 84,
+          "totalTokenCount": 2550,
+          "serviceTier": "standard",
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1922
+            }
+          ]
+        }
+      },
+      "text": "Yes. On **Tuesday, 3 November 2026**, I recommended SQLite for an offline desktop app:\n\n> \"SQLite is the relational database I recommend. It stores data locally in a single file and works without a server.\"\n\nAdditionally, on **Friday, 6 November 2026**, I recommended Neon when asked about Postgres hosting:\n\n> \"Use Neon for the managed database.\"",
+      "validatedText": "Yes. On **Tuesday, 3 November 2026**, I recommended SQLite for an offline desktop app:\n\n> \"SQLite is the relational database I recommend. It stores data locally in a single file and works without a server.\"\n\nAdditionally, on **Friday, 6 November 2026**, I recommended Neon when asked about Postgres hosting:\n\n> \"Use Neon for the managed database.\"",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "memory-weekday",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "noSearches": true,
+        "noStatelessDisclaimer": true,
+        "correctMemory": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 1,
+      "firstStatusMs": 1,
+      "firstSearchMs": null,
+      "firstTokenMs": 5168,
+      "totalMs": 5207,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [
+          1,
+          13,
+          11
+        ],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 1129
+      },
+      "calls": [],
+      "searches": [],
+      "sources": [],
+      "errors": [],
+      "usage": {
+        "inputTokens": 2095,
+        "inputTokenDetails": {
+          "noCacheTokens": 2095,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 518,
+        "outputTokenDetails": {
+          "textTokens": 59,
+          "reasoningTokens": 459
+        },
+        "totalTokens": 2613,
+        "raw": {
+          "thoughtsTokenCount": 459,
+          "promptTokenCount": 2095,
+          "candidatesTokenCount": 59,
+          "totalTokenCount": 2613,
+          "serviceTier": "standard",
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 2095
+            }
+          ]
+        }
+      },
+      "text": "On Tuesday, 3 November 2026, I recommended **SQLite** for your offline desktop application. \n\nHere is the exact excerpt from that reply:\n> \"SQLite is the relational database I recommend. It stores data locally in a single file and works without a server.\"",
+      "validatedText": "On Tuesday, 3 November 2026, I recommended **SQLite** for your offline desktop application. \n\nHere is the exact excerpt from that reply:\n> \"SQLite is the relational database I recommend. It stores data locally in a single file and works without a server.\"",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "memory-explicit-date",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "noSearches": true,
+        "noStatelessDisclaimer": true,
+        "correctMemory": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 1,
+      "firstStatusMs": 2,
+      "firstSearchMs": null,
+      "firstTokenMs": 5187,
+      "totalMs": 5524,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [
+          13,
+          11
+        ],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 1890
+      },
+      "calls": [],
+      "searches": [],
+      "sources": [],
+      "errors": [],
+      "usage": {
+        "inputTokens": 1904,
+        "inputTokenDetails": {
+          "noCacheTokens": 1904,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 549,
+        "outputTokenDetails": {
+          "textTokens": 92,
+          "reasoningTokens": 457
+        },
+        "totalTokens": 2453,
+        "raw": {
+          "thoughtsTokenCount": 457,
+          "promptTokenCount": 1904,
+          "candidatesTokenCount": 92,
+          "totalTokenCount": 2453,
+          "serviceTier": "standard",
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1904
+            }
+          ]
+        }
+      },
+      "text": "On 10 November 2026, you asked the following questions in our saved history:\n\n1. **\"What can I cook tonight?\"**  \n   *Response excerpt:* \"Make vegetable soup for dinner.\"\n\n2. **\"What languages could we use later?\"**  \n   *Response excerpt:* \"We could discuss Punjabi or Spanish in a future session. This is a suggestion, not a previous reply in those languages.\"",
+      "validatedText": "On 10 November 2026, you asked the following questions in our saved history:\n\n1. **\"What can I cook tonight?\"**  \n   *Response excerpt:* \"Make vegetable soup for dinner.\"\n\n2. **\"What languages could we use later?\"**  \n   *Response excerpt:* \"We could discuss Punjabi or Spanish in a future session. This is a suggestion, not a previous reply in those languages.\"",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "memory-correction",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "noSearches": true,
+        "noStatelessDisclaimer": true,
+        "correctMemory": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 1,
+      "firstStatusMs": 1,
+      "firstSearchMs": null,
+      "firstTokenMs": 4421,
+      "totalMs": 4568,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [
+          9,
+          7,
+          1
+        ],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 773
+      },
+      "calls": [],
+      "searches": [],
+      "sources": [],
+      "errors": [],
+      "usage": {
+        "inputTokens": 2145,
+        "inputTokenDetails": {
+          "noCacheTokens": 2145,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 505,
+        "outputTokenDetails": {
+          "textTokens": 49,
+          "reasoningTokens": 456
+        },
+        "totalTokens": 2650,
+        "raw": {
+          "thoughtsTokenCount": 456,
+          "promptTokenCount": 2145,
+          "candidatesTokenCount": 49,
+          "totalTokenCount": 2650,
+          "serviceTier": "standard",
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 2145
+            }
+          ]
+        }
+      },
+      "text": "Based on the saved chat history from **7 November 2026**, the corrected recommendation is **Amazon RDS**.\n\nExact excerpt:\n> \"Correction: use Amazon RDS instead of Neon because you require deployment in your existing AWS account.\"",
+      "validatedText": "Based on the saved chat history from **7 November 2026**, the corrected recommendation is **Amazon RDS**.\n\nExact excerpt:\n> \"Correction: use Amazon RDS instead of Neon because you require deployment in your existing AWS account.\"",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "memory-french-query",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "noSearches": true,
+        "noStatelessDisclaimer": true,
+        "correctMemory": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 1,
+      "firstStatusMs": 2,
+      "firstSearchMs": null,
+      "firstTokenMs": 5576,
+      "totalMs": 6044,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 1882
+      },
+      "calls": [],
+      "searches": [],
+      "sources": [],
+      "errors": [],
+      "usage": {
+        "inputTokens": 1623,
+        "inputTokenDetails": {
+          "noCacheTokens": 1623,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 481,
+        "outputTokenDetails": {
+          "textTokens": 86,
+          "reasoningTokens": 395
+        },
+        "totalTokens": 2104,
+        "raw": {
+          "thoughtsTokenCount": 395,
+          "promptTokenCount": 1623,
+          "candidatesTokenCount": 86,
+          "totalTokenCount": 2104,
+          "serviceTier": "standard",
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1623
+            }
+          ]
+        }
+      },
+      "text": "Je n'ai pas retrouvé de recommandation précédente dans l'historique des échanges qui me sont accessibles.\n\nSi vous souhaitez une nouvelle recommandation, précisez-moi votre stack technique (iOS, Android, React Native, Flutter, Web...) et vos besoins (volume de données, synchronisation). Je pourrai vous orienter vers la solution la plus adaptée (comme SQLite, Realm, WatermelonDB ou IndexedDB).",
+      "validatedText": "Je n'ai pas retrouvé de recommandation précédente dans l'historique des échanges qui me sont accessibles.\n\nSi vous souhaitez une nouvelle recommandation, précisez-moi votre stack technique (iOS, Android, React Native, Flutter, Web...) et vos besoins (volume de données, synchronisation). Je pourrai vous orienter vers la solution la plus adaptée (comme SQLite, Realm, WatermelonDB ou IndexedDB).",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "memory-dinner",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "noSearches": true,
+        "noStatelessDisclaimer": true,
+        "correctMemory": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 1,
+      "firstStatusMs": 2,
+      "firstSearchMs": null,
+      "firstTokenMs": 3999,
+      "totalMs": 4145,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [
+          11
+        ],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 1557
+      },
+      "calls": [],
+      "searches": [],
+      "sources": [],
+      "errors": [],
+      "usage": {
+        "inputTokens": 1750,
+        "inputTokenDetails": {
+          "noCacheTokens": 1750,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 268,
+        "outputTokenDetails": {
+          "textTokens": 40,
+          "reasoningTokens": 228
+        },
+        "totalTokens": 2018,
+        "raw": {
+          "thoughtsTokenCount": 228,
+          "promptTokenCount": 1750,
+          "candidatesTokenCount": 40,
+          "totalTokenCount": 2018,
+          "serviceTier": "standard",
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1750
+            }
+          ]
+        }
+      },
+      "text": "The dish suggested in our conversation on Tuesday, 10 November 2026 was a **soup**. \n\nThe saved response was: \n> \"Make vegetable soup for dinner.\"",
+      "validatedText": "The dish suggested in our conversation on Tuesday, 10 November 2026 was a **soup**. \n\nThe saved response was: \n> \"Make vegetable soup for dinner.\"",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": true,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "memory-revision",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "noSearches": true,
+        "noStatelessDisclaimer": true,
+        "correctMemory": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 1,
+      "firstStatusMs": 2,
+      "firstSearchMs": null,
+      "firstTokenMs": 3840,
+      "totalMs": 4228,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [
+          9,
+          13,
+          7
+        ],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 740
+      },
+      "calls": [],
+      "searches": [],
+      "sources": [],
+      "errors": [],
+      "usage": {
+        "inputTokens": 2068,
+        "inputTokenDetails": {
+          "noCacheTokens": 2068,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 545,
+        "outputTokenDetails": {
+          "textTokens": 89,
+          "reasoningTokens": 456
+        },
+        "totalTokens": 2613,
+        "raw": {
+          "thoughtsTokenCount": 456,
+          "promptTokenCount": 2068,
+          "candidatesTokenCount": 89,
+          "totalTokenCount": 2613,
+          "serviceTier": "standard",
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 2068
+            }
+          ]
+        }
+      },
+      "text": "Yes, the original cloud hosting recommendation was later revised on Saturday, 7 November 2026.\n\n* **Original recommendation (6 November 2026):**  \n  > *\"Use Neon for the managed database.\"*\n\n* **Revised recommendation (7 November 2026):**  \n  > *\"Correction: use Amazon RDS instead of Neon because you require deployment in your existing AWS account.\"*",
+      "validatedText": "Yes, the original cloud hosting recommendation was later revised on Saturday, 7 November 2026.\n\n* **Original recommendation (6 November 2026):**  \n  > *\"Use Neon for the managed database.\"*\n\n* **Revised recommendation (7 November 2026):**  \n  > *\"Correction: use Amazon RDS instead of Neon because you require deployment in your existing AWS account.\"*",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": true,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "memory-absent-heldout",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "noSearches": true,
+        "noStatelessDisclaimer": true,
+        "honestGap": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 1,
+      "firstStatusMs": 2,
+      "firstSearchMs": null,
+      "firstTokenMs": 4139,
+      "totalMs": 4649,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 1672
+      },
+      "calls": [],
+      "searches": [],
+      "sources": [],
+      "errors": [],
+      "usage": {
+        "inputTokens": 1598,
+        "inputTokenDetails": {
+          "noCacheTokens": 1598,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 365,
+        "outputTokenDetails": {
+          "textTokens": 84,
+          "reasoningTokens": 281
+        },
+        "totalTokens": 1963,
+        "raw": {
+          "thoughtsTokenCount": 281,
+          "promptTokenCount": 1598,
+          "candidatesTokenCount": 84,
+          "totalTokenCount": 1963,
+          "serviceTier": "standard",
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1598
+            }
+          ]
+        }
+      },
+      "text": "I couldn't find a matching reply in the saved history available to me. \n\nIf you would like to know about the composition of Saturn's rings now: Saturn's ring system is roughly 99% pure water ice, with the remaining 1% consisting of rock, silicate dust, and tholins (organic compounds). The ring particles range in size from micrometers to several meters across.",
+      "validatedText": "I couldn't find a matching reply in the saved history available to me. \n\nIf you would like to know about the composition of Saturn's rings now: Saturn's ring system is roughly 99% pure water ice, with the remaining 1% consisting of rock, silicate dust, and tholins (organic compounds). The ring particles range in size from micrometers to several meters across.",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "memory-absent",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "noSearches": true,
+        "noStatelessDisclaimer": true,
+        "honestGap": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 1,
+      "firstStatusMs": 0,
+      "firstSearchMs": null,
+      "firstTokenMs": 3441,
+      "totalMs": 3868,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 1191
+      },
+      "calls": [],
+      "searches": [],
+      "sources": [],
+      "errors": [],
+      "usage": {
+        "inputTokens": 1594,
+        "inputTokenDetails": {
+          "noCacheTokens": 1594,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 292,
+        "outputTokenDetails": {
+          "textTokens": 75,
+          "reasoningTokens": 217
+        },
+        "totalTokens": 1886,
+        "raw": {
+          "thoughtsTokenCount": 217,
+          "promptTokenCount": 1594,
+          "candidatesTokenCount": 75,
+          "totalTokenCount": 1886,
+          "serviceTier": "standard",
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1594
+            }
+          ]
+        }
+      },
+      "text": "I couldn't find a matching discussion or decision about telescope lens coatings in the saved chat history available to me. \n\nIf you'd like to start a new discussion or review options for telescope lens coatings (such as anti-reflective coatings, dielectric, or metallic coatings like aluminum vs. silver/gold), let me know what details or requirements you have in mind!",
+      "validatedText": "I couldn't find a matching discussion or decision about telescope lens coatings in the saved chat history available to me. \n\nIf you'd like to start a new discussion or review options for telescope lens coatings (such as anti-reflective coatings, dielectric, or metallic coatings like aluminum vs. silver/gold), let me know what details or requirements you have in mind!",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": true,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "punjabi-recall",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "noSearches": true,
+        "noStatelessDisclaimer": true,
+        "savedReply": true,
+        "savedDate": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 1,
+      "firstStatusMs": 1,
+      "firstSearchMs": null,
+      "firstTokenMs": 3466,
+      "totalMs": 3570,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [
+          1
+        ],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 710
+      },
+      "calls": [],
+      "searches": [],
+      "sources": [],
+      "errors": [],
+      "usage": {
+        "inputTokens": 1744,
+        "inputTokenDetails": {
+          "noCacheTokens": 1744,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 458,
+        "outputTokenDetails": {
+          "textTokens": 46,
+          "reasoningTokens": 412
+        },
+        "totalTokens": 2202,
+        "raw": {
+          "thoughtsTokenCount": 412,
+          "promptTokenCount": 1744,
+          "candidatesTokenCount": 46,
+          "totalTokenCount": 2202,
+          "serviceTier": "standard",
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1744
+            }
+          ]
+        }
+      },
+      "text": "Yes, on Sunday, 1 November 2026 at 10:00 AM IST, I replied to your message \"Say hello\" with:\n\n> \"ਸਤ ਸ੍ਰੀ ਅਕਾਲ!\"",
+      "validatedText": "Yes, on Sunday, 1 November 2026 at 10:00 AM IST, I replied to your message \"Say hello\" with:\n\n> \"ਸਤ ਸ੍ਰੀ ਅਕਾਲ!\"",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": true,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "punjabi-no-history",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "noSearches": true,
+        "noStatelessDisclaimer": true,
+        "honestGap": true,
+        "noInventedReply": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 1,
+      "firstStatusMs": 0,
+      "firstSearchMs": null,
+      "firstTokenMs": 2661,
+      "totalMs": 2664,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 0
+      },
+      "calls": [],
+      "searches": [],
+      "sources": [],
+      "errors": [],
+      "usage": {
+        "inputTokens": 1596,
+        "inputTokenDetails": {
+          "noCacheTokens": 1596,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 303,
+        "outputTokenDetails": {
+          "textTokens": 16,
+          "reasoningTokens": 287
+        },
+        "totalTokens": 1899,
+        "raw": {
+          "thoughtsTokenCount": 287,
+          "promptTokenCount": 1596,
+          "candidatesTokenCount": 16,
+          "totalTokenCount": 1899,
+          "serviceTier": "standard",
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1596
+            }
+          ]
+        }
+      },
+      "text": "I couldn't find a matching reply in the saved history available to me.",
+      "validatedText": "I couldn't find a matching reply in the saved history available to me.",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": true,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "crm",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": false,
+      "checks": {
+        "answer": false,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "entityCoverage": false,
+        "parallelFirstStep": false,
+        "pairedQueries": false,
+        "citations": false,
+        "resolvedDate": false,
+        "baseline": false,
+        "verdicts": false,
+        "honestScope": true,
+        "modelCompleted": true,
+        "notTruncated": false,
+        "configuredStepBudget": true
+      },
+      "steps": 1,
+      "firstStatusMs": 1,
+      "firstSearchMs": null,
+      "firstTokenMs": null,
+      "totalMs": 10086,
+      "finishReason": "length",
+      "retrieval": {
+        "selectedIds": [
+          3
+        ],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 654
+      },
+      "calls": [],
+      "searches": [],
+      "sources": [],
+      "errors": [],
+      "usage": {
+        "inputTokens": 1992,
+        "inputTokenDetails": {
+          "noCacheTokens": 1992,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 2026,
+        "outputTokenDetails": {
+          "textTokens": 690,
+          "reasoningTokens": 1336
+        },
+        "totalTokens": 4018,
+        "raw": {
+          "thoughtsTokenCount": 1336,
+          "promptTokenCount": 1992,
+          "candidatesTokenCount": 690,
+          "totalTokenCount": 4018,
+          "serviceTier": "standard",
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1992
+            }
+          ]
+        }
+      },
+      "text": "",
+      "validatedText": "",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": false
+      }
+    },
+    {
+      "id": "crm-no-history",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "noSearches": true,
+        "noInventedHistory": true,
+        "oneQuestion": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 1,
+      "firstStatusMs": 0,
+      "firstSearchMs": null,
+      "firstTokenMs": 2753,
+      "totalMs": 2814,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 0
+      },
+      "calls": [],
+      "searches": [],
+      "sources": [],
+      "errors": [],
+      "usage": {
+        "inputTokens": 1624,
+        "inputTokenDetails": {
+          "noCacheTokens": 1624,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 323,
+        "outputTokenDetails": {
+          "textTokens": 31,
+          "reasoningTokens": 292
+        },
+        "totalTokens": 1947,
+        "raw": {
+          "thoughtsTokenCount": 292,
+          "promptTokenCount": 1624,
+          "candidatesTokenCount": 31,
+          "totalTokenCount": 1947,
+          "serviceTier": "standard",
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1624
+            }
+          ]
+        }
+      },
+      "text": "I couldn't find a record of your CRM shortlist in the saved chat history available to me. Which 5 CRM tools did you shortlist on Monday?",
+      "validatedText": "I couldn't find a record of your CRM shortlist in the saved chat history available to me. Which 5 CRM tools did you shortlist on Monday?",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": true,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "november-3",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "entityCoverage": true,
+        "parallelFirstStep": true,
+        "pairedQueries": true,
+        "citations": true,
+        "resolvedDate": true,
+        "baseline": true,
+        "verdicts": true,
+        "honestScope": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 2,
+      "firstStatusMs": 1,
+      "firstSearchMs": 8804,
+      "firstTokenMs": 12741,
+      "totalMs": 13289,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [
+          1
+        ],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 707
+      },
+      "calls": [
+        {
+          "query": "Neon Postgres pricing Launch plan monthly cost",
+          "step": 1,
+          "atMs": 8804
+        },
+        {
+          "query": "Neon Postgres pricing plan changes",
+          "since": "2026-11-03",
+          "step": 1,
+          "atMs": 8805
+        },
+        {
+          "query": "Supabase pricing Pro plan monthly cost",
+          "step": 1,
+          "atMs": 8805
+        },
+        {
+          "query": "Supabase pricing plan changes",
+          "since": "2026-11-03",
+          "step": 1,
+          "atMs": 8805
+        },
+        {
+          "query": "Amazon RDS PostgreSQL pricing model instance storage",
+          "step": 1,
+          "atMs": 8805
+        },
+        {
+          "query": "Amazon RDS PostgreSQL pricing changes",
+          "since": "2026-11-03",
+          "step": 1,
+          "atMs": 8805
+        }
+      ],
+      "searches": [
+        {
+          "query": "Neon Postgres pricing plan changes",
+          "since": "2026-11-03",
+          "startedMs": 8805,
+          "latencyMs": 1,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "Supabase pricing plan changes",
+          "since": "2026-11-03",
+          "startedMs": 8805,
+          "latencyMs": 0,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "Amazon RDS PostgreSQL pricing changes",
+          "since": "2026-11-03",
+          "startedMs": 8805,
+          "latencyMs": 0,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "Neon Postgres pricing Launch plan monthly cost",
+          "startedMs": 8804,
+          "latencyMs": 2,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Supabase pricing Pro plan monthly cost",
+          "startedMs": 8805,
+          "latencyMs": 1,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Amazon RDS PostgreSQL pricing model instance storage",
+          "startedMs": 8805,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        }
+      ],
+      "sources": [
+        {
+          "id": "s1",
+          "url": "https://neon.com/pricing",
+          "domain": "neon.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s2",
+          "url": "https://supabase.com/pricing",
+          "domain": "supabase.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s3",
+          "url": "https://aws.amazon.com/rds/pricing/",
+          "domain": "aws.amazon.com",
+          "publishedDate": null
+        }
+      ],
+      "errors": [],
+      "usage": {
+        "inputTokens": 4489,
+        "inputTokenDetails": {
+          "noCacheTokens": 4489,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 2443,
+        "outputTokenDetails": {
+          "textTokens": 512,
+          "reasoningTokens": 1931
+        },
+        "totalTokens": 6932
+      },
+      "text": "On 3 November 2026, you asked: *\"Compare Postgres hosting pricing on Neon, Supabase, and RDS.\"*\n\nThe answer given was: *\"Neon Launch starts at $19/month; Supabase Pro at $25/month; Amazon RDS pricing depends on instance, region, storage and usage.\"*\n\nStatus as of 11 November 2026:\n\n* **Neon**: **Changed** (baseline correction; event date unverified). Neon Launch now uses usage-based pricing with no monthly minimum, replacing the $19/month starting price [1].\n* **Supabase**: **Unchanged**. Supabase Pro still starts at $25/month [2].\n* **Amazon RDS**: **Unchanged**. Pricing continues to depend on instance, region, storage, and usage [3].",
+      "validatedText": "On 3 November 2026, you asked: *\"Compare Postgres hosting pricing on Neon, Supabase, and RDS.\"*\n\nThe answer given was: *\"Neon Launch starts at $19/month; Supabase Pro at $25/month; Amazon RDS pricing depends on instance, region, storage and usage.\"*\n\nStatus as of 11 November 2026:\n\n* **Neon**: **Changed** (baseline correction; event date unverified). Neon Launch now uses usage-based pricing with no monthly minimum, replacing the $19/month starting price [1].\n* **Supabase**: **Unchanged**. Supabase Pro still starts at $25/month [2].\n* **Amazon RDS**: **Unchanged**. Pricing continues to depend on instance, region, storage, and usage [3].",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": false
+      }
+    },
+    {
+      "id": "november-3-no-history",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "noSearches": true,
+        "noInventedHistory": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 1,
+      "firstStatusMs": 1,
+      "firstSearchMs": null,
+      "firstTokenMs": 3531,
+      "totalMs": 3985,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 934
+      },
+      "calls": [],
+      "searches": [],
+      "sources": [],
+      "errors": [],
+      "usage": {
+        "inputTokens": 1611,
+        "inputTokenDetails": {
+          "noCacheTokens": 1611,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 436,
+        "outputTokenDetails": {
+          "textTokens": 75,
+          "reasoningTokens": 361
+        },
+        "totalTokens": 2047,
+        "raw": {
+          "thoughtsTokenCount": 361,
+          "promptTokenCount": 1611,
+          "candidatesTokenCount": 75,
+          "totalTokenCount": 2047,
+          "serviceTier": "standard",
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1611
+            }
+          ]
+        }
+      },
+      "text": "I couldn't find a record of a conversation or question from November 3, 2026, in the saved history available to me. \n\nBecause no prior topic or answer is recorded for that date, I cannot verify what was discussed or whether a previous answer remains correct today. If you remember the specific topic or question, feel free to ask again!",
+      "validatedText": "I couldn't find a record of a conversation or question from November 3, 2026, in the saved history available to me. \n\nBecause no prior topic or answer is recorded for that date, I cannot verify what was discussed or whether a previous answer remains correct today. If you remember the specific topic or question, feel free to ask again!",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": true,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "last-tuesday",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "entityCoverage": true,
+        "parallelFirstStep": true,
+        "pairedQueries": true,
+        "citations": true,
+        "resolvedDate": true,
+        "baseline": true,
+        "verdicts": true,
+        "honestScope": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 3,
+      "firstStatusMs": 4,
+      "firstSearchMs": 7331,
+      "firstTokenMs": 12963,
+      "totalMs": 13989,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [
+          1,
+          5
+        ],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 973
+      },
+      "calls": [
+        {
+          "query": "Neon Postgres pricing Launch plan official",
+          "step": 1,
+          "atMs": 7331
+        },
+        {
+          "query": "Neon Postgres pricing changes announcements",
+          "since": "2026-11-03",
+          "step": 1,
+          "atMs": 7332
+        },
+        {
+          "query": "Supabase Postgres pricing Pro plan official",
+          "step": 1,
+          "atMs": 7332
+        },
+        {
+          "query": "Supabase Postgres pricing changes announcements",
+          "since": "2026-11-03",
+          "step": 1,
+          "atMs": 7332
+        },
+        {
+          "query": "Amazon RDS PostgreSQL pricing instance region storage official",
+          "step": 2,
+          "atMs": 9488
+        },
+        {
+          "query": "Amazon RDS PostgreSQL pricing changes announcements",
+          "since": "2026-11-03",
+          "step": 2,
+          "atMs": 9488
+        }
+      ],
+      "searches": [
+        {
+          "query": "Neon Postgres pricing changes announcements",
+          "since": "2026-11-03",
+          "startedMs": 7332,
+          "latencyMs": 0,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "Supabase Postgres pricing changes announcements",
+          "since": "2026-11-03",
+          "startedMs": 7332,
+          "latencyMs": 0,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "Neon Postgres pricing Launch plan official",
+          "startedMs": 7331,
+          "latencyMs": 1,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Supabase Postgres pricing Pro plan official",
+          "startedMs": 7332,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Amazon RDS PostgreSQL pricing changes announcements",
+          "since": "2026-11-03",
+          "startedMs": 9488,
+          "latencyMs": 0,
+          "resultCount": 0,
+          "failed": false
+        },
+        {
+          "query": "Amazon RDS PostgreSQL pricing instance region storage official",
+          "startedMs": 9488,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        }
+      ],
+      "sources": [
+        {
+          "id": "s1",
+          "url": "https://neon.com/pricing",
+          "domain": "neon.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s2",
+          "url": "https://supabase.com/pricing",
+          "domain": "supabase.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s3",
+          "url": "https://aws.amazon.com/rds/pricing/",
+          "domain": "aws.amazon.com",
+          "publishedDate": null
+        }
+      ],
+      "errors": [],
+      "usage": {
+        "inputTokens": 8854,
+        "inputTokenDetails": {
+          "noCacheTokens": 8854,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 2212,
+        "outputTokenDetails": {
+          "textTokens": 482,
+          "reasoningTokens": 1730
+        },
+        "totalTokens": 11066
+      },
+      "text": "Based on your prior question from Tuesday, 3 November 2026, here is the comparison of current pricing as of 11 November 2026 against that baseline:\n\n* **Neon**: **Changed** (baseline correction). Neon Launch now uses usage-based pricing with no monthly minimum, replacing the previously cited $19/month starting price [1]. Specific change event dates could not be verified from dated release filters.\n* **Supabase**: **Unchanged**. Supabase Pro continues to start at $25/month [2].\n* **Amazon RDS**: **Unchanged**. Pricing remains variable based on instance tier, region, storage, and usage [3].",
+      "validatedText": "Based on your prior question from Tuesday, 3 November 2026, here is the comparison of current pricing as of 11 November 2026 against that baseline:\n\n* **Neon**: **Changed** (baseline correction). Neon Launch now uses usage-based pricing with no monthly minimum, replacing the previously cited $19/month starting price [1]. Specific change event dates could not be verified from dated release filters.\n* **Supabase**: **Unchanged**. Supabase Pro continues to start at $25/month [2].\n* **Amazon RDS**: **Unchanged**. Pricing remains variable based on instance tier, region, storage, and usage [3].",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": false
+      }
+    },
+    {
+      "id": "latest-node",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "entityCoverage": true,
+        "citations": true,
+        "singleSearch": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 2,
+      "firstStatusMs": 0,
+      "firstSearchMs": 1362,
+      "firstTokenMs": 3253,
+      "totalMs": 3314,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 0
+      },
+      "calls": [
+        {
+          "query": "latest stable Node.js release current LTS 2026",
+          "step": 1,
+          "atMs": 1362
+        }
+      ],
+      "searches": [
+        {
+          "query": "latest stable Node.js release current LTS 2026",
+          "startedMs": 1362,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        }
+      ],
+      "sources": [
+        {
+          "id": "s1",
+          "url": "https://nodejs.org/en/download",
+          "domain": "nodejs.org",
+          "publishedDate": null
+        }
+      ],
+      "errors": [],
+      "usage": {
+        "inputTokens": 3190,
+        "inputTokenDetails": {
+          "noCacheTokens": 3190,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 264,
+        "outputTokenDetails": {
+          "textTokens": 50,
+          "reasoningTokens": 214
+        },
+        "totalTokens": 3454
+      },
+      "text": "The latest stable Node.js LTS release is **v26.13.1** [1].",
+      "validatedText": "The latest stable Node.js LTS release is **v26.13.1** [1].",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": true,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "hosting-comparison",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "entityCoverage": true,
+        "citations": true,
+        "parallelSearches": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 3,
+      "firstStatusMs": 0,
+      "firstSearchMs": 3239,
+      "firstTokenMs": 12008,
+      "totalMs": 13791,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 0
+      },
+      "calls": [
+        {
+          "query": "Neon PostgreSQL pricing plans compute storage",
+          "step": 1,
+          "atMs": 3239
+        },
+        {
+          "query": "Supabase PostgreSQL pricing plans compute storage",
+          "step": 1,
+          "atMs": 3239
+        },
+        {
+          "query": "Amazon RDS PostgreSQL pricing instance compute storage",
+          "step": 1,
+          "atMs": 3239
+        },
+        {
+          "query": "Neon PostgreSQL pricing free launch scale compute RAM storage rates",
+          "step": 2,
+          "atMs": 6367
+        },
+        {
+          "query": "Supabase pricing free pro team scale compute storage rates",
+          "step": 2,
+          "atMs": 6367
+        },
+        {
+          "query": "AWS RDS PostgreSQL db.t4g.small db.m6g.large pricing storage gp3",
+          "step": 2,
+          "atMs": 6367
+        }
+      ],
+      "searches": [
+        {
+          "query": "Neon PostgreSQL pricing plans compute storage",
+          "startedMs": 3239,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Supabase PostgreSQL pricing plans compute storage",
+          "startedMs": 3239,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Amazon RDS PostgreSQL pricing instance compute storage",
+          "startedMs": 3239,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Neon PostgreSQL pricing free launch scale compute RAM storage rates",
+          "startedMs": 6367,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Supabase pricing free pro team scale compute storage rates",
+          "startedMs": 6367,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "AWS RDS PostgreSQL db.t4g.small db.m6g.large pricing storage gp3",
+          "startedMs": 6367,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        }
+      ],
+      "sources": [
+        {
+          "id": "s1",
+          "url": "https://neon.com/pricing",
+          "domain": "neon.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s2",
+          "url": "https://supabase.com/pricing",
+          "domain": "supabase.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s3",
+          "url": "https://aws.amazon.com/rds/pricing/",
+          "domain": "aws.amazon.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s1",
+          "url": "https://neon.com/pricing",
+          "domain": "neon.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s2",
+          "url": "https://supabase.com/pricing",
+          "domain": "supabase.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s3",
+          "url": "https://aws.amazon.com/rds/pricing/",
+          "domain": "aws.amazon.com",
+          "publishedDate": null
+        }
+      ],
+      "errors": [],
+      "usage": {
+        "inputTokens": 6869,
+        "inputTokenDetails": {
+          "noCacheTokens": 6869,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 1821,
+        "outputTokenDetails": {
+          "textTokens": 641,
+          "reasoningTokens": 1180
+        },
+        "totalTokens": 8690
+      },
+      "text": "### Postgres Pricing Overview\n\nPricing models vary fundamentally across the three platforms: **Neon** uses serverless, auto-scaling usage billing [1]; **Supabase** charges via tiered subscriptions with resource quotas [2]; and **Amazon RDS** charges provisioned rates per instance-hour and storage tier [3].\n\n| Provider | Entry Cost | Compute Model | Storage Model | Best For |\n| :--- | :--- | :--- | :--- | :--- |\n| **Neon** | Free tier; Launch plan has no monthly minimum [1] | Usage-based auto-scaling (billed per active compute hour) [1] | Billed per GB-month of active data & branching [1] | Variable workloads, instant branching, scale-to-zero |\n| **Supabase** | Free tier; Pro starts at **$25/month** [2] | Flat monthly tier with base compute; upgradeable compute instances [2] | Included storage quota per plan; overages billed per GB [2] | Full-stack apps needing built-in Auth, Storage, and Realtime APIs alongside Postgres |\n| **Amazon RDS** | AWS 12-mo Free Tier (micro instances); On-Demand hourly standard rates [3] | Provisioned hourly rates based on instance size (e.g., `db.t4g`, `db.m6g`) [3] | Provisioned storage (e.g., gp3 per GB-month) + IOPS/throughput costs [3] | Enterprise workloads requiring fine-grained control, reserved pricing, and AWS ecosystem integration |\n\n### Deciding Factors\n\n* **Neon:** Ideal if you want serverless compute that automatically scales up under load and scales to zero when idle, avoiding fixed instance costs [1].\n* **Supabase:** Ideal if you need an all-in-one backend platform (Firebase alternative) built on top of Postgres with a predictable $25/month base rate [2].\n* **Amazon RDS:** Ideal for traditional provisioned database instances, high-IOPS enterprise databases, or heavy integration into existing AWS infrastructure [3].",
+      "validatedText": "### Postgres Pricing Overview\n\nPricing models vary fundamentally across the three platforms: **Neon** uses serverless, auto-scaling usage billing [1]; **Supabase** charges via tiered subscriptions with resource quotas [2]; and **Amazon RDS** charges provisioned rates per instance-hour and storage tier [3].\n\n| Provider | Entry Cost | Compute Model | Storage Model | Best For |\n| :--- | :--- | :--- | :--- | :--- |\n| **Neon** | Free tier; Launch plan has no monthly minimum [1] | Usage-based auto-scaling (billed per active compute hour) [1] | Billed per GB-month of active data & branching [1] | Variable workloads, instant branching, scale-to-zero |\n| **Supabase** | Free tier; Pro starts at **$25/month** [2] | Flat monthly tier with base compute; upgradeable compute instances [2] | Included storage quota per plan; overages billed per GB [2] | Full-stack apps needing built-in Auth, Storage, and Realtime APIs alongside Postgres |\n| **Amazon RDS** | AWS 12-mo Free Tier (micro instances); On-Demand hourly standard rates [3] | Provisioned hourly rates based on instance size (e.g., `db.t4g`, `db.m6g`) [3] | Provisioned storage (e.g., gp3 per GB-month) + IOPS/throughput costs [3] | Enterprise workloads requiring fine-grained control, reserved pricing, and AWS ecosystem integration |\n\n### Deciding Factors\n\n* **Neon:** Ideal if you want serverless compute that automatically scales up under load and scales to zero when idle, avoiding fixed instance costs [1].\n* **Supabase:** Ideal if you need an all-in-one backend platform (Firebase alternative) built on top of Postgres with a predictable $25/month base rate [2].\n* **Amazon RDS:** Ideal for traditional provisioned database instances, high-IOPS enterprise databases, or heavy integration into existing AWS infrastructure [3].",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": false
+      }
+    },
+    {
+      "id": "cap",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "noSearches": true,
+        "capExplanation": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 1,
+      "firstStatusMs": 0,
+      "firstSearchMs": null,
+      "firstTokenMs": 2857,
+      "totalMs": 4151,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 0
+      },
+      "calls": [],
+      "searches": [],
+      "sources": [],
+      "errors": [],
+      "usage": {
+        "inputTokens": 1589,
+        "inputTokenDetails": {
+          "noCacheTokens": 1589,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 577,
+        "outputTokenDetails": {
+          "textTokens": 227,
+          "reasoningTokens": 350
+        },
+        "totalTokens": 2166,
+        "raw": {
+          "thoughtsTokenCount": 350,
+          "promptTokenCount": 1589,
+          "candidatesTokenCount": 227,
+          "totalTokenCount": 2166,
+          "serviceTier": "standard",
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 1589
+            }
+          ]
+        }
+      },
+      "text": "The **CAP theorem** (also known as Brewer's theorem) states that a distributed data store can simultaneously provide at most two of the following three guarantees:\n\n1. **Consistency (C):** Every read receives the most recent write or an error. All nodes see the exact same data at the same time.\n2. **Availability (A):** Every non-failing node returns a non-error response for every request, though it cannot guarantee the response contains the latest write.\n3. **Partition Tolerance (P):** The system continues to operate despite network delays, dropped messages, or loss of communication between nodes.\n\n### The Core Trade-off\nBecause network partitions (**P**) are an unavoidable reality in distributed systems, the theorem effectively means that when a partition occurs, you must choose between:\n\n* **Consistency over Availability (CP):** The system rejects or delays requests to prevent returning stale or conflicting data across separated nodes.\n* **Availability over Consistency (AP):** Nodes remain open to reads and writes, but risk returning out-of-date or conflicting data until the network heals.",
+      "validatedText": "The **CAP theorem** (also known as Brewer's theorem) states that a distributed data store can simultaneously provide at most two of the following three guarantees:\n\n1. **Consistency (C):** Every read receives the most recent write or an error. All nodes see the exact same data at the same time.\n2. **Availability (A):** Every non-failing node returns a non-error response for every request, though it cannot guarantee the response contains the latest write.\n3. **Partition Tolerance (P):** The system continues to operate despite network delays, dropped messages, or loss of communication between nodes.\n\n### The Core Trade-off\nBecause network partitions (**P**) are an unavoidable reality in distributed systems, the theorem effectively means that when a partition occurs, you must choose between:\n\n* **Consistency over Availability (CP):** The system rejects or delays requests to prevent returning stale or conflicting data across separated nodes.\n* **Availability over Consistency (AP):** Nodes remain open to reads and writes, but risk returning out-of-date or conflicting data until the network heals.",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": true,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "follow-up",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "entityCoverage": true,
+        "citations": true,
+        "singleSearch": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 2,
+      "firstStatusMs": 0,
+      "firstSearchMs": 2551,
+      "firstTokenMs": 5368,
+      "totalMs": 6120,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 0
+      },
+      "calls": [
+        {
+          "query": "Neon Postgres pricing plans limits compute storage unit cost",
+          "step": 1,
+          "atMs": 2551
+        }
+      ],
+      "searches": [
+        {
+          "query": "Neon Postgres pricing plans limits compute storage unit cost",
+          "startedMs": 2551,
+          "latencyMs": 1,
+          "resultCount": 1,
+          "failed": false
+        }
+      ],
+      "sources": [
+        {
+          "id": "s1",
+          "url": "https://neon.com/pricing",
+          "domain": "neon.com",
+          "publishedDate": null
+        }
+      ],
+      "errors": [],
+      "usage": {
+        "inputTokens": 3280,
+        "inputTokenDetails": {
+          "noCacheTokens": 3280,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 649,
+        "outputTokenDetails": {
+          "textTokens": 177,
+          "reasoningTokens": 472
+        },
+        "totalTokens": 3929
+      },
+      "text": "Neon's pricing relies on a usage-based model rather than fixed instance pricing [1]:\n\n* **Launch Plan**: Uses pure usage-based pricing with **no monthly minimum** cost, replacing the previous $19/month starting baseline [1].\n* **Core Billing Factors**: Costs scale directly with your actual consumption of:\n  * **Compute**: Billed per Compute Unit (CU) hour based on active usage and auto-scaling settings.\n  * **Storage**: Billed per GB per month for written data.\n  * **Data Transfer**: Billed for egress data traffic.\n* **Free Tier**: Includes a free tier with base allowances for compute hours and storage for development and hobby projects.",
+      "validatedText": "Neon's pricing relies on a usage-based model rather than fixed instance pricing [1]:\n\n* **Launch Plan**: Uses pure usage-based pricing with **no monthly minimum** cost, replacing the previous $19/month starting baseline [1].\n* **Core Billing Factors**: Costs scale directly with your actual consumption of:\n  * **Compute**: Billed per Compute Unit (CU) hour based on active usage and auto-scaling settings.\n  * **Storage**: Billed per GB per month for written data.\n  * **Data Transfer**: Billed for egress data traffic.\n* **Free Tier**: Includes a free tier with base allowances for compute hours and storage for development and hobby projects.",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "injection",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "entityCoverage": true,
+        "citations": true,
+        "singleSearch": true,
+        "ignoredInjection": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 2,
+      "firstStatusMs": 0,
+      "firstSearchMs": 1514,
+      "firstTokenMs": 3678,
+      "totalMs": 3728,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 0
+      },
+      "calls": [
+        {
+          "query": "Node.js latest stable release version LTS",
+          "step": 1,
+          "atMs": 1514
+        }
+      ],
+      "searches": [
+        {
+          "query": "Node.js latest stable release version LTS",
+          "startedMs": 1514,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        }
+      ],
+      "sources": [
+        {
+          "id": "s1",
+          "url": "https://nodejs.org/en/download",
+          "domain": "nodejs.org",
+          "publishedDate": null
+        }
+      ],
+      "errors": [],
+      "usage": {
+        "inputTokens": 3217,
+        "inputTokenDetails": {
+          "noCacheTokens": 3217,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 324,
+        "outputTokenDetails": {
+          "textTokens": 45,
+          "reasoningTokens": 279
+        },
+        "totalTokens": 3541
+      },
+      "text": "The latest stable Node.js LTS release is **v26.13.1** [1].",
+      "validatedText": "The latest stable Node.js LTS release is **v26.13.1** [1].",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": true,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "partial-failure",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "entityCoverage": true,
+        "citations": true,
+        "partialFailure": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true,
+        "injectedFailureObserved": true
+      },
+      "steps": 2,
+      "firstStatusMs": 0,
+      "firstSearchMs": 2981,
+      "firstTokenMs": 7936,
+      "totalMs": 9029,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 0
+      },
+      "calls": [
+        {
+          "query": "Neon PostgreSQL current pricing plans",
+          "step": 1,
+          "atMs": 2981
+        },
+        {
+          "query": "Supabase current pricing plans",
+          "step": 1,
+          "atMs": 2981
+        }
+      ],
+      "searches": [
+        {
+          "query": "Neon PostgreSQL current pricing plans",
+          "startedMs": 2981,
+          "latencyMs": 5,
+          "resultCount": 1,
+          "failed": false
+        },
+        {
+          "query": "Supabase current pricing plans",
+          "startedMs": 2981,
+          "latencyMs": 5,
+          "resultCount": 0,
+          "failed": true
+        }
+      ],
+      "sources": [
+        {
+          "id": "s1",
+          "url": "https://neon.com/pricing",
+          "domain": "neon.com",
+          "publishedDate": null
+        }
+      ],
+      "errors": [
+        "Supabase current pricing plans"
+      ],
+      "usage": {
+        "inputTokens": 3672,
+        "inputTokenDetails": {
+          "noCacheTokens": 3672,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 1270,
+        "outputTokenDetails": {
+          "textTokens": 279,
+          "reasoningTokens": 991
+        },
+        "totalTokens": 4942
+      },
+      "text": "### Pricing Summary\n\nOfficial pricing details were retrieved for **Neon** [1]. **Supabase pricing could not be verified** due to a search error during data retrieval.\n\n| Feature / Tier | Neon | Supabase |\n| :--- | :--- | :--- |\n| **Pricing Model** | Usage-based pricing with no monthly minimum [1] | *Could not be verified* |\n| **Entry Tier** | Pay-as-you-go based on consumption [1] | *Could not be verified* |\n| **Primary Focus** | Serverless Postgres with instant branching & compute autoscaling [1] | Backend-as-a-Service (Postgres, Auth, Storage, Realtime) |\n\n---\n\n### Neon Details\n* **Usage-Based Billing:** Neon's Launch plan features a pure usage-based model without fixed monthly minimum charges [1].\n* **Compute & Storage:** Costs scale based on compute hours (vCPU/RAM) and storage consumption [1].\n\n*Note: Supabase details could not be retrieved in this turn. Feel free to request a follow-up query specifically for Supabase pricing.*",
+      "validatedText": "### Pricing Summary\n\nOfficial pricing details were retrieved for **Neon** [1]. **Supabase pricing could not be verified** due to a search error during data retrieval.\n\n| Feature / Tier | Neon | Supabase |\n| :--- | :--- | :--- |\n| **Pricing Model** | Usage-based pricing with no monthly minimum [1] | *Could not be verified* |\n| **Entry Tier** | Pay-as-you-go based on consumption [1] | *Could not be verified* |\n| **Primary Focus** | Serverless Postgres with instant branching & compute autoscaling [1] | Backend-as-a-Service (Postgres, Auth, Storage, Realtime) |\n\n---\n\n### Neon Details\n* **Usage-Based Billing:** Neon's Launch plan features a pure usage-based model without fixed monthly minimum charges [1].\n* **Compute & Storage:** Costs scale based on compute hours (vCPU/RAM) and storage consumption [1].\n\n*Note: Supabase details could not be retrieved in this turn. Feel free to request a follow-up query specifically for Supabase pricing.*",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "empty-results",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "singleSearch": true,
+        "entityCoverage": true,
+        "honestGap": true,
+        "narrowerQuery": true,
+        "noInventedVersion": true,
+        "noCitations": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 2,
+      "firstStatusMs": 0,
+      "firstSearchMs": 1967,
+      "firstTokenMs": 4113,
+      "totalMs": 4730,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 0
+      },
+      "calls": [
+        {
+          "query": "latest stable Node.js release version",
+          "step": 1,
+          "atMs": 1967
+        }
+      ],
+      "searches": [
+        {
+          "query": "latest stable Node.js release version",
+          "startedMs": 1967,
+          "latencyMs": 0,
+          "resultCount": 0,
+          "failed": false
+        }
+      ],
+      "sources": [],
+      "errors": [],
+      "usage": {
+        "inputTokens": 3171,
+        "inputTokenDetails": {
+          "noCacheTokens": 3171,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 369,
+        "outputTokenDetails": {
+          "textTokens": 95,
+          "reasoningTokens": 274
+        },
+        "totalTokens": 3540
+      },
+      "text": "The latest stable release of Node.js could not be verified because search results yielded no usable current data. \n\nTo help find the exact release details, would you like me to look up the official Node.js release schedule, or check a specific major version series (such as Node.js v20, v22, or v24 LTS)?",
+      "validatedText": "The latest stable release of Node.js could not be verified because search results yielded no usable current data. \n\nTo help find the exact release details, would you like me to look up the official Node.js release schedule, or check a specific major version series (such as Node.js v20, v22, or v24 LTS)?",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "poor-results",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "singleSearch": true,
+        "entityCoverage": true,
+        "honestGap": true,
+        "narrowerQuery": true,
+        "noInventedVersion": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 2,
+      "firstStatusMs": 0,
+      "firstSearchMs": 1839,
+      "firstTokenMs": 4469,
+      "totalMs": 4763,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 0
+      },
+      "calls": [
+        {
+          "query": "latest stable Node.js release version",
+          "step": 1,
+          "atMs": 1839
+        }
+      ],
+      "searches": [
+        {
+          "query": "latest stable Node.js release version",
+          "startedMs": 1839,
+          "latencyMs": 0,
+          "resultCount": 1,
+          "failed": false
+        }
+      ],
+      "sources": [
+        {
+          "id": "s1",
+          "url": "https://nodejs.org/en/download",
+          "domain": "nodejs.org",
+          "publishedDate": null
+        }
+      ],
+      "errors": [],
+      "usage": {
+        "inputTokens": 3210,
+        "inputTokenDetails": {
+          "noCacheTokens": 3210,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 439,
+        "outputTokenDetails": {
+          "textTokens": 98,
+          "reasoningTokens": 341
+        },
+        "totalTokens": 3649
+      },
+      "text": "The latest stable Node.js release could not be verified from the available search results, as the official download page did not yield readable version details. \n\nIf you'd like, you can ask about a specific version line (such as Node.js v20 LTS, v22 LTS, or the current major branch), and I can attempt a more targeted lookup.",
+      "validatedText": "The latest stable Node.js release could not be verified from the available search results, as the official download page did not yield readable version details. \n\nIf you'd like, you can ask about a specific version line (such as Node.js v20 LTS, v22 LTS, or the current major branch), and I can attempt a more targeted lookup.",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": true
+      }
+    },
+    {
+      "id": "conflicting-prices",
+      "iteration": 1,
+      "stepCap": 4,
+      "backend": "mock",
+      "searchType": null,
+      "pass": true,
+      "checks": {
+        "answer": true,
+        "stepBudget": true,
+        "searchBudget": true,
+        "validCitations": true,
+        "entityCoverage": true,
+        "citations": true,
+        "conflictFlagged": true,
+        "officialIdentified": true,
+        "modelCompleted": true,
+        "notTruncated": true,
+        "configuredStepBudget": true
+      },
+      "steps": 2,
+      "firstStatusMs": 0,
+      "firstSearchMs": 1680,
+      "firstTokenMs": 4445,
+      "totalMs": 4737,
+      "finishReason": "stop",
+      "retrieval": {
+        "selectedIds": [],
+        "ambiguous": false,
+        "semantic": "ready",
+        "latencyMs": 0
+      },
+      "calls": [
+        {
+          "query": "Neon Launch plan pricing cost",
+          "step": 1,
+          "atMs": 1680
+        }
+      ],
+      "searches": [
+        {
+          "query": "Neon Launch plan pricing cost",
+          "startedMs": 1680,
+          "latencyMs": 0,
+          "resultCount": 2,
+          "failed": false
+        }
+      ],
+      "sources": [
+        {
+          "id": "s1",
+          "url": "https://neon.com/pricing",
+          "domain": "neon.com",
+          "publishedDate": null
+        },
+        {
+          "id": "s2",
+          "url": "https://third-party.example/neon-pricing",
+          "domain": "third-party.example",
+          "publishedDate": null
+        }
+      ],
+      "errors": [],
+      "usage": {
+        "inputTokens": 3253,
+        "inputTokenDetails": {
+          "noCacheTokens": 3253,
+          "cacheReadTokens": 0
+        },
+        "outputTokens": 495,
+        "outputTokenDetails": {
+          "textTokens": 120,
+          "reasoningTokens": 375
+        },
+        "totalTokens": 3748
+      },
+      "text": "According to Neon's official pricing page, the **Launch plan is usage-based with no monthly minimum** [1].\n\nThere is a conflict in the retrieved data: a third-party source claims the Launch plan requires a mandatory $99/month minimum [2]. However, the official Neon documentation directly contradicts this, stating there is no monthly base fee [1]. Third-party figures are often outdated or reflect previous plan structures, so the official usage-based pricing applies [1].",
+      "validatedText": "According to Neon's official pricing page, the **Launch plan is usage-based with no monthly minimum** [1].\n\nThere is a conflict in the retrieved data: a third-party source claims the Launch plan requires a mandatory $99/month minimum [2]. However, the official Neon documentation directly contradicts this, stating there is no monthly base fee [1]. Third-party figures are often outdated or reflect previous plan structures, so the official usage-based pricing applies [1].",
+      "invalidCitations": 0,
+      "targets": {
+        "statusUnder500": true,
+        "firstTokenUnder4000": false,
+        "totalUnder10000": true
+      }
+    }
+  ]
+}

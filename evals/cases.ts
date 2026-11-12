@@ -1,3 +1,4 @@
+import { memoryCases } from './memory-fixtures.js';
 export const temporalCases = [
   { id: 'crm', seeded: true, question: 'On Monday we shortlisted 5 CRM tools. Has any changed pricing or shipped something big since?', entities: ['hubspot', 'salesforce', 'zoho', 'pipedrive', 'freshsales'], since: '2026-11-09' },
   { id: 'crm-no-history', seeded: false, question: 'On Monday we shortlisted 5 CRM tools. Has any changed pricing or shipped something big since?', entities: [], since: '' },
@@ -7,6 +8,9 @@ export const temporalCases = [
 ];
 
 export const evalCases = [
+  ...memoryCases.map(c => ({ id: `memory-${c.id}`,kind:'memory-general',seeded:true,question:c.question,entities:[],since:'' })),
+  { id: 'punjabi-recall', kind: 'memory', seeded: true, question: 'did you ever reply to me in punjabi across any session', entities: [], since: '' },
+  { id: 'punjabi-no-history', kind: 'memory', seeded: false, question: 'did you ever reply to me in punjabi across any session', entities: [], since: '' },
   ...temporalCases.map(c => ({ ...c, kind: 'temporal' })),
   { id: 'latest-node', kind: 'latest', seeded: false, question: "What's the latest stable Node.js release?", entities: ['node'], since: '' },
   { id: 'hosting-comparison', kind: 'comparison', seeded: false, question: 'Compare current Postgres hosting pricing on Neon, Supabase, and RDS.', entities: ['neon', 'supabase', 'rds'], since: '' },

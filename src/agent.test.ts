@@ -87,3 +87,33 @@ test('Gemini synthesis receives plain evidence without function-call history', a
   expect(JSON.stringify(requests[1].contents)).not.toMatch(/functionCall|functionResponse/);
   expect(JSON.stringify(requests[1].contents)).toContain('Research is complete');
 });
+
+test('change checks repair missing coverage before synthesis and surface failed evidence', async () => {
+  const baseline = { id:2,questionId:1,question:'Compare Neon and Supabase',answer:'Neon $19; Supabase $25',answeredAt:'2026-11-03T00:00:00Z',since:'2026-11-03' };
+  let round = 0;
+  const m = new MockLanguageModelV3({ doStream: async options => {
+    const n = round++;
+    const plan = { baselineId:2,entity:'Neon',entities:['Neon','Supabase'] };
+    const inputs = n === 0 ? [{ ...plan,query:'Neon official pricing' }] : n === 1 ? [
+      { ...plan,query:'Neon changes',since:'2026-11-03' },
+      { ...plan,entity:'Supabase',query:'Supabase official pricing' },
+      { ...plan,entity:'Supabase',query:'Supabase changes',since:'2026-11-03' },
+    ] : [];
+    const chunks: LanguageModelV3StreamPart[] = inputs.length ? inputs.map((input,i) => ({ type:'tool-call',toolCallId:`${n}-${i}`,toolName:'web_search',input:JSON.stringify(input) })) : [
+      { type:'text-start',id:'a' },{ type:'text-delta',id:'a',delta:'Could not verify Supabase.' },{ type:'text-end',id:'a' },
+    ];
+    chunks.push({ type:'finish',finishReason:{ unified:inputs.length ? 'tool-calls' : 'stop',raw:undefined },usage:{ inputTokens:{total:1,noCache:1,cacheRead:0,cacheWrite:0},outputTokens:{total:1,text:1,reasoning:0} } });
+    return { stream:simulateReadableStream({chunks,chunkDelayInMs:0}) };
+  } });
+  const result = runAgent({ messages:[{role:'user',content:'Has pricing changed?'}],baselines:[baseline],changeCheck:true,model:m,
+    search:{ search:async query => { if (query.startsWith('Supabase')) throw new Error('failed'); return { searchedAt:'',results:[] }; } },
+  });
+  await result.consumeStream();
+  expect(m.doStreamCalls).toHaveLength(3);
+  expect(m.doStreamCalls[1].toolChoice).toEqual({type:'required'});
+  expect(m.doStreamCalls[2].toolChoice).toEqual({type:'none'});
+  const final = JSON.stringify(m.doStreamCalls[2].prompt);
+  expect(final).toContain('RESEARCH COVERAGE');
+  expect(final).toContain('canCompareCurrentClaim');
+  expect(final).toContain('failed');
+});

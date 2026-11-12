@@ -39,3 +39,15 @@ References are validated before streamed display and saving. Known `[s1]` refere
 Failed searches remain gaps in otherwise usable answers. Empty results or sources without usable excerpts carry an explicit insufficient-evidence instruction. Interrupted/truncated replies show an error, preserve available text with an interruption marker, and never report successful completion. Network loss leaves the composer usable for retrying.
 
 The server emits one JSON metrics line per admitted turn: turn IDs, outcome, search counts/durations/failures, timings, numeric token usage, and invalid-citation count. Prompts, search query text, sources, IPs, headers, upstream exceptions, and raw provider metadata are omitted. Usage is null when unavailable after a failure. CLI status logs also omit query text; full search records remain in SQLite, and optional eval JSON deliberately includes synthetic case inputs/answers for review.
+
+## Cross-session memory
+
+Chat text lives in `data/chat.sqlite`; browser localStorage holds `fieldnote-user` and `fieldnote-conversation` IDs. New chat preserves the same user identity and earlier saved chats. Clearing browser storage or using another browser/origin creates a different namespace.
+
+Before each answer, Fieldnote merges date matches, FTS5 matches from both roles, and Gemini semantic matches, returning up to six exchanges with relevant passages and nearby context. Ambiguous weekdays consider two past occurrences. Explicit dates constrain retrieval to that day. Retrieval exposes weak matches, date ambiguity, and unavailable or partially indexed semantic history to the model. Missing matches do not establish that an exchange never happened.
+
+The same Gemini API key generates 768-dimensional embeddings with `gemini-embedding-001`. Passages are 1000 characters with 200-character overlap; both user questions and assistant replies are indexed. SQLite stores normalized vectors with a versioned cache; changing indexed text invalidates that exchange. A request backfills at most eight old exchanges alongside query embedding, with a four-second deadline. New replies are indexed after delivery. Older unindexed history remains available through dates/keywords. Run `npm run memory:index` for a complete backfill; the command is resumable and does not rewrite conversations. Embedding calls send saved passages to Gemini and may consume quota. No separate vector service is used.
+
+For change checks, the model declares the saved baseline ID and full entity list in web-search calls. Code validates names against the saved baseline and validates the since-date, tracks current and dated searches per declared entity, and supplies missing/empty/failed evidence to final synthesis. Checks establish coverage of the declared list, not completeness of entity extraction or factual support of each claim.
+
+Verification: `npm test`, `npm run eval:memory`, and `npm run eval`. Retrieval evaluation uses a synthetic corpus and reports keyword/hybrid recall, top-one selection, similarity scores, and latency independently of answer generation. These small fixtures do not establish universal multilingual or semantic accuracy.
