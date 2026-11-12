@@ -24,9 +24,14 @@ test('missing-history case rejects blind searches and multiple clarifying questi
 test('temporal checks require paired filters, date, baseline, and independent first-step calls', () => {
   const c=get('november-3');
   const calls=c.entities.flatMap(query=>[{query,since:'2026-11-03',step:1},{query,step:1}]);
-  const text='3 November 2026 baseline $19 and $25.\nNeon Changed [1]\nSupabase Unchanged [1]\nAmazon RDS Unchanged [1]';
+  const text='3 November 2026 baseline $19 and $25.\nNeon Changed [1]\nSupabase No evidence of change [1]\nAmazon RDS No evidence of change [1]';
   expect(Object.values(assertions(c,calls,text,[source],2)).every(Boolean)).toBe(true);
   expect(assertions(c,calls.filter(call=>call.since),text,[source],2).pairedQueries).toBe(false);
   expect(assertions(c,calls.map(call=>({...call,step:2})),text,[source],3).parallelFirstStep).toBe(false);
   expect(assertions(c,calls,'Changed [1]',[source],2).baseline).toBe(false);
+});
+
+test('change verdicts reject unsupported certainty', () => {
+  expect(assertions(get('crm'), [], 'None of the CRM starting prices have changed.', [], 1).honestScope).toBe(false);
+  expect(assertions(get('crm'), [], 'HubSpot Unchanged [1]', [source], 1).honestScope).toBe(false);
 });

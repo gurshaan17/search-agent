@@ -9,8 +9,10 @@ function modelWithCalls(count: number, repeat = false) {
   let round = 0;
   return new MockLanguageModelV3({ doStream: async (options) => {
     const searching = (round++ === 0 || repeat) && options.toolChoice?.type !== 'none';
-    const chunks: LanguageModelV3StreamPart[] = searching
-      ? Array.from({ length: count }, (_, i) => ({ type: 'tool-call', toolCallId: `${round}-${i}`, toolName: 'web_search', input: JSON.stringify({ query: `entity ${i}` }) }))
+    const batch = options.tools?.some(t => t.type === 'function' && t.name === 'search_batch') && !options.tools?.some(t => t.type === 'function' && t.name === 'web_search');
+    const chunks: LanguageModelV3StreamPart[] = searching && batch
+      ? [{ type: 'tool-call', toolCallId: `${round}-batch`, toolName: 'search_batch', input: JSON.stringify({ queries: Array.from({length: Math.min(count,12)}, (_,i) => ({query:`entity ${i}`})) }) }]
+      : searching ? Array.from({ length: count }, (_, i) => ({ type: 'tool-call', toolCallId: `${round}-${i}`, toolName: 'web_search', input: JSON.stringify({ query: `entity ${i}` }) }))
       : [{ type: 'text-start', id: 'answer' }, { type: 'text-delta', id: 'answer', delta: 'Evidence [1]' }, { type: 'text-end', id: 'answer' }];
     chunks.push({ type: 'finish', finishReason: { unified: searching ? 'tool-calls' : 'stop', raw: undefined }, usage: { inputTokens: { total: 1, noCache: 1, cacheRead: 0, cacheWrite: 0 }, outputTokens: { total: 1, text: 1, reasoning: 0 } } });
     return { stream: simulateReadableStream({ chunks, chunkDelayInMs: 0 }) };
@@ -99,7 +101,7 @@ test('change checks repair missing coverage before synthesis and surface failed 
       { ...plan,entity:'Supabase',query:'Supabase official pricing' },
       { ...plan,entity:'Supabase',query:'Supabase changes',since:'2026-11-03' },
     ] : [];
-    const chunks: LanguageModelV3StreamPart[] = inputs.length ? inputs.map((input,i) => ({ type:'tool-call',toolCallId:`${n}-${i}`,toolName:'web_search',input:JSON.stringify(input) })) : [
+    const chunks: LanguageModelV3StreamPart[] = inputs.length ? [{ type:'tool-call',toolCallId:`${n}-batch`,toolName:'search_batch',input:JSON.stringify({queries:inputs}) }] : [
       { type:'text-start',id:'a' },{ type:'text-delta',id:'a',delta:'Could not verify Supabase.' },{ type:'text-end',id:'a' },
     ];
     chunks.push({ type:'finish',finishReason:{ unified:inputs.length ? 'tool-calls' : 'stop',raw:undefined },usage:{ inputTokens:{total:1,noCache:1,cacheRead:0,cacheWrite:0},outputTokens:{total:1,text:1,reasoning:0} } });
@@ -116,4 +118,99 @@ test('change checks repair missing coverage before synthesis and surface failed 
   expect(final).toContain('RESEARCH COVERAGE');
   expect(final).toContain('canCompareCurrentClaim');
   expect(final).toContain('failed');
+});
+
+test('comparisons synthesize after the independent search batch without redundant rounds', async () => {
+  const model = modelWithCalls(3, true);
+  const result = runAgent({ messages: [{ role: 'user', content: 'Compare Neon, Supabase and RDS' }], model,
+    search: { search: async () => ({ searchedAt: '', results: [] }) },
+  });
+  await result.consumeStream();
+  expect(model.doStreamCalls).toHaveLength(2);
+  expect(model.doStreamCalls[1].toolChoice).toEqual({ type: 'none' });
+});
+
+test('search deadline bounds an uncooperative provider and retains completed evidence', async () => {
+  const model = modelWithCalls(3);
+  let aborted: AbortSignal | undefined;
+  const result = runAgent({ messages: [{ role: 'user', content: 'Compare providers' }], model, searchDeadlineMs: 30,
+    search: { search: async (query, options) => {
+      if (query === 'entity 0') { aborted = options?.signal; return new Promise(() => {}); }
+      return { searchedAt: '', results: [{ id: 's1', title: 'Evidence', url: 'https://example.com', domain: 'example.com', publishedDate: null, highlights: ['Verified price'] }] };
+    } },
+  });
+  await result.consumeStream();
+  expect(aborted?.aborted).toBe(true);
+  expect(model.doStreamCalls).toHaveLength(2);
+  const evidence = JSON.stringify(model.doStreamCalls[1].prompt);
+  expect(evidence).toContain('Verified price');
+  expect(evidence).toContain('could not be verified');
+});
+
+function recoveryModel(synthesis: ('empty' | 'error' | 'ok' | 'partial')[], onSynthesis?: () => void) {
+  let call = 0;
+  return new MockLanguageModelV3({ doStream: async () => {
+    const n = call++;
+    let chunks: LanguageModelV3StreamPart[];
+    if (n === 0) chunks = [{ type: 'tool-call', toolCallId: 'q', toolName: 'web_search', input: '{"query":"Node release"}' }];
+    else {
+      onSynthesis?.();
+      const outcome = synthesis[Math.min(n - 1, synthesis.length - 1)];
+      chunks = outcome === 'empty' ? [] : outcome === 'error' ? [{ type: 'error', error: new Error('Transient') }] : [
+        { type: 'text-start', id: 'a' }, { type: 'text-delta', id: 'a', delta: 'Recovered answer [1]' }, { type: 'text-end', id: 'a' },
+        ...(outcome === 'partial' ? [{ type: 'error' as const, error: new Error('Interrupted') }] : []),
+      ];
+    }
+    chunks.push({ type: 'finish', finishReason: { unified: n === 0 ? 'tool-calls' : 'stop', raw: undefined }, usage: { inputTokens: { total: 1, noCache: 1, cacheRead: 0, cacheWrite: 0 }, outputTokens: { total: 1, text: 1, reasoning: 0 } } });
+    return { stream: simulateReadableStream({ chunks, chunkDelayInMs: 0 }) };
+  } });
+}
+
+for (const failure of ['empty', 'error'] as const) test(`retries ${failure} synthesis once with identical evidence and no repeated search`, async () => {
+  const model = recoveryModel([failure, 'ok']);
+  let searches = 0;
+  const result = runAgent({ messages: [{ role: 'user', content: 'Latest Node?' }], model,
+    search: { search: async () => { searches++; return { searchedAt: '', results: [] }; } },
+  });
+  let text = '';
+  for await (const part of result.fullStream) {
+    expect(part.type).not.toBe('error');
+    if (part.type === 'text-delta') text += part.text;
+  }
+  expect(text).toBe('Recovered answer [1]');
+  expect(searches).toBe(1);
+  expect(model.doStreamCalls).toHaveLength(3);
+  expect(model.doStreamCalls[1].prompt).toEqual(model.doStreamCalls[2].prompt);
+  expect(model.doStreamCalls[2].toolChoice).toEqual({ type: 'none' });
+});
+
+test('recovery stops after one retry and surfaces failure', async () => {
+  const model = recoveryModel(['error', 'error']);
+  const result = runAgent({ messages: [{ role: 'user', content: 'Latest Node?' }], model,
+    search: { search: async () => ({ searchedAt: '', results: [] }) },
+  });
+  let failed = false;
+  try { for await (const part of result.fullStream) { if (part.type === 'error') failed = true; } } catch { failed = true; }
+  expect(failed).toBe(true);
+  expect(model.doStreamCalls).toHaveLength(3);
+});
+
+test('does not replay an answer once visible text has streamed', async () => {
+  const model = recoveryModel(['partial']);
+  const result = runAgent({ messages: [{ role: 'user', content: 'Latest Node?' }], model,
+    search: { search: async () => ({ searchedAt: '', results: [] }) },
+  });
+  await result.consumeStream();
+  expect(model.doStreamCalls).toHaveLength(2);
+});
+
+test('intentional cancellation never triggers a synthesis retry', async () => {
+  const controller = new AbortController();
+  const model = recoveryModel(['error'], () => controller.abort());
+  const result = runAgent({ messages: [{ role: 'user', content: 'Latest Node?' }], model, signal: controller.signal,
+    search: { search: async () => ({ searchedAt: '', results: [] }) },
+  });
+  try { await result.consumeStream(); } catch { /* cancellation is expected */ }
+  expect(controller.signal.aborted).toBe(true);
+  expect(model.doStreamCalls).toHaveLength(2);
 });

@@ -6,14 +6,18 @@ import { createEmbedder } from './memory/embeddings.js';
 import { MemoryStore } from './memory/db.js';
 import { createExaProvider } from './search/exa.js';
 import { MockSearchProvider } from './search/mock.js';
+function configurationError(message: string): never {
+  console.error(`Configuration error: ${message}`);
+  process.exit(1);
+}
 const provider = process.env.SEARCH_PROVIDER?.trim() || 'exa';
-if (!['exa', 'mock'].includes(provider)) throw new Error('SEARCH_PROVIDER must be exa or mock.');
+if (!['exa', 'mock'].includes(provider)) configurationError('SEARCH_PROVIDER must be exa or mock.');
 const required = provider === 'mock' ? ['GEMINI_API_KEY'] : ['GEMINI_API_KEY', 'EXA_API_KEY'];
 const missing = required.filter(name => !process.env[name]?.trim());
-if (missing.length) throw new Error(`Missing required environment variables: ${missing.join(', ')}. Copy .env.example to .env and fill them in.`);
+if (missing.length) configurationError(`Missing required environment variables: ${missing.join(', ')}. Copy .env.example to .env and fill them in.`);
 const port = Number(process.env.PORT || 3000);
-if (!Number.isInteger(port) || port < 1 || port > 65535) throw new Error('PORT must be an integer between 1 and 65535.');
-if (process.env.AGENT_NOW?.trim() && !Number.isFinite(Date.parse(process.env.AGENT_NOW))) throw new Error('AGENT_NOW must be a valid ISO timestamp.');
+if (!Number.isInteger(port) || port < 1 || port > 65535) configurationError('PORT must be an integer between 1 and 65535.');
+if (process.env.AGENT_NOW?.trim() && !Number.isFinite(Date.parse(process.env.AGENT_NOW))) configurationError('AGENT_NOW must be a valid ISO timestamp.');
 const store = new MemoryStore();
 const memory = new SemanticMemory(store,createEmbedder());
 const app = createApp({ store, memory,

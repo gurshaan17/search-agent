@@ -75,6 +75,7 @@ for (let iteration = 1; iteration <= repeat; iteration++) for (const c of evalCa
         const began = performance.now();
         try {
           const response = await provider.search(query,filters);
+              filters?.signal?.throwIfAborted();
           log.resultCount = response.results.length;
           sources.push(...response.results.map(s=>({id:s.id,url:s.url,domain:s.domain,publishedDate:s.publishedDate})));
           return response;
@@ -89,13 +90,14 @@ for (let iteration = 1; iteration <= repeat; iteration++) for (const c of evalCa
     steps = (await result.steps).length;
     finishReason = await result.finishReason;
     usage = await result.totalUsage;
-    completed = true;
+    completed = finishReason !== 'error';
+    if (!completed) errors.push('Model finished with an error.');
   } catch { errors.push('Model run failed or exceeded the 120-second eval timeout.'); }
   finally { store.close(); }
   const totalMs = elapsed();
   const citationFilter = new CitationFilter(n => sources.some(s => s.id === `s${n}`));
   const validatedText = citationFilter.push(text) + citationFilter.flush();
-  const checks = assertions(c,calls,text,sources,steps);
+  const checks = assertions(c,calls,validatedText,sources,steps);
   if (retrievalCorrect !== undefined) checks.correctRetrievedMemory = retrievalCorrect;
   checks.modelCompleted = completed;
   checks.notTruncated = finishReason !== 'length';

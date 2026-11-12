@@ -51,6 +51,7 @@ try {
         const log: SearchLog = { query, since: options?.since, until: options?.until, resultCount: 0, latencyMs: 0 };
         try {
           const response = await search.search(query, options);
+              options?.signal?.throwIfAborted();
           log.resultCount = response.results.length;
           for (const source of response.results) sources.set(source.id, source);
           return response;

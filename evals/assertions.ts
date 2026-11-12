@@ -42,9 +42,9 @@ export function assertions(c: EvalCase, calls: EvalCall[], text: string, sources
       checks.baseline = c.id === 'crm' ? /hubspot/i.test(text) : /19/.test(text) && /25/.test(text);
       checks.verdicts = c.entities.every(entity => {
         const lines = text.split('\n').filter(line => matches(line,entity));
-        return lines.some(line => /\b(?:unchanged|changed|could not verify|unverifiable)\b/i.test(line));
+        return lines.some(line => /\b(?:unchanged|changed|no evidence of change|could not verify|unverifiable)\b/i.test(line));
       });
-      checks.honestScope = !/nothing (?:has )?changed|no (?:core )?(?:pricing|price) changes (?:have |were )?(?:occurred|announced)/i.test(text);
+      checks.honestScope = !/none .*?(?:prices?|pricing).*?(?:have |has )?changed|\bunchanged\b|nothing (?:has )?changed|no (?:core )?(?:pricing|price) changes (?:have |were )?(?:occurred|announced)/i.test(text);
     } else {
       checks.noSearches = calls.length === 0;
       checks.noInventedHistory = /no (?:record|matching|prior|saved)|don.t have|do not have|not have|can.t|cannot|not (?:recorded|available)|which.*(?:tools|crm)/i.test(text);

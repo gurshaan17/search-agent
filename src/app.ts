@@ -103,6 +103,7 @@ export function createApp(options: { store: MemoryStore; search: () => SearchPro
             const log: SearchLog = { query, since: filters?.since, until: filters?.until, resultCount: 0, latencyMs: 0 };
             try {
               const response = await provider.search(query, filters);
+              filters?.signal?.throwIfAborted();
               log.resultCount = response.results.length;
               for (const source of response.results) sources.set(source.id, source);
               await send('sources', { sources: [...sources.values()].map(s => ({ n: Number(s.id.slice(1)), title: s.title, url: s.url, domain: s.domain, publishedDate: s.publishedDate })) });
@@ -132,7 +133,7 @@ export function createApp(options: { store: MemoryStore; search: () => SearchPro
         const tail = citations.flush();
         if (tail) { text += tail; await send('text', { delta: tail }); }
         if (controller.signal.aborted) outcome = 'aborted';
-        if (!controller.signal.aborted) await send('error', { message: 'The reply could not finish. Check the server connection and try again.' });
+        if (!controller.signal.aborted) await send('error', { message: 'The reply could not finish. Any collected sources are shown above. Please try again.' });
       } finally {
         let turnId: number | null = null;
         const timings = { ttfbMs, firstTokenMs, totalMs: Math.round(performance.now() - start) };

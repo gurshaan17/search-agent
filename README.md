@@ -54,3 +54,9 @@ See [usage and API details](docs/usage.md), [design](DESIGN.md), [measured evals
 Saved-history recall combines dates, keyword search, and Gemini embeddings cached in SQLite. Existing chats are indexed incrementally; run `npm run memory:index` to index all saved history immediately using your Gemini key. This sends saved message passages to Gemini for embedding. If embeddings are unavailable, date/keyword recall still works. No extra database or API key is needed.
 
 Run `npm run eval:memory` to compare keyword and hybrid retrieval on synthetic multilingual, paraphrased, corrected, and missing-history questions. `npm run eval` additionally checks complete Gemini answers and web-search behavior.
+
+### Research latency and recovery
+
+Comparisons and dated rechecks use one `search_batch` call with independent queries executed concurrently. Research has a shared six-second deadline starting at the first search; synthesis uses completed evidence and identifies failed or timed-out queries. The deadline bounds waiting even if a search provider ignores cancellation.
+
+If synthesis fails or returns no answer text, it retries once after a short backoff using the same evidence with tools disabled. Cancellation and failures after visible answer text do not replay the answer. Synthesis has a 30-second deadline shared by both attempts, within a 90-second agent deadline. If recovery fails, the UI keeps collected sources and shows an error; it never records an empty successful reply. These bounds do not guarantee the latency targets: model planning and generation still contribute to response time.
