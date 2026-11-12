@@ -17,7 +17,7 @@ const value = (name: string) => args.find(arg => arg.startsWith(`--${name}=`))?.
 const live = args.includes('--live');
 const selected = value('case')?.split(',');
 const repeat = Number(value('repeat') ?? 1);
-const searchType = value('search-type') ?? 'auto';
+const searchType = value('search-type') ?? 'fast';
 const output = value('output');
 const stepCap = Number(value('step-cap') ?? 4);
 if (stepCap !== 2 && stepCap !== 4) throw new Error('step-cap must be 2 or 4.');

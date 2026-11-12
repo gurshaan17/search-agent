@@ -57,6 +57,8 @@ Run `npm run eval:memory` to compare keyword and hybrid retrieval on synthetic m
 
 ### Research latency and recovery
 
+Browser chat, CLI chat, and live evals use Exa fast search by default. Use `--search-type=auto` in live evals to compare against auto mode.
+
 Comparisons and dated rechecks use one `search_batch` call with independent queries executed concurrently. Research has a shared six-second deadline starting at the first search; synthesis uses completed evidence and identifies failed or timed-out queries. The deadline bounds waiting even if a search provider ignores cancellation.
 
 If synthesis fails or returns no answer text, it retries once after a short backoff using the same evidence with tools disabled. Cancellation and failures after visible answer text do not replay the answer. Synthesis has a 30-second deadline shared by both attempts, within a 90-second agent deadline. If recovery fails, the UI keeps collected sources and shows an error; it never records an empty successful reply. These bounds do not guarantee the latency targets: model planning and generation still contribute to response time.

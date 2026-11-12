@@ -20,7 +20,7 @@ export class ExaSearchProvider implements SearchProvider {
     }
   }
 }
-export function createExaProvider(apiKey: string, type: 'auto' | 'fast' = 'auto', maxCharacters = 1200) {
+export function createExaProvider(apiKey: string, type: 'auto' | 'fast' = 'fast', maxCharacters = 1200) {
   if (!apiKey.trim()) throw new Error('EXA_API_KEY is required.');
   const client = new Exa(apiKey);
   return new ExaSearchProvider(async (query, options, signal) => {
